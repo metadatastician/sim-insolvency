@@ -82,8 +82,8 @@ test-mutation:
     {{zig_env}} zig test zig/src/kernel.zig --test-filter "tamper"
 
 fuzz:
-    {{zig_env}} zig test zig/src/kernel.zig --test-filter "version and length"
-    @echo "Bounded decoder/port malformed-input corpus passed; coverage-guided fuzzing remains a documented gap."
+    {{zig_env}} zig test zig/src/ports.zig --test-filter "version and length"
+    @echo "Bounded malformed-input checks passed; coverage-guided fuzzing remains a documented gap."
 
 bench: build
     @time ./zig-out/bin/sim-insolvency golden >/dev/null

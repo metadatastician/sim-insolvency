@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+runs = [
+  "cvl-competent-standard",
+  "cvl-competent-alternative",
+  "administration-competent-standard",
+  "administration-competent-alternative",
+  "threshold-borderline",
+  "critical-error",
+  "deadline-failure",
+  "group-session-with-dissent",
+]

@@ -1,0 +1,85 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+// Canonical AffineScript domain-facing contract. No hidden scenario reality.
+
+type StableId = String;
+type Version = String;
+type LogicalMinute = Int;
+
+enum Lifecycle {
+  Authored,
+  Available,
+  Active,
+  Blocked,
+  Completed,
+  Closed,
+  Revoked
+}
+
+enum Procedure {
+  InformalRestructuring,
+  CVA,
+  Administration,
+  CVL,
+  CompulsoryLiquidation,
+  ContinuedTradingOrCessation
+}
+
+enum WorkstreamStatus {
+  Inactive,
+  Available,
+  Active,
+  Blocked,
+  AwaitingResponse,
+  AtRisk,
+  Overdue,
+  Completed,
+  ClosedWithException
+}
+
+struct Provenance {
+  createdBy: StableId,
+  createdAt: LogicalMinute,
+  sourceId: StableId,
+  schemaVersion: Version
+}
+
+struct Actor { id: StableId, provenance: Provenance, lifecycle: Lifecycle }
+struct Organisation { id: StableId, provenance: Provenance, lifecycle: Lifecycle }
+struct Role { id: StableId, provenance: Provenance, lifecycle: Lifecycle }
+struct ProcedureCandidate { id: StableId, procedure: Procedure, lifecycle: Lifecycle }
+struct Fact { id: StableId, provenance: Provenance, lifecycle: Lifecycle }
+struct EvidenceItem { id: StableId, provenance: Provenance, lifecycle: Lifecycle }
+struct EvidenceSource { id: StableId, provenance: Provenance, lifecycle: Lifecycle }
+struct Disclosure { id: StableId, evidenceId: StableId, provenance: Provenance }
+struct Claim { id: StableId, text: String, provenance: Provenance }
+struct Hypothesis { id: StableId, text: String, provenance: Provenance }
+struct Uncertainty { id: StableId, text: String, provenance: Provenance }
+struct Risk { id: StableId, text: String, provenance: Provenance }
+struct Authority { id: StableId, citation: String, provenance: Provenance }
+struct RulePack { id: StableId, version: Version, authorityCutOff: String }
+struct Rule { id: StableId, authorityId: StableId, reviewStatus: String }
+struct Obligation { id: StableId, ruleId: StableId, lifecycle: Lifecycle }
+struct Permission { id: StableId, ruleId: StableId, lifecycle: Lifecycle }
+struct Prohibition { id: StableId, ruleId: StableId, lifecycle: Lifecycle }
+struct Deadline { id: StableId, dueAt: LogicalMinute, lifecycle: Lifecycle }
+struct Action { id: StableId, provenance: Provenance, lifecycle: Lifecycle }
+struct Command { id: StableId, kind: String, provenance: Provenance }
+struct Event { id: StableId, sequence: Int, kind: String, provenance: Provenance }
+struct Document { id: StableId, simulationWatermark: String, provenance: Provenance }
+struct Reason { id: StableId, text: String, provenance: Provenance }
+struct Decision { id: StableId, procedure: Procedure, provenance: Provenance }
+struct Consequence { id: StableId, kind: String, amount: Int }
+struct Workstream { id: StableId, status: WorkstreamStatus }
+struct Competency { id: StableId, version: Version }
+struct CompetencyObservation { id: StableId, competencyId: StableId, eventId: StableId }
+struct Assessment { id: StableId, rubricVersion: Version, lifecycle: Lifecycle }
+struct Result { id: StableId, resultClass: String, lifecycle: Lifecycle }
+struct CertificateEvidence { id: StableId, ledgerDigest: String, resultDigest: String }
+struct Scenario { id: StableId, jurisdiction: String, domain: String }
+struct ScenarioVersion { id: StableId, version: Version, rulePackId: StableId }
+struct Session { id: StableId, scenarioVersion: Version, seed: Int }
+struct Participant { id: StableId, roleId: StableId, lifecycle: Lifecycle }
+struct Facilitator { id: StableId, participantId: StableId, lifecycle: Lifecycle }
+
+// Affine ownership smoke contract: an accepted command is consumed once.
+fn consumeAcceptedCommand(command: own Command) -> () = ();

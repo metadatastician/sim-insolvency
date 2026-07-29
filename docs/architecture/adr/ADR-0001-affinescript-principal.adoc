@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0001: AffineScript as Principal Language
+:status: accepted
+
+Context:: Domain logic needs explicit resource ownership, while AffineScript is
+experimental and not installed in the current environment.
+Decision:: Public domain contracts and progressively supported logic are
+AffineScript. Unsupported execution sits behind versioned Zig/Idris2 ports.
+Alternatives:: Zig-only, Idris2-only and mainstream web stacks would violate
+the requested architecture or overload the proof layer.
+Consequences:: The repository remains migration-oriented and must distinguish
+compiled AffineScript from contract-only source.
+Current limitations:: Complex runtime logic initially executes in Zig.
+Reversal:: Only if the estate retires AffineScript or a reviewed successor
+preserves the same ownership contracts.

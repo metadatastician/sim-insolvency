@@ -1,0 +1,38 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Language Boundaries
+:toc: left
+
+== Neutral envelope v1
+
+All cross-language calls use status-returning functions over explicit
+pointer/length pairs or WebAssembly offset/length pairs. Inputs are borrowed
+for the call only. Outputs are written into caller-owned buffers after a size
+query. No sentinel strings, implicit allocation transfer, panics or partial
+error spaces cross the boundary.
+
+== AffineScript
+
+Owns public domain values, command/event contracts, procedure comparison and
+assessment orchestration as compiler support allows. Host operations are
+`extern fn` imports with affine ownership annotations.
+
+== Zig
+
+Owns canonical encoding, SHA-256/HMAC adapters, deterministic clock/seed,
+portable ledger store, VeriSimDB HTTP adapter, Gossamer and Burble gateways,
+Hexadeca stub and WebAssembly exports. Every port begins with ABI version and
+capability negotiation.
+
+== Idris2
+
+Defines valid identifiers/envelopes, sequence/parent/version constraints,
+provenance and certificate fields, ownership lifecycle and serialisation
+obligations. A generated neutral manifest or committed manifest digest is
+checked by Zig and AffineScript conformance tests.
+
+== Error totality
+
+Boundary results are `ok`, `invalid-version`, `invalid-length`,
+`invalid-encoding`, `not-authorised`, `not-available`, `not-supported`,
+`conflict`, `integrity-failure`, `resource-exhausted` or `internal-failure`.
+Unknown numeric statuses are treated as `internal-failure`, never success.

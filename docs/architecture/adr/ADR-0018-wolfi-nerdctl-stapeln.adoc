@@ -1,0 +1,20 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0018: Wolfi, nerdctl and Stapeln-Compatible Packaging
+:status: accepted
+
+Context:: The application needs a current OCI path and future verified-container
+integration.
+Decision:: Use a multi-stage Chainguard Wolfi image and nerdctl as the explicit
+build/run engine. Provide Stapeln layer/security metadata and future Cerro
+Torre/Vordr/Svalinn/Rokur hooks.
+Alternatives:: Docker-first, Nix, opaque buildpacks or claiming incomplete
+Stapeln verification conflict with estate/user constraints.
+Consequences:: `just container-build`/`container-run` call nerdctl. Production
+must pin Wolfi by digest and verify SBOM/provenance before a `.ctp` claim.
+Current limitations:: Stapeln is incomplete, its nerdctl reference plugin has
+documented cryptographic gaps, no `.ctp` tool is installed locally, and this
+host has neither a rootless containerd socket nor BuildKit. The Containerfile is
+therefore implemented but not yet image-build-verified; the native standalone
+bundle is verified. Wolfi must also be resolved from `latest` to a digest.
+Reversal:: A mature estate container pipeline may replace direct nerdctl while
+preserving OCI/Wolfi and strict verification.

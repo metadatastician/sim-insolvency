@@ -1,0 +1,16 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0016: Standalone Offline Distribution
+:status: accepted
+
+Context:: Learners must run the complete bounded case without accounts,
+services, estate checkouts or network access.
+Decision:: Package native kernel, static shell, scenario/rule assets, licence,
+verification and limitation material together. Optional ports default to local
+deterministic adapters.
+Alternatives:: Requiring VeriSimDB/Burble/Gossamer services violates local-first
+operation; vendoring their repositories creates drift.
+Consequences:: Build-time toolchains remain Guix dependencies, while runtime
+needs only the packaged binary/assets. Learner browser assets exclude reality.
+Current limitations:: Source checkouts expose authored reality to developers;
+production assessment distribution needs sealed/facilitator-controlled packs.
+Reversal:: None while offline/local-first is a product invariant.

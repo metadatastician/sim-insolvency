@@ -1,0 +1,62 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Toolchain and Integration Gaps
+:toc: left
+
+[cols="2,3,3",options="header"]
+|===
+|Gap |Phase A treatment |Return path
+
+|AffineScript compiler absent from `PATH`
+|Commit real `.affine` contracts; `just build-affine` fails with a diagnostic;
+Zig fallback executes the same neutral contract.
+|Configure/pin the inspected compiler and make conformance required.
+
+|AffineScript compiler experimental/partial
+|Keep complex storage, crypto, shared projections and host resources behind
+Zig ports.
+|Migrate one module at a time after compiling ownership and round-trip tests.
+
+|typed-wasm carriers partly producer-gated
+|Verify available ownership carrier; label plain WASM fallback accurately.
+|Adopt accepted carrier sections as AffineScript producer support lands.
+
+|Gossamer requires Ephapax/system webviews
+|Headless shell projection is mandatory; native adapter is optional.
+|Pin compatible Gossamer/Ephapax and enable graphical CI.
+
+|Burble lacks learning proposal/vote/reveal protocol
+|Application-owned envelopes over bounded room/presence/text transport plus a
+deterministic test double.
+|Contribute a reviewed extension protocol upstream, then implement adapter.
+
+|Hexadeca repository not located
+|Compileable `HexadecaPort` returns `not-supported`.
+|Replace only after a canonical pinned repository and conformance suite exist.
+
+|VeriSimDB has no supported Zig client/in-process ABI
+|Pure-Zig versioned HTTP adapter and deterministic offline port.
+|Adopt a stable upstream Zig client or formal ABI if published.
+
+|Guix unavailable in current environment
+|Commit authoritative manifest and have `doctor` report inability to evaluate.
+|Run Guix build in CI/maintainer environment.
+
+|nerdctl has no rootless containerd socket and BuildKit is absent
+|Commit the Wolfi multi-stage `Containerfile`, learner-safe context exclusions,
+and Stapeln layer manifest; verify standalone native bundles locally.
+|Install/start rootless containerd plus BuildKit, resolve Wolfi to a digest, then
+run `just container-build` and `just container-run`.
+
+|ECHIDNA runtime and provers are not bundled
+|Check Idris2 invariants locally and expose a total `EchidnaProofPort` that
+returns `not-available`; require hashed receipts for any future proved result.
+|Add the inspected Cap'n Proto adapter only after ECHIDNA is pinned as an
+optional runtime and its prover trust policy is approved.
+
+|Authority pack lacks practitioner review
+|All legal rules remain provisional/unreviewed and non-authoritative.
+|Named two-person review over pinned pack digest.
+|===
+
+Every gap is tracked as an explicit TODO adjacent to its port. A fallback may
+provide function but never upgrades the integration status or legal claim.

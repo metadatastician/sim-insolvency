@@ -1,0 +1,73 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Stapeln-compatible future layer description. Direct nerdctl is authoritative
+# until Stapeln can validate and execute this manifest end to end.
+
+[metadata]
+name = "sim-insolvency"
+version = "0.1.0-alpha.1"
+description = "Standalone evidence-driven insolvency practice simulator"
+author = "Jonathan D.A. Jewell"
+license = "PMPL-2.0-or-later"
+registry = "ghcr.io/metadatastician"
+repository = "https://github.com/metadatastician/sim-insolvency"
+keywords = ["assessment", "insolvency", "affinescript", "zig", "idris2"]
+
+[build]
+containerfile = "Containerfile"
+context = "."
+runtime = "nerdctl"
+
+[layers.base]
+description = "Chainguard Wolfi build base"
+from = "cgr.dev/chainguard/wolfi-base:latest"
+cache = true
+verify = true
+
+[layers.zig-toolchain]
+description = "Pure Zig fallback builder"
+extends = "base"
+packages = ["zig"]
+cache = true
+
+[layers.kernel-build]
+description = "ReleaseSafe native kernel and ABI tests"
+extends = "zig-toolchain"
+workdir = "/src"
+copy = [
+  { src = "build.zig", dst = "build.zig" },
+  { src = "zig/", dst = "zig/" },
+]
+commands = [
+  "zig build -Doptimize=ReleaseSafe",
+  "zig build test",
+]
+artefacts = [
+  { src = "/src/zig-out/bin/sim-insolvency", dst = "/opt/sim-insolvency/bin/sim-insolvency" },
+]
+
+[layers.proof-check]
+description = "Idris2 ABI proof gate; future ECHIDNA receipt input"
+extends = "base"
+packages = ["idris2", "chez-scheme"]
+workdir = "/src/idris2"
+copy = [
+  { src = "idris2/", dst = "." },
+]
+commands = [
+  "idris2 --build sim-insolvency-abi.ipkg",
+]
+
+[layers.runtime]
+description = "Non-root Wolfi runtime containing only learner-safe assets"
+from = "cgr.dev/chainguard/wolfi-base:latest"
+packages = []
+copy-from = [
+  { layer = "kernel-build", src = "/opt/sim-insolvency/", dst = "/opt/sim-insolvency/" },
+]
+user = "65532:65532"
+
+[targets.local]
+layers = ["kernel-build", "proof-check"]
+
+[targets.oci]
+layers = ["runtime"]

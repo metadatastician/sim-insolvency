@@ -1,0 +1,47 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Assessment Rubric v0.1
+:toc: left
+
+== Scale
+
+Each competency receives `not-observed`, `developing`, `threshold`, or
+`strong`, with cited observations. Critical errors are separate and cannot be
+averaged away. A result may be invalidated by ledger/rule-pack integrity
+failure.
+
+== Route classes
+
+`competent-standard`::
+Proportionate evidence gathering, explicit uncertainty, defensible selection,
+timely protection and adequate record.
+
+`competent-alternative`::
+A different route or sequence that remains defensible on the evidence then
+known and mitigates its distinct risks.
+
+`minimally-acceptable`::
+Threshold reasoning with limited depth but no critical omission.
+
+`common-error`::
+Weakly supported assumption, avoidable delay, incomplete comparison or poor
+record that does not itself invalidate the case.
+
+`critical-error`::
+Knowing action without authority, fabrication/alteration of evidence, hiding a
+material conflict, certificate/ledger tampering, or proceeding when the
+selected route's essential prerequisite is known to be absent.
+
+== Threshold
+
+`threshold-demonstrated` requires threshold evidence in engagement,
+information, procedure comparison, evidence use, uncertainty, timeliness,
+ethical reasoning and record quality; no critical error; a valid compatible
+pack; and final submission. Other competencies contribute feedback and may
+raise the result to `completed-with-feedback` without inventing an award.
+
+== Consequences
+
+Asset value, business continuity, costs, evidence preservation, creditor and
+employee effects, distribution abstraction, investigation reach and elapsed
+time are reported separately. They may corroborate decisions but do not define
+competence.

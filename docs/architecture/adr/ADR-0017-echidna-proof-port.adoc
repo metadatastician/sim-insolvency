@@ -1,0 +1,16 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0017: ECHIDNA-Ready Proofing Port
+:status: accepted
+
+Context:: ABI/event/certificate invariants should be available for later
+cross-prover checking without coupling Phase A to a prover service.
+Decision:: Define versioned proof obligations, attempts, certificate references,
+axiom costs, prover-binary identity and trust receipts matching the inspected
+ECHIDNA semantic model. ECHIDNA is optional.
+Alternatives:: Calling ECHIDNA directly couples the offline runtime; prose-only
+proof intentions cannot be discharged.
+Consequences:: Local Idris2 proofs and neutral obligations can later be ingested
+and receipts indexed in VeriSimDB. Receipts never establish legal authority.
+Current limitations:: No Cap'n Proto generator or ECHIDNA dispatch is bundled.
+Reversal:: Replace the port only with a stable upstream generated client and
+round-trip suite.

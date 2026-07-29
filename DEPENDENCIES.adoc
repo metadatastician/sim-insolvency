@@ -1,0 +1,121 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell (hyperpolymath)
+= Dependencies
+:toc: left
+:reproducible:
+
+== Policy
+
+Dependencies are pinned by revision or release in the Guix/build configuration
+and are accessed through narrow ports. Estate repositories are not vendored.
+The exact local revisions inspected during design are recorded below; they are
+not automatically the revisions selected for a distributable release.
+
+[cols="2,3,2,2,3",options="header"]
+|===
+|Dependency |Canonical repository |Inspected revision |Use |Status
+
+|RSR template
+|`https://github.com/hyperpolymath/rsr-template-repo`
+|`7e5bcc3bda7b0717a35d2410c8ffdecec1d3953e`
+|Repository basis
+|Consumed structurally; stale template Guix metadata corrected locally.
+
+|AffineScript
+|`https://github.com/hyperpolymath/affinescript`
+|`adf39d44935d7c55f273659400ddb0ce6b2a84e8`
+|Principal source compiler
+|Optional build tool until compiler is installed; contracts are committed.
+
+|typed-wasm
+|`https://github.com/hyperpolymath/typed-wasm`
+|`00bdabad0bd2d6e2438b85ebc16f344ef422fd3a`
+|WASM contract and verification
+|Producer/verifier integration in progress behind conformance target.
+
+|Gossamer
+|`https://github.com/metadatastician/gossamer`
+|`b4c7740f7cb5f97ab65f9720ae06c25b629e4509`
+|Native application shell
+|Optional runtime through `GossamerPort`; headless shell always available.
+
+|Burble
+|`https://github.com/metadatastician/burble`
+|`8e40f23fd7e063f04922bf24848e5695b459034e`
+|Group-room communication
+|Optional runtime through `BurblePort`; application envelopes are local.
+
+|VeriSimDB
+|`https://github.com/hyperpolymath/verisimdb`
+|`14df42270def3a45cc4bb8d4c5c8f4084ec63958`
+|Local persistence and provenance indexing
+|Selected persistence backend through `/api/v1` `VeriSimPort`; deterministic
+offline adapter used for tests.
+
+|SNIFS
+|`https://github.com/hyperpolymath/snifs`
+|`9b6bf9a1a9b806b82a9b1fb3c795e66992477c7c`
+|Possible future sandboxing
+|Not used in Phase A.
+
+|Proven Tests and Benches
+|`https://github.com/hyperpolymath/proven-tests-and-benches`
+|`82b455ce623736608fb2e1db14f1d5d04a214438`
+|Evidence-graded tests
+|Optional pinned test dependency; never vendored.
+
+|Unified Hexadeca API
+|Not located
+|Not applicable
+|Unified API
+|Blocked. Local `HexadecaPort` stub only. The unmerged IDApTIK branch
+`4fb461b287e02cc06937a644a206e259b40927e9` is evidence, not a dependency.
+
+|ECHIDNA
+|`https://github.com/hyperpolymath/echidna`
+|`3e3f81a40b1ac6500cc6cf04d5434b9d40bf2b8d`
+|Future multi-prover proof dispatch and receipts
+|Optional behind `EchidnaProofPort`; no prover binaries bundled.
+
+|Stapeln
+|`https://github.com/metadatastician/stapeln`
+|`2882aac86f84eb512b4fb58629cd6b0a18cf153e`
+|Future verified-container layer and `.ctp` workflow
+|Metadata compatibility only; current image builds directly with nerdctl.
+
+|Palimpsest-MPL
+|`https://github.com/hyperpolymath/palimpsest-license`
+|`6f83592`
+|Licence text and provenance convention
+|The clean introducing blob `legal/PALIMPSEST-MPL-2.0.txt` is pinned because
+the inspected 2026-07-29 working-tree copy contains later erroneous mechanical
+identifier substitutions. Both code and documentation use
+`PMPL-2.0-or-later`.
+|===
+
+== Runtime profiles
+
+`offline`::
+Pure local deterministic execution with the file-backed `VeriSimPort` test
+adapter and no group transport. This is the reference replay profile.
+
+`local-verisim`::
+Local kernel plus a pinned VeriSimDB service on loopback. No cloud account or
+telemetry.
+
+`group`::
+The local-verisim or offline profile plus an explicitly enabled Burble room.
+Burble data never bypasses command validation.
+
+`standalone`::
+Release directory or Wolfi OCI image containing the native kernel, static shell,
+scenario/rule assets, licence and limitations. It runs without network access
+or an external estate checkout.
+
+== Licence boundaries
+
+Original source code, documentation, and fictional learning materials are
+PMPL-2.0-or-later. Authority packs contain citations and reviewed
+interpretation metadata, not copied proprietary courses, exam questions, or
+third-party legal databases. Generated ABI manifests carry their generator's
+declared SPDX provenance.

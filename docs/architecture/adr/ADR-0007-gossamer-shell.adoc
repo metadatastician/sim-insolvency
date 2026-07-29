@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0007: Gossamer Shell Separation
+:status: accepted
+
+Context:: The UI needs a native estate shell without becoming the domain model.
+Decision:: Gossamer renders projections and submits commands through
+`GossamerPort`; no authoritative rules reside in the shell.
+Alternatives:: Electron, Tauri, React and bespoke shells are prohibited or
+duplicate estate work.
+Consequences:: Headless projection tests precede graphical integration.
+Current limitations:: Gossamer/Ephapax and system webviews are optional locally.
+Reversal:: Only if Gossamer is retired and a reviewed estate shell succeeds it.

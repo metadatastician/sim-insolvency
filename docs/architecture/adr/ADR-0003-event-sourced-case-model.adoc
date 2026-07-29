@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0003: Event-Sourced Authoritative Case Model
+:status: accepted
+
+Context:: Assessment must establish what happened, when and why.
+Decision:: Accepted events form an append-only hash-chained ledger; state is
+derived by deterministic projection.
+Alternatives:: Mutable rows or one finite-state machine obscure causality and
+concurrency.
+Consequences:: Commands validate before append; replay/export are first-class.
+Current limitations:: Phase A uses a bounded event vocabulary.
+Reversal:: Only for a model that preserves portable replay and audit semantics.

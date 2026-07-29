@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+[rubric]
+version = "0.1.0"
+one-correct-path = false
+
+[routes]
+competent-standard = ["cvl-competent-standard", "administration-competent-standard"]
+competent-alternative = ["cvl-competent-alternative", "administration-competent-alternative"]
+minimal = ["threshold-borderline"]
+common-error = ["deadline-failure"]
+critical-error = ["critical-error"]
+group = ["group-session-with-dissent"]
+
+[authority]
+status = "PROVISIONAL"
+authoritative-scoring = false

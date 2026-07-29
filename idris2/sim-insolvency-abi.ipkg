@@ -1,0 +1,13 @@
+package sim-insolvency-abi
+
+version = 0.1.0
+authors = "Jonathan D.A. Jewell"
+brief = "Proof-bearing ABI contracts for Sim Insolvency"
+sourcedir = "."
+depends = base
+
+modules = SimInsolvency.ABI.Core
+        , SimInsolvency.ABI.Event
+        , SimInsolvency.ABI.Certificate
+        , SimInsolvency.ABI.Proof
+        , SimInsolvency.ABI.Conformance

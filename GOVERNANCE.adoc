@@ -1,0 +1,8 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Governance
+
+The `metadatastician` maintainers steward code and authored learning material.
+Legal-rule activation additionally requires the two-person review defined in
+`docs/rules/review-policy.adoc`. Credential/accreditation claims require a
+separate external agreement and governance decision. ADRs are append-only;
+supersession records a new ADR rather than rewriting history.

@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0014: Integration with Proven Tests and Benches
+:status: accepted
+
+Context:: The estate provides evidence-graded Idris2 testing but is CRG D.
+Decision:: Consume it as a pinned optional test dependency and manifest; do not
+vendor it or make ordinary local tests dependent on installation.
+Alternatives:: Copying the framework creates drift; ignoring it loses estate
+test semantics.
+Consequences:: Proof-grade lane is distinct and fails clearly if unavailable.
+Current limitations:: Consumer integration remains provisional.
+Reversal:: Update when upstream publishes a more stable reusable workflow.

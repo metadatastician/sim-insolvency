@@ -1,0 +1,34 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+
+enum CommandStatus {
+  Accepted,
+  Malformed,
+  Unauthorised,
+  PrerequisiteMissing,
+  Untimely,
+  EvidenceUnavailable,
+  ResourceInsufficient,
+  ProcedureDisallows,
+  VersionIncompatible
+}
+
+struct CommandEnvelope {
+  abiVersion: Int,
+  idempotencyKey: String,
+  actorId: String,
+  kind: String,
+  payload: String
+}
+
+struct ValidationResult {
+  status: CommandStatus,
+  message: String
+}
+
+fn rejectMalformed(command: ref CommandEnvelope) -> ValidationResult {
+  if command.abiVersion == 1 {
+    #{ status: Accepted, message: "validate in authoritative gateway" }
+  } else {
+    #{ status: VersionIncompatible, message: "unsupported ABI version" }
+  }
+}

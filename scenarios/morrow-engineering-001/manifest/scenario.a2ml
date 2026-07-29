@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+[scenario]
+id = "morrow-engineering-001"
+title = "Morrow Engineering Ltd"
+version = "0.1.0"
+jurisdiction = "england-wales"
+domain = "corporate-insolvency"
+mode = "assessment"
+authority-cut-off = "2026-07-01"
+rule-pack = "england-wales-corporate-provisional@0.1.0"
+reality-profile = "trusted-host-only"
+learner-bundle = "public.a2ml"
+watermark = "SIMULATION — NOT FOR FILING"
+
+[claims]
+legal-advice = false
+live-case-management = false
+professional-qualification = false
+accredited-cpd = false
+
+[determinism]
+seed-source = "session-record"
+clock = "logical-minutes"
+event-order = "accepted-command-order"

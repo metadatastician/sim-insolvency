@@ -1,0 +1,21 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Authority Registry
+:toc: left
+
+The Phase A registry is intentionally incomplete and provisional. It contains
+source *manifests and citations*, not a claim to reproduce current insolvency
+law. The authoritative cut-off for Morrow Engineering is declared in its
+scenario manifest and must be practitioner-reviewed before release.
+
+[cols="2,2,2,3",options="header"]
+|===
+|Authority class |Phase A status |Executable scoring |Policy
+|Primary/secondary legislation |`UNREVIEWED` manifest slots |No |Practitioner and
+legal-editor review required.
+|Insolvency Rules |`UNREVIEWED` manifest slots |No |No invented dates.
+|SIPs and ethics |`UNREVIEWED` manifest slots |No |No fake SIP mappings.
+|Official guidance |`PROVISIONAL` citations |Formative only |Verify effective
+date and archival source.
+|Scenario interpretations |`PROVISIONAL` |Formative only |Must cite the
+authority record and expose interpretation status.
+|===

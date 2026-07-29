@@ -1,0 +1,9 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+
+effect IO {
+  fn println(s: String) -> ();
+}
+
+fn main() -{IO}-> () {
+  println("Sim Insolvency — SIMULATION ONLY");
+}

@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+[project]
+name = "sim-insolvency"
+owner = "metadatastician"
+version = "0.1.0-phase-a"
+status = "experimental"
+
+[claims]
+affinescript-principal = true
+zig-fallback-executable = true
+idris2-abi-checked = true
+typed-wasm-complete = false
+gossamer-native-complete = false
+burble-external-complete = false
+verisimdb-http-complete = false
+hexadeca-complete = false
+authority-pack-reviewed = false
+professional-certification = false
+standalone-learner-bundle = true
+echidna-proof-port = true
+wolfi-containerfile = true
+nerdctl-image-build-verified = false
+stapeln-runtime-complete = false
+license = "PMPL-2.0-or-later"

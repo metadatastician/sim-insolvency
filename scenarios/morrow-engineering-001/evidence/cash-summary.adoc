@@ -1,0 +1,6 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= SIMULATION — NOT FOR FILING
+
+A management-prepared summary reports constrained cash, arrears and upcoming
+payroll. It is incomplete, unaudited and should not be treated as a concluded
+solvency assessment.

@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0009: Local-First Persistence with VeriSimDB
+:status: accepted
+
+Context:: Runs need local persistence, provenance and export without a cloud.
+Decision:: VeriSimDB is selected behind `VeriSimPort`; portable events remain
+the domain authority. Offline deterministic storage implements the same port.
+Alternatives:: SQLite was considered but superseded by the explicit estate
+choice; in-memory only cannot resume runs.
+Consequences:: Full profile uses loopback `/api/v1`; tests require no service.
+Current limitations:: No supported upstream Zig client/in-process ABI exists.
+Reversal:: Only if VeriSimDB cannot meet deterministic/local requirements after
+its stable client contract is evaluated.

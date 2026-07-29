@@ -1,0 +1,38 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Evidence and Belief Semantics
+:toc: left
+
+== Five layers
+
+. *Scenario reality* is authored fictional truth and causal configuration.
+. *Potential evidence* is material that might be requested, produced or lost.
+. *Disclosed record* is the immutable history of material made available.
+. *Learner belief state* contains learner-authored claims, hypotheses,
+  uncertainties, risks and reasons.
+. *Normative case state* contains active rules, obligations, permissions,
+  prohibitions, deadlines and compliance risk.
+
+No layer aliases another. Evidence is not automatically fact; a claim is not
+true because it was recorded; normative state does not reveal hidden reality.
+
+== Belief operations
+
+`record-claim` requires text and may cite zero or more disclosures; uncited
+claims are explicitly unsupported. `record-hypothesis` carries alternatives
+and falsifiers. `record-uncertainty` carries impact and a possible resolution
+request. `record-risk` carries likelihood, consequence, evidence and review
+time. Later evidence may confirm, weaken, contradict or leave a belief
+unresolved; history is appended, not overwritten.
+
+== Disclosure
+
+Evidence can be disclosed only after its authored availability time and an
+accepted request/event, unless it is in the initial packet. Disclosed evidence
+IDs are monotonically accumulated. Withholding is an event with a reason, not
+an absence that the learner can distinguish from a missing implementation.
+
+== Hidden-truth boundary
+
+Assessment bundles delivered to the learner contain public manifests and sealed
+references only. Reality files remain in the trusted local kernel/facilitator
+process. IDs are random/opaque and filenames do not encode conclusions.

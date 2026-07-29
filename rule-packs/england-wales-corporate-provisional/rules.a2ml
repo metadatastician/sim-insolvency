@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+[[rule]]
+id = "training-conflict-check-before-appointment"
+jurisdiction = "england-wales"
+authority-source = "internal:foundation-spec-v0.1"
+source-citation = "docs/foundation/foundation-spec-v0.1.adoc#product-invariants"
+effective-from = "2026-07-01"
+interpretation = "Assessment safety rule; not a statement of comprehensive law."
+pack-version = "0.1.0"
+review-status = "PROVISIONAL"
+test = "kernel:ethical-reasoning"
+normative-legal-scoring = false
+
+[[rule]]
+id = "training-evidence-before-selection"
+jurisdiction = "england-wales"
+authority-source = "internal:learning-model"
+source-citation = "docs/foundation/learning-model.adoc#construct"
+effective-from = "2026-07-01"
+interpretation = "Pedagogical evidence-use rule."
+pack-version = "0.1.0"
+review-status = "PROVISIONAL"
+test = "kernel:selectProcedure-prerequisites"
+normative-legal-scoring = false
+
+[[rule]]
+id = "legal-authority-slot-procedure-eligibility"
+jurisdiction = "england-wales"
+authority-source = "PRACTITIONER-REVIEW-REQUIRED"
+source-citation = "UNRESOLVED"
+effective-from = "2026-07-01"
+interpretation = "No executable legal conclusion until citation and review are complete."
+pack-version = "0.1.0"
+review-status = "UNREVIEWED"
+test = "authority-refusal"
+normative-legal-scoring = false

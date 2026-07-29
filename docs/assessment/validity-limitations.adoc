@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Assessment Validity and Limitations
+
+Phase A provides internal, scenario-bounded observations. It has no demonstrated
+predictive validity for workplace performance, no external standard setting,
+no awarding-body approval and no regulatory recognition. The provisional rule
+pack is not comprehensive and has not received practitioner review.
+
+Scores are conditional on scenario/version, disclosed evidence, rule pack,
+rubric and ledger integrity. Accessibility barriers, group role allocation,
+technical failure or compromised identity may require invalidation or a
+separate accommodation record rather than a low competency inference.

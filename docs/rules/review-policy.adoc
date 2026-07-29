@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Rule Review Policy
+
+Two-person review is required for executable normative scoring: a
+subject-matter practitioner and an editor responsible for source identity,
+effective dates and faithful representation. Review records name the reviewed
+pack digest. Any content change invalidates the review until renewed.
+
+`UNREVIEWED` rules may not affect a professional-certification claim.
+`PROVISIONAL` rules may drive clearly labelled formative observations.
+Revocation stops authoritative scoring without deleting historical replay.

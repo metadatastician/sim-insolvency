@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0012: Authored Scenarios Before Procedural Generation
+:status: accepted
+
+Context:: Valid assessment requires coherent evidence, causality and reachable
+rubric observations.
+Decision:: Build and validate Morrow Engineering as an authored case before any
+scenario generator.
+Alternatives:: Random generation risks contradictions and meaningless paths.
+Consequences:: Reality, evidence and event rules are version-controlled.
+Current limitations:: Phase A has one scenario.
+Reversal:: Generation may be added only after authored-model validation and
+equivalent consistency checks.

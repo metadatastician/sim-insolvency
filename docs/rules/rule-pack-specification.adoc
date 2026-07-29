@@ -1,0 +1,29 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Rule Pack Specification
+:toc: left
+
+A pack manifest declares ID, version, jurisdiction, subject, authority cut-off,
+status, superseded/revoked state, compatible scenario ranges, content digest
+and reviewer identity/status.
+
+Each rule declares:
+
+* stable rule and authority IDs;
+* authority type and source citation;
+* jurisdiction;
+* effective-from and optional effective-until;
+* interpretation note;
+* pack version;
+* review status (`REVIEWED`, `PROVISIONAL`, `UNREVIEWED`, `REVOKED`);
+* executable predicate/observation identity;
+* test IDs.
+
+Primary legislation, secondary legislation, Insolvency Rules, SIPs, ethics,
+official guidance, selected cases and scenario-reviewed interpretations remain
+distinct authority kinds. Source quotations are not bundled unless licence and
+necessity permit them.
+
+Authoritative scoring is refused when a pack is absent, revoked, incompatible
+with the scenario, outside its effective dates, digest-invalid, or contains a
+mandatory source that lacks required review. Provisional material can produce
+formative feedback only.

@@ -1,0 +1,60 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell (hyperpolymath)
+= Sim Insolvency
+:toc: left
+:reproducible:
+
+[.lead]
+An evidence-driven, time-aware insolvency practice simulator for developing and
+assessing professional reasoning, procedure selection, case management, and
+defensible decision-making.
+
+[IMPORTANT]
+====
+Sim Insolvency is a fictional professional-learning simulation. It is not a law
+firm, insolvency practice, live case-management system, legal advice, supervised
+experience, statutory authorisation, an accredited qualification, a JIEB pass,
+or accredited CPD unless a competent external body separately approves it.
+====
+
+== Current status
+
+The first native vertical slice is executable, while the external AffineScript,
+typed-wasm, Gossamer, Burble, VeriSimDB, and Hexadeca integrations remain
+capability-gated as documented. No legal authority pack is represented as
+complete or practitioner-reviewed. See
+`docs/architecture/estate-reconnaissance.adoc` for inspected capabilities,
+blockers and integration decisions.
+
+The intended Phase A slice supports Morrow Engineering Ltd, shared
+pre-appointment advice, deep bounded CVL and Administration routes, reasoned
+consideration of CVA and informal restructuring, and compulsory liquidation as
+a credible threat or consequence.
+
+== Architecture direction
+
+AffineScript is the principal application language. typed-wasm is the intended
+deployment contract. Pure Zig owns conventional FFI, host/runtime adapters,
+deterministic primitives and temporary executable fallback machinery. Idris2
+owns proof-bearing ABI definitions. Gossamer is the shell, Burble is optional
+group transport, and VeriSimDB is the selected local persistence/indexing
+technology behind a typed port.
+
+The authoritative case model is an append-only event ledger with separately
+derived projections for scenario reality, potential evidence, disclosed
+record, learner beliefs and normative case state.
+
+== Reproducibility
+
+This repository is Guix-first and based on the inspected RSR template. It does
+not use a Nix flake. `just doctor`, `just build`, `just test`, `just prove`,
+`just test-golden`, and `just run` are the current command surface. A standalone
+release and Wolfi image are designed to run without an estate checkout or
+network access.
+
+== Licence
+
+Original code, documentation, and fictional scenario materials are all
+PMPL-2.0-or-later. The exact licence text is pinned from the Palimpsest
+repository's introducing commit `6f83592`; per-file SPDX declarations are
+authoritative.

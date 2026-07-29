@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0002: typed-wasm as Deployment Target
+:status: accepted
+
+Context:: Learner modules and host adapters require a portable typed boundary.
+Decision:: Treat typed-wasm as its actual carrier/verifier contract over emitted
+WASM, not an invented backend flag.
+Alternatives:: Generic WASM glue or `wasm-bindgen` would lose the estate
+contract; native-only would lose browser embedding.
+Consequences:: Ownership sections and interface manifests are tested; plain
+WASM fallback is labelled.
+Current limitations:: Producer support for several levels is incomplete.
+Reversal:: A successor must preserve type/ownership verification and migration.

@@ -1,0 +1,50 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+// Desired application-facing contracts; implemented by pure Zig boundaries.
+
+extern fn sim_command(
+  abiVersion: Int,
+  commandOffset: Int,
+  commandLength: Int,
+  outputOffset: Int,
+  outputCapacity: Int
+) -> Int;
+
+extern fn sim_projection(
+  abiVersion: Int,
+  outputOffset: Int,
+  outputCapacity: Int
+) -> Int;
+
+extern fn sim_verisim_put(
+  abiVersion: Int,
+  envelopeOffset: Int,
+  envelopeLength: Int
+) -> Int;
+
+extern fn sim_burble_receive(
+  abiVersion: Int,
+  messageOffset: Int,
+  messageLength: Int
+) -> Int;
+
+extern fn sim_echidna_submit(
+  abiVersion: Int,
+  requestIdOffset: Int,
+  requestIdLength: Int,
+  goalOffset: Int,
+  goalLength: Int,
+  contextOffset: Int,
+  contextLength: Int,
+  timeoutMilliseconds: Int
+) -> Int;
+
+extern fn sim_echidna_accept_receipt(
+  abiVersion: Int,
+  attemptIdOffset: Int,
+  attemptIdLength: Int,
+  verdict: Int,
+  proverHashOffset: Int,
+  proverHashLength: Int,
+  certificateDigestOffset: Int,
+  certificateDigestLength: Int
+) -> Int;

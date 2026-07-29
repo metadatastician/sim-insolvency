@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0006: Idris2 ABI and Invariant Contracts
+:status: accepted
+
+Context:: Envelope, provenance and certificate constraints must be more than
+decorative prose.
+Decision:: Idris2 defines canonical proof-bearing types and emits or anchors a
+neutral interface manifest consumed by conformance tests.
+Alternatives:: Comments or duplicate hand-written schemas cannot detect drift.
+Consequences:: `just prove` and manifest drift are release gates.
+Current limitations:: Direct code generation is partial; a committed canonical
+manifest is compared where generation is unavailable.
+Reversal:: Only for an equally machine-checked source of truth.

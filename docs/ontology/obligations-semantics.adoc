@@ -1,0 +1,24 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Obligations, Permissions and Prohibitions
+:toc: left
+
+An obligation has subject, action class, activation event, due condition,
+authority/rule identity, evidence requirement, satisfaction predicate,
+priority and consequence. A permission identifies an allowed action and its
+preconditions. A prohibition identifies a disallowed action and any exception.
+
+The engine evaluates only the compatible rule pack pinned by the scenario.
+Rules cannot read learner-hidden facts as if the learner knew them. Deadlines
+are derived from explicit authored or reviewed rules; Phase A does not invent
+statutory dates.
+
+Lifecycle:
+
+----
+inactive -> active -> approaching -> satisfied
+                         \-> overdue -> breached/closed-with-exception
+----
+
+Every transition emits an event. Waiver or exception requires authority and a
+recorded reason. Missing, revoked, incompatible or mandatory-unreviewed
+authority makes authoritative scoring unavailable.

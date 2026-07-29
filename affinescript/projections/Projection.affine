@@ -1,0 +1,21 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+
+struct ProjectionSummary {
+  disclosedEvidence: Int,
+  claims: Int,
+  uncertainties: Int,
+  activeWorkstreams: Int,
+  overdueWorkstreams: Int,
+  logicalMinute: Int
+}
+
+fn emptyProjection() -> ProjectionSummary {
+  #{
+    disclosedEvidence: 0,
+    claims: 0,
+    uncertainties: 0,
+    activeWorkstreams: 0,
+    overdueWorkstreams: 0,
+    logicalMinute: 0
+  }
+}

@@ -1,0 +1,39 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell (hyperpolymath)
+= Container and future Stapeln integration
+
+The supported container client is `nerdctl`; Podman and Docker are not the
+declared build path. The multi-stage `Containerfile` uses Chainguard Wolfi,
+builds the pure-Zig fallback in `ReleaseSafe`, runs as UID/GID 65532, defaults
+network functionality off, and excludes `scenarios/**/reality`.
+
+[source,sh]
+----
+just container-build
+just container-run
+----
+
+The runtime is a command-line assessment kernel, so it does not publish a port
+or claim an HTTP health check. `home`, `demo cvl`, `demo administration`,
+`group-demo`, and `golden` are valid commands.
+
+`stapeln.toml` records the intended independently verifiable layer graph. It is
+metadata-only until the inspected Stapeln revision can execute the complete
+manifest and verify its requested layers. The related Vordr, Svalinn, Rokur,
+Selur, and Cerro Torre components are future trust boundaries, not present
+runtime dependencies.
+
+The base currently uses the mutable `wolfi-base:latest` reference so that the
+first image can be resolved. A release is not reproducible until
+`tools/pin-wolfi.sh` (planned) records the registry digest and both `FROM`
+instructions use it. CI must reject a release tag while that gap remains.
+
+== Hidden-data boundary
+
+The learner image includes public scenario metadata and potential/disclosed
+evidence, but not the authored `reality/` directory. The native service remains
+the authority for deterministic disclosure. A learner who controls the entire
+host can still reverse-engineer native decision logic; therefore adversarial
+high-stakes assessment requires a separately controlled facilitator service or
+a future sealed-pack implementation. Certificates continue to state this
+validity limitation.

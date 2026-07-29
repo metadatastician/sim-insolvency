@@ -1,0 +1,99 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Sim Insolvency Foundation Specification v0.1
+:toc: left
+:reproducible:
+
+== Purpose
+
+Sim Insolvency is an evidence-driven, time-aware practice simulator for
+developing and assessing professional reasoning in fictional England and Wales
+corporate-insolvency cases. It teaches how to establish what is known, identify
+what is not known, compare procedures, manage concurrent work, satisfy
+obligations and record a defensible decision.
+
+It is not legal advice, a law firm, an insolvency practice, live case software,
+supervised experience, statutory authorisation, a regulated qualification, a
+JIEB result, or accredited CPD without separate external approval.
+
+== Product invariants
+
+. Hidden authored reality is immutable during a run and is never delivered to
+  an untrusted learner client.
+. Learner-visible evidence is monotonic: disclosure can be superseded or
+  challenged, but past disclosure is not erased.
+. Learner belief is distinct from fact, evidence and normative state.
+. Commands are attempts; only validated events change authoritative state.
+. The append-only ledger is portable and deterministic.
+. Normative scoring is tied to an identified, compatible, reviewed rule pack.
+. Competency and case consequence are reported separately.
+. More than one route may be defensible on information reasonably available.
+. Network collaboration is optional and cannot bypass the command gateway.
+. Certificates report completion and assessed performance only.
+
+== Phase A capability
+
+A learner opens `morrow-engineering-001`, reviews initial disclosures, requests
+information, records claims/hypotheses/uncertainties/risks, allocates bounded
+time and resources, compares informal restructuring, CVA, Administration, CVL,
+compulsory-liquidation risk and continued trading/cessation, then selects and
+justifies a route.
+
+CVL and Administration have bounded end-to-end paths. CVA and informal
+restructuring permit real viability analysis and referral outcomes. Delay can
+make compulsory liquidation a terminal or referral consequence. Workstreams
+continue concurrently and deterministic scheduled events respond to elapsed
+logical time, preserved evidence and resource choices.
+
+At final submission the learner sees unresolved work but no correctness hints.
+The post-submission debrief reveals authored reality, chronology, authorities,
+obligation handling, alternative defensible routes, competency observations and
+case consequences. A digest-bound Certificate of Completion and Assessed
+Performance may then be exported.
+
+== Learning model
+
+The learning unit is not a selected answer but a traceable professional act:
+
+----
+available evidence -> stated belief and uncertainty -> option comparison
+-> authorised action -> event and consequence -> later correction or defence
+----
+
+Assessment observes information gathering, use of evidence, procedural
+reasoning, proportionality, prioritisation, timeliness, communication and
+record quality. Outcomes matter as consequences, not as a substitute for
+reasoning evidence.
+
+== Authority policy
+
+The initial jurisdiction is England and Wales and the initial subject is
+corporate insolvency. Each scenario declares an authority cut-off and a rule
+pack identity. Phase A rules are a small provisional training subset. An
+`UNREVIEWED` rule may guide a debrief but cannot support authoritative scoring
+or a professional-certification claim. Missing, revoked, incompatible or
+mandatory-unreviewed packs invalidate authoritative scoring.
+
+== Privacy and safety
+
+All case people, companies and documents are fictional. There is no telemetry
+by default, external AI dependency or need for live insolvency data. Group
+networking is explicit opt-in. Exports carry a simulation watermark. Learner
+identity may be pseudonymous. Hidden reality and signing secrets remain in the
+trusted kernel/facilitator boundary.
+
+== Architecture
+
+AffineScript is architecturally principal. The executable Phase A kernel may
+temporarily use Zig behind AffineScript-facing contracts because the inspected
+compiler is experimental and unavailable in the current environment. Idris2
+defines ABI invariants; typed-wasm is the intended carrier contract. Gossamer
+projects state, Burble transports untrusted group envelopes, and VeriSimDB
+persists/indexes portable ledger data behind ports.
+
+== Acceptance
+
+This specification is satisfied only by executable evidence: deterministic
+replay, branch/golden-run tests, ABI drift checks, scenario validation,
+certificate tamper detection and honest `just doctor` output. A missing
+toolchain or integration must fail loudly or be reported as optional; it must
+never be represented as a completed integration.

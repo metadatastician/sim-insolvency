@@ -1,0 +1,42 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+[[evidence]]
+id = "bank-statements"
+request = "bank-security-records"
+created-at = 0
+available-at = 30
+conclusion = "none"
+
+[[evidence]]
+id = "security-particulars"
+request = "bank-security-records"
+created-at = 0
+available-at = 30
+conclusion = "none"
+
+[[evidence]]
+id = "draft-management-accounts"
+request = "management-accounts-cashflow"
+created-at = 0
+available-at = 30
+conclusion = "none"
+
+[[evidence]]
+id = "employee-schedule"
+request = "employee-hmrc-position"
+created-at = 0
+available-at = 30
+conclusion = "none"
+
+[[evidence]]
+id = "purchaser-indicative-letter"
+request = "purchaser-funding"
+created-at = 0
+available-at = 30
+conclusion = "funding-unverified"
+
+[[evidence]]
+id = "connected-payment-ledger"
+request = "connected-payment-records"
+created-at = 0
+available-at = 30
+conclusion = "no-legal-characterisation"

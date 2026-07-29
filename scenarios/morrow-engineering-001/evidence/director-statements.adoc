@@ -1,0 +1,7 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= SIMULATION — NOT FOR FILING
+
+Two fictional directors give differing accounts about creditor support,
+purchaser reliability, records and the purpose of a connected-party payment.
+The disagreement is evidence to investigate, not proof that either account is
+false or that a legal transaction category applies.

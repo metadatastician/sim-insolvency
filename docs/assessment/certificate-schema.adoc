@@ -1,0 +1,38 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Certificate Schema
+:toc: left
+
+== Result envelope
+
+[source,text]
+----
+schema_version
+learner_id
+scenario_id
+scenario_version
+rule_pack_id
+rule_pack_version
+authority_cut_off
+rubric_version
+completion_logical_time
+result_class
+competency_results[]
+critical_error_status
+application_version
+ledger_digest
+result_digest
+signature_algorithm
+signature_key_id
+signature
+disclaimer
+----
+
+Canonical ordering and UTF-8 encoding are versioned. `result_digest` excludes
+the signature. The signature binds the digest and key ID. Phase A uses a
+locally held key and labels development keys. Verification recomputes the
+ledger and result digests, validates the signature, checks the disclaimer and
+reports pack/reviewer status. A digest-valid certificate may still be
+non-accredited.
+
+The printable projection is titled *Certificate of Completion and Assessed
+Performance* and is visibly marked as a simulation.

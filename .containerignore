@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+.git
+.zig-cache
+zig-out
+idris2/build
+portfolio
+exports/private
+scenarios/morrow-engineering-001/reality

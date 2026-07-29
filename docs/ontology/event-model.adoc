@@ -1,0 +1,36 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Event Model
+:toc: left
+
+== Envelope
+
+Each accepted event contains schema version, stable event ID, session ID,
+sequence, family, actor, logical time, optional wall-clock time, causal-parent
+IDs, idempotency key, bounded payload, previous digest and event digest.
+
+The digest is calculated over canonical envelope fields excluding the digest
+itself. Sequence starts at zero and is contiguous. Genesis uses an all-zero
+previous digest. Import rejects malformed versions, duplicate idempotency keys,
+sequence gaps, unknown causal parents and digest mismatch.
+
+== Commands
+
+A command is never stored as an accepted state transition. Validation returns
+either a total error (`malformed`, `unauthorised`, `prerequisite-missing`,
+`untimely`, `evidence-unavailable`, `resource-insufficient`,
+`procedure-disallows`, or `version-incompatible`) or one or more proposed
+events. Events append atomically.
+
+== Families
+
+Phase A covers scenario/session, engagement, evidence, interview, belief,
+action, time/deadline, procedure/decision, appointment, estate protection,
+creditor/investigation, assessment/certificate and closure families, including
+the names required by the foundation specification.
+
+== Replay and upgrades
+
+Projections are pure folds over accepted events. The same scenario version,
+rule pack, seed, commands and logical timing must produce identical events and
+projections. Version upcasters are explicit pure functions tested with frozen
+old fixtures; raw old events remain exportable.

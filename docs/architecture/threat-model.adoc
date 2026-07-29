@@ -1,0 +1,55 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Threat Model
+:toc: left
+
+== Assets
+
+Hidden reality, rule-pack identity, event integrity, assessment validity,
+certificate signing keys, learner privacy, facilitator authority and local
+availability.
+
+== Threats and controls
+
+Hidden truth leakage::
+Reality excluded from learner bundles; opaque identifiers; no debug projection;
+sealed/facilitator-controlled reveal; leak scanner over shipped artefacts.
+
+Ledger/replay tampering::
+Contiguous sequence, causal-parent checks, idempotency uniqueness and SHA-256
+hash chain; imported bundles are strictly parsed and replay-verified.
+
+Forged certificates::
+Result digest bound to ledger, scenario, pack, rubric and application; keyed
+signature; key ID and verification instructions; development keys labelled;
+tamper tests.
+
+Malicious scenarios::
+Data-only schemas, bounded sizes, no executable code, capability-limited action
+vocabulary, signed/digest-bound manifest and strict parser.
+
+Burble input/group participant abuse::
+All messages untrusted, size/version/type checked, rate limited, pseudonyms
+supported, dissent preserved, facilitator capabilities explicit, no remote
+direct state mutation.
+
+Authority substitution/downgrade::
+Pinned pack identity/digest, scenario compatibility and effective-date checks;
+revocation and mandatory review state; no permissive fallback.
+
+Dependency compromise::
+Guix pinning, recorded revisions, SBOM, minimal optional dependencies, security
+scans and reproducible build instructions.
+
+WASM/FFI memory errors::
+Explicit pointer/length ownership, caller allocations, maximum sizes, total
+status codes, fuzz/ABI round trips and typed-wasm verification.
+
+Learner PII::
+Pseudonyms, local-first storage, no telemetry, explicit group opt-in,
+portfolio-encryption port, export review and minimal retention.
+
+== Residual risk
+
+Phase A has unreviewed legal content, a development signing profile, incomplete
+typed-wasm producer coverage and optional integrations with pre-production
+estate components. These limitations are visible in every applicable result.

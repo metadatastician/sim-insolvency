@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0005: Zig-Only Conventional FFI Boundary
+:status: accepted
+
+Context:: Host, WASM, storage, shell and transport seams need explicit memory
+ownership.
+Decision:: Conventional FFI glue is pure Zig with versioned pointer/length
+contracts and total status codes; no C source or C intermediate layer.
+Alternatives:: C, Rust glue or untyped JavaScript add forbidden or unnecessary
+seams.
+Consequences:: ABI tests and allocation documentation are mandatory.
+Current limitations:: Platform libraries may themselves expose system ABIs.
+Reversal:: Requires an estate-wide ABI decision and equivalent safety evidence.

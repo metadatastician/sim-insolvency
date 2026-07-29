@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+.zig-cache/
+zig-out/
+idris2/build/
+idris2/SimInsolvency/ABI/*.ttc
+*.ibc
+result
+.direnv/
+.env
+portfolio/
+exports/private/
+.nerdctl/
+dist/

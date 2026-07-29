@@ -1,0 +1,16 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Certification Boundary
+
+The only Phase A award is a *Certificate of Completion and Assessed
+Performance*. Its internal classes are `completed`, `completed-with-feedback`,
+`threshold-demonstrated`, `threshold-not-yet-demonstrated`, and `invalidated`.
+
+The certificate identifies learner/pseudonym, scenario/version, rule pack,
+authority cut-off, rubric, completion time, competency results, critical-error
+status, application version, ledger digest, certificate digest, signature
+method, verification instructions and disclaimer.
+
+It does not confer, imply or predict licensed practitioner status, JIEB success,
+regulated competence, statutory authorisation, an academic award, supervised
+experience or accredited CPD. Provisional or unreviewed rules cannot support a
+professional-certification claim.

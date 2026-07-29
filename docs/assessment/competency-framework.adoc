@@ -1,0 +1,33 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Competency Framework
+:toc: left
+
+[cols="2,4",options="header"]
+|===
+|Competency |Observable evidence
+
+|Engagement and independence |Conflict enquiry, scope, authority and escalation.
+|Information gathering |Proportionate requests, source testing and follow-up.
+|Financial analysis |Cash, solvency, asset, liability and scenario analysis.
+|Issue recognition |Material issues identified without encoding conclusions.
+|Procedure comparison |Eligibility, purpose, costs, control, time and outcomes.
+|Legal/procedural reasoning |Use of compatible reviewed authority and caveats.
+|Evidence use |Claims linked to disclosed sources; contradictions addressed.
+|Uncertainty handling |Unknowns stated, impact calibrated and resolution planned.
+|Case strategy |Coherent sequence under time/resource constraints.
+|Prioritisation |Protection and deadline work precede lower-value enquiry.
+|Timeliness |Action taken while options/evidence remain available.
+|Proportionality |Cost and depth matched to risk and likely benefit.
+|Asset protection |Control, preservation and realisation risks considered.
+|Investigation |Potential misconduct explored without premature conclusion.
+|Stakeholder treatment |Employees, secured/unsecured creditors and directors
+treated consistently with role and evidence.
+|Communication |Clear, timely, audience-appropriate and uncertainty-honest.
+|Record quality |Decision, alternatives, evidence, authority and dissent recorded.
+|Ethical reasoning |Conflicts, independence, candour and boundaries handled.
+|Escalation |Professional review/referral sought when authority is insufficient.
+|Closure discipline |Outstanding matters, exceptions and records reconciled.
+|===
+
+Each observation cites ledger events and uses `supporting`, `contrary` or
+`insufficient` polarity. Scores cannot be inferred from outcome alone.

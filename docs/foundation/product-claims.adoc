@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Product Claims
+:toc: left
+
+== Permitted claims
+
+* Fictional, source-attributed professional-learning simulator.
+* Local-first case-based assessment of recorded reasoning and actions.
+* Bounded educational models of CVL and Administration.
+* Provisional England and Wales corporate-insolvency rule pack with declared
+  review state and authority cut-off.
+* Certificate of Completion and Assessed Performance, verifiable against the
+  exported event-ledger digest.
+
+== Prohibited claims
+
+The project and its outputs must not claim legal advice, regulatory approval,
+professional qualification, licensed-insolvency-practitioner status, JIEB
+equivalence, statutory authority, guaranteed competence, comprehensive law, or
+accredited CPD unless a named external body separately grants that status.
+
+== Placement
+
+The limitation appears in the README, Home and workspace shells, scenario
+metadata, replay bundles, debrief, certificate and every exported simulation
+document. Exported forms use a visible `SIMULATION — NOT FOR FILING` mark.

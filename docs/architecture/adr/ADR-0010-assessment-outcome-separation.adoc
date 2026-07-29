@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0010: Assessment Versus Case-Outcome Separation
+:status: accepted
+
+Context:: Good decisions can have poor outcomes and vice versa.
+Decision:: Competency observations and case consequences are separate outputs
+linked to the same ledger.
+Alternatives:: Recovery-based scoring introduces hindsight and outcome bias.
+Consequences:: Rubrics cite available evidence and actions; consequences report
+assets, continuity, costs, creditors, employees and time separately.
+Current limitations:: External validity is not established.
+Reversal:: None without evidence that outcome is a valid proxy for competence.

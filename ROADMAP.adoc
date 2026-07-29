@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Roadmap
+
+. Practitioner validation of Morrow Engineering and every scored interpretation.
+. Reviewed, effective-dated England and Wales corporate-insolvency authority pack.
+. Deeper Administration lifecycle and exit modelling.
+. Full CVA lifecycle.
+. Compulsory-liquidation lifecycle.
+. Scenario-authoring studio after authored-model validation.
+. Further authored cases and bias/accessibility studies.
+. Accredited-assessment partnership, with a separate credential if approved.
+. Advanced group facilitation and reviewed Burble extension protocol.
+. Secure hosted deployment while preserving local-first reference execution.

@@ -1,0 +1,20 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= AI Manifest
+
+== Project boundary
+
+Sim Insolvency is a local-first fictional learning and assessment simulator.
+No AI system is an authority source, legal-rules engine or assessment oracle.
+
+== Agent rules
+
+* Read `docs/architecture/estate-reconnaissance.adoc` before integration work.
+* Preserve the five epistemic layers and append-only event authority.
+* Do not expose `scenarios/*/reality/` in learner artefacts.
+* Do not add Python, TypeScript, JavaScript, C/C++, React, Electron, Tauri or a
+  Nix flake.
+* Keep AffineScript principal, Zig as conventional FFI, Idris2 as ABI proof
+  layer, Gossamer as shell, Burble as untrusted transport and VeriSimDB behind
+  its port.
+* Never invent legal authorities, SIP mappings or statutory deadlines.
+* Never describe the certificate as a qualification or accreditation.

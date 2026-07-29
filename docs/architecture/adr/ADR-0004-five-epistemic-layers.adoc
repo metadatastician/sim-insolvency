@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0004: Five-Layer Epistemic Separation
+:status: accepted
+
+Context:: Hidden truth, evidence, disclosure, belief and norms are not
+interchangeable.
+Decision:: Represent scenario reality, potential evidence, disclosed record,
+learner belief and normative state as separate stores/projections.
+Alternatives:: A single case object leaks conclusions and rewards hindsight.
+Consequences:: Every cross-layer link is explicit and provenance-carrying.
+Current limitations:: Phase A offers a small belief relation vocabulary.
+Reversal:: None while valid assessment and hidden-reality security are goals.

@@ -1,0 +1,41 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Proof Obligations and ECHIDNA Handoff
+:toc: left
+
+== Local checked obligations
+
+The Idris2 package currently checks:
+
+* ABI v1 and boundary-status ordinals;
+* output length does not exceed caller-owned capacity;
+* an event that follows another advances its sequence and cannot retain the
+  earlier sequence;
+* a certificate with a critical error cannot satisfy issuance permission.
+
+Zig conformance additionally checks hash-chain continuity, deterministic replay,
+status ordinals, certificate tamper detection and the remote-message authority
+boundary.
+
+== Future ECHIDNA obligation envelope
+
+The neutral v1 envelope carries request ID, session ID, theorem/goal identity,
+source language, source path, source digest, assumptions, preferred prover,
+timeout, minimum trust level, cross-check flag, axiom tracking, certificate
+request and metadata. It is semantically aligned with the inspected ECHIDNA
+`ProofGoal` without copying its schema.
+
+Proof receipts record attempt ID, goal/octad key, prover, verdict, start time,
+latency, axiom cost, certificate content key, prover-binary hash, confidence,
+cross-check and trust level. Unknown, timeout and error are never promoted to
+proven. A proof receipt may support a software invariant but cannot create or
+review an insolvency authority rule.
+
+== Handoff sequence
+
+. Export canonical Idris2 goals and source digest.
+. Dispatch through `EchidnaProofPort` only when explicitly enabled.
+. Require pinned prover identity and declared axiom usage.
+. Verify any returned certificate independently where supported.
+. Store the attempt/receipt through `VeriSimPort`.
+. Bind accepted proof receipt digest to the generated ABI manifest.
+. Fail CI on manifest/receipt drift; do not silently downgrade trust.

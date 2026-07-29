@@ -1,0 +1,64 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Case Ontology v0.1
+:toc: left
+
+== Common envelope
+
+Every significant entity has a stable namespaced identifier, type tag,
+creation provenance, schema version and lifecycle state. Identifiers are opaque
+and do not encode hidden conclusions.
+
+[cols="2,4",options="header"]
+|===
+|Family |Objects and lifecycle
+
+|People and bodies
+|`Actor`, `Organisation`, `Role`: authored -> active -> withdrawn/closed.
+
+|Procedure
+|`Procedure`, `ProcedureCandidate`: available/conditional/unavailable ->
+considered -> selected/rejected/referred -> completed/terminated.
+
+|Epistemic
+|`Fact`, `EvidenceItem`, `EvidenceSource`, `Disclosure`, `Claim`,
+`Hypothesis`, `Uncertainty`, `Risk`: potential -> disclosed where applicable
+-> assessed/superseded/resolved; never silently erased.
+
+|Normative
+|`Authority`, `RulePack`, `Rule`, `Obligation`, `Permission`,
+`Prohibition`, `Deadline`: authored/reviewed -> effective -> expired/revoked;
+case instances become active/satisfied/breached/waived/closed.
+
+|Activity
+|`Action`, `Command`, `Event`, `Document`, `Decision`, `Reason`,
+`Consequence`: proposed/attempted -> accepted/rejected -> completed/recorded.
+
+|Coordination
+|`Workstream`: inactive, available, active, blocked, awaiting-response,
+at-risk, overdue, completed, or closed-with-exception.
+
+|Assessment
+|`Competency`, `CompetencyObservation`, `Assessment`, `Result`,
+`CertificateEvidence`: configured -> observed -> submitted -> finalised ->
+issued/invalidated.
+
+|Authorship/session
+|`Scenario`, `ScenarioVersion`, `Session`, `Participant`, `Facilitator`:
+authored/versioned, created/joined/left/closed as applicable.
+|===
+
+== Relationships
+
+Evidence has a source and provenance; disclosure points to evidence; claims and
+hypotheses cite disclosures; uncertainty and risks qualify beliefs; reasons cite
+beliefs and rules; decisions cite reasons and procedure candidates; accepted
+commands create events; events activate obligations and workstreams;
+competency observations cite the events/beliefs they assess; results aggregate
+observations; certificate evidence binds result and ledger digests.
+
+== Serialisation
+
+Canonical neutral manifests use bounded UTF-8 fields, explicit lengths, tagged
+unions, decimal integer time and lowercase hexadecimal digests. Unknown
+required fields or versions fail. Unknown optional extension fields remain
+preserved for lossless forwarding.

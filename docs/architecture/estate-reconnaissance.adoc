@@ -1,0 +1,339 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell (hyperpolymath)
+= Estate Reconnaissance
+:toc: left
+:toclevels: 3
+:reproducible:
+
+== Status and method
+
+This is the architecture gate for Sim Insolvency. It was created before the
+application scaffold or implementation. The revisions below are the exact local
+commits inspected on 2026-07-29. A dirty, ahead, behind, or non-default-branch
+checkout is evidence about that checkout, not permission to update or clean it.
+No dependency working tree was mutated.
+
+The inspection covered repository metadata, build files, readiness statements,
+public interfaces, examples, ABI/FFI sources, test contracts, and local tool
+availability. Claims are deliberately narrower than repository aspirations.
+
+[IMPORTANT]
+====
+Sim Insolvency is an educational simulation and assessment system. It is not a
+law firm, insolvency practice, live case-management system, legal advice,
+statutory authorisation, regulated qualification, JIEB result, or accredited
+CPD unless a competent external body separately approves it.
+====
+
+== Repository findings
+
+[cols="2,2,2,2,3,2",options="header"]
+|===
+|Repository
+|Owner and inspected revision
+|Purpose relevant here
+|Maturity observed
+|Integration decision
+|Dependency class
+
+|`rsr-template-repo`
+|`hyperpolymath` +
+`7e5bcc3bda7b0717a35d2410c8ffdecec1d3953e`
+|Canonical RSR repository shape, governance, metadata, checks, Guix scaffold,
+Idris2/Zig seam, CI and security policy.
+|Active template. Local checkout was `main`, ahead 3/behind 4 and dirty. Its
+tracked `build/guix.scm` incorrectly names `squisher-corpus`, so it is not safe
+to copy without project-specific correction.
+|Use the tracked tree as the structural basis, preserve meaningful RSR gates,
+replace all placeholders, remove irrelevant example surfaces, and provide a
+correct Sim Insolvency Guix manifest. No Nix flake.
+|Build, governance, CI
+
+|`affinescript`
+|`hyperpolymath` +
+`adf39d44935d7c55f273659400ddb0ce6b2a84e8`
+|Principal language and producer of affine-checked WebAssembly.
+|Early experimental v0.2. Parser, resolver, type checker, quantities, core WASM
+backend, interpreter, formatter, linter and LSP are implemented. Borrow checking
+and effects remain partial. The compiler is not installed on `PATH` in the
+current environment. The README quick-start still contains placeholders; the
+capability matrix is the status authority.
+|Use real `.affine` source for domain contracts and the supported pure kernel
+slice. Do not place required runtime behaviour behind unverified syntax.
+Unsupported runtime facilities sit behind versioned Zig/Idris2 ports. Compile
+when the compiler is discoverable; otherwise fail loudly and run the Zig
+fallback without claiming an AffineScript build.
+|Build-time, principal source
+
+|`typed-wasm`
+|`hyperpolymath` +
+`00bdabad0bd2d6e2438b85ebc16f344ef422fd3a`
+|Typed WebAssembly discipline, Idris2 specifications, carrier sections and a
+post-codegen verifier.
+|Active but uneven. The Rust verifier enforces ownership-section L7/L10 and
+negative L13; other carrier-backed levels are gated or producer-dependent.
+AffineScript describes typed-wasm as a narrow contract rather than a separate
+backend flag. The local checkout was ahead 1/behind 5 and dirty.
+|Emit the actual `typedwasm.ownership` contract when the AffineScript compiler
+supports the selected source. Provide ownership/interface manifests and
+round-trip tests. Keep a plain `wasm32-freestanding` Zig artefact as an explicit
+fallback, never as a falsely labelled typed-wasm build.
+|Build-time, verification
+
+|`snifs`
+|`hyperpolymath` +
+`9b6bf9a1a9b806b82a9b1fb3c795e66992477c7c`
+|Crash-isolated BEAM native-compute calls through WASM.
+|CRG C. Real BEAM/Wasm implementation with a flat numeric/buffer boundary and
+roughly 29 microsecond measured pooled dispatch floor. It is not a general
+network synchronisation or fact-exchange protocol.
+|No Phase A dependency. Burble may use SNIFS internally, but Sim Insolvency has
+no BEAM-native compute requirement. Retain only a future isolation port note.
+|Optional future
+
+|`gossamer`
+|`metadatastician` +
+`b4c7740f7cb5f97ab65f9720ae06c25b629e4509`
+|Native webview application shell with Ephapax core, Zig platform layer and
+Idris2 ABI definitions.
+|Substantial shell, ABI, Zig platform code, lifecycle tests and `just` commands
+exist. The stable API README currently names a Zig binding; language bindings
+documentation lists ReScript and Rust, while an AffineScript binding directory
+also exists. The local checkout was 11 commits behind origin. A graphical run
+requires host webview libraries.
+|Use a narrow `GossamerPort` and native Zig shell adapter. Authoritative rules
+remain in the simulation kernel. Headless shell projection is the test/reference
+path; the graphical shell is built and launched when the inspected Gossamer
+checkout and system libraries are available.
+|Runtime shell, optional at headless test time
+
+|`burble`
+|`metadatastician` +
+`8e40f23fd7e063f04922bf24848e5695b459034e`
+|Self-hostable WebRTC voice, Phoenix rooms, presence, text messages and
+embeddable client work.
+|Pre-production CRG C. Rooms, presence, permissions, text messaging and tests
+exist. The canonical `.affine` client is mid-migration and still uses
+JS/Phoenix externs; client coverage is explicitly weak. No inspected
+first-class proposal, vote, facilitator reveal, or shared simulation-clock
+protocol was found. Local checkout was 25 commits behind origin.
+|Use only room identity, participant presence and discussion transport through
+a bounded `BurblePort`. Define Sim Insolvency proposal/vote/reveal envelopes in
+the application protocol. Every inbound message is untrusted and becomes, at
+most, a validated command; it never mutates case state directly. Provide a
+deterministic local room test double and preserve offline single-learner mode.
+|Optional runtime for group mode
+
+|`proven-tests-and-benches`
+|`hyperpolymath` +
+`82b455ce623736608fb2e1db14f1d5d04a214438`
+|Idris2 evidence-graded tests, typed coverage lattice and benchmarks.
+|CRG D according to its README. The package and CI runner are real; use is via
+`idris2 --install`, `depends = proven-tests`, and `ProvenTests.Framework`.
+Local checkout was ahead 2/behind 1.
+|Pin as an optional test dependency and supply a consumer test manifest. Do not
+vendor it. Core Zig tests remain executable without installing the framework;
+the proof-grade test lane fails clearly when requested without Idris2/package
+availability.
+|Test-only
+
+|`verisimdb`
+|`hyperpolymath` +
+`14df42270def3a45cc4bb8d4c5c8f4084ec63958`
+|Local/federated consonance database with document, temporal, provenance and
+other modal stores.
+|Large active Rust/Elixir system. Inspected checkout is on
+`fix/tranche1-hygiene`, not the default branch. The Rust Axum API exposes
+versioned `/api/v1` and legacy root routes for octads, provenance, VCL, health,
+transactions and other services. VCL is read-only; mutations use the Octad API.
+A standalone in-process storage composition exists in Rust, but no supported
+Zig client or stable in-process Zig ABI was located. No root Guix definition is
+present at the inspected commit.
+|Use VeriSimDB as the selected persistence technology through `VeriSimPort`.
+Phase A talks to the versioned local HTTP API through a pure-Zig adapter when a
+VeriSimDB service is available. The deterministic file-backed test adapter
+implements the same port for offline tests and records that persistence is
+degraded, not complete VeriSimDB integration. The database never becomes the
+domain model; canonical events remain portable envelopes.
+|Optional local runtime, required for full persistence profile
+
+|`unified-hexadeca-api`
+|Not located as a repository
+|Requested unified API surface.
+|No local repository matched. GitHub repository/code searches for the exact
+name in the `hyperpolymath` and `metadatastician` estates returned no result.
+The only relevant implementation found is an unmerged worktree branch in
+`metadatastician/idaptik-ums` at
+`4fb461b287e02cc06937a644a206e259b40927e9`. It defines a generated sixteen-tag
+Zig/Idris2/Rust wire order but its own readiness statement says zero of sixteen
+transports are implemented.
+|Create a narrow, compileable `HexadecaPort` stub. Do not copy the IDApTIK
+connector or claim unified API integration. Preserve ordinal/version
+conformance hooks so a real external package can replace the stub later.
+|Blocked optional integration
+
+|`echidna`
+|`hyperpolymath` +
+`3e3f81a40b1ac6500cc6cf04d5434b9d40bf2b8d`
+|Multi-prover orchestration and trust hardening, with proof-goal/result Cap'n
+Proto schemas and a VeriSimDB proof-attempt data model.
+|Active and clean at inspected `main`. ProofGoal v1 identifies request/session,
+goal/context, preferred prover, timeout, minimum trust, cross-check, axiom
+tracking, certificate request and diagnostics. ProofAttempt records prover,
+verdict, latency, axiom cost, certificate key, binary hash and optional
+confidence. ECHIDNA itself states that external prover binaries are not bundled.
+|Add `EchidnaProofPort` and neutral proof-obligation/attempt manifests matching
+the inspected semantic fields, without copying Cap'n Proto schemas. Phase A
+Idris2 proofs check locally; future ECHIDNA dispatch is optional and may append
+only verified proof receipts, never authoritative legal conclusions.
+|Optional future proof service/test
+
+|`stapeln`
+|`metadatastician` +
+`2882aac86f84eb512b4fb58629cd6b0a18cf153e`
+|Layer-based verified-container design, `.ctp` packaging integration and
+runtime/security metadata.
+|README reports roughly 35% completion and Idris2 proofs as stubs. Layer
+manifests and a nerdctl `.ctp` reference plugin/examples exist; the plugin
+explicitly lists production cryptographic verification gaps. Local checkout was
+three commits behind origin.
+|Ship a plain OCI multi-stage Wolfi `Containerfile` that builds/runs with
+`nerdctl` today, plus `stapeln.toml` and Cerro Torre/Vordr/Svalinn/Rokur-ready
+manifests for future verified-stack integration. Do not claim `.ctp`
+verification until Cerro Torre and strict runtime checks are present.
+|Optional build/runtime packaging
+|===
+
+== AffineScript findings
+
+=== Syntax and packages
+
+The compiler consumes `.affine` modules. The inspected estate contains records,
+variants, pattern matching, functions, `linear` types, quantity annotations
+(`@linear`, `@erased`, `@unrestricted` and `:1/:0/:omega`-style sugar),
+`extern fn`, effects, module imports and mutable forms. Syntax must be copied
+from compiling in-tree examples, not inferred from ReScript-shaped migration
+files in Burble.
+
+The compiler is an OCaml/Dune package (`affinescript.opam`). The repository's
+real compiler recipes are `dune build`, `dune runtest`, `dune fmt --check` and
+`dune exec affinescript -- ...`. The root README install/compile commands are
+unfinished placeholders.
+
+=== Ownership and affine guarantees
+
+Quantity checking is wired into the CLI. Core ownership rejects use-after-move,
+double use and several escaping/conflicting borrow cases. The Polonius-style
+region solver is not complete. For Sim Insolvency this supports owned command
+and envelope values but does not justify placing complex shared mutable
+projections or host-resource management entirely in AffineScript yet.
+
+=== FFI and WebAssembly
+
+Core WASM supports cross-module imports and maps `extern fn` to WASM imports.
+The typed-wasm producer contract is the `typedwasm.ownership` custom section
+plus the AffineScript boundary verifier. It is not invoked as a generic
+`--typed-wasm` target. The project will therefore keep host imports small,
+length-explicit and ownership-explicit, and verify the resulting carrier rather
+than invent a build flag.
+
+=== Module allocation
+
+[cols="2,3",options="header"]
+|===
+|Module class |Phase A allocation
+
+|AffineScript
+|Domain-facing identifiers, evidence/belief values, commands, event contracts,
+procedure comparison, workstream and assessment orchestration where accepted by
+the inspected compiler.
+
+|Zig
+|Executable fallback kernel, deterministic clock/seed, encoding, hashing,
+storage, certificate signing adapter, WebAssembly host surface, Gossamer,
+Burble, VeriSimDB and Hexadeca adapters.
+
+|Idris2
+|Machine-checked ABI values and invariants plus neutral manifest generation or
+drift comparison.
+|===
+
+== Toolchain availability on 2026-07-29
+
+[cols="2,2,3",options="header"]
+|===
+|Tool |Observed |Consequence
+
+|Zig |`0.16.0` at `/home/hyperpolymath/.local/bin/zig`
+|Available, but estate dependencies target multiple Zig releases. The new
+project must pin and doctor-check its supported version.
+
+|Idris2 |`0.7.0` under the estate tools tree
+|Available. Some dependencies document `0.8.0`, so cross-package proof lanes
+must state their version requirement separately.
+
+|`just` |`1.56.0`
+|Available and selected as the command surface.
+
+|AffineScript compiler |Not on `PATH`
+|`just doctor` must report unavailable until a local compiler command is
+configured. The supported Zig fallback remains buildable.
+
+|Guix |Not on `PATH`
+|A correct Guix manifest is still authoritative, but it cannot be evaluated in
+this environment until Guix is installed.
+
+|Gossamer graphical dependencies |Not yet validated
+|Headless shell conformance is mandatory; native launch remains conditional.
+|===
+
+== Estate conventions
+
+The inspected projects consistently use:
+
+* code under PMPL-2.0-or-later and prose under PMPL-2.0-or-later, with per-file SPDX tags;
+* RSR metadata, `0-AI-MANIFEST.a2ml`, contractiles/descriptiles, governance,
+  security policy and `just`;
+* Idris2 for proof-bearing ABI definitions and Zig for conventional FFI;
+* explicit readiness and proof-debt statements;
+* append-only ADRs;
+* Guix-oriented reproducibility in the RSR template.
+
+Sim Insolvency applies PMPL-2.0-or-later uniformly to original code,
+documentation, and fictional scenario material. The clean licence blob is
+pinned to Palimpsest commit `6f83592`; the later inspected working-tree copy
+contains erroneous mechanical identifier substitutions and was not copied.
+Third-party authority texts are citations, not copied training material or
+bundled law.
+
+== Decisions and blockers
+
+. The event ledger is the portable authority; VeriSimDB persists and indexes
+  ledger entities but cannot redefine them.
+. Assessment hidden reality is excluded from learner artefacts. A local
+  facilitator/kernel process owns it.
+. The AffineScript compiler is principal but experimental. Zig is a temporary
+  executable boundary, not a language substitution.
+. typed-wasm is a verified carrier contract, not a label applied to generic
+  WebAssembly.
+. Gossamer is a shell only.
+. Burble is optional transport only.
+. SNIFS is not applicable to Phase A.
+. Hexadeca integration is blocked pending a real repository/package.
+. Legal rule content starts provisional and cannot support a professional
+  certification claim.
+. Guix is authoritative. No `flake.nix` will be added.
+. The standalone bundle contains the kernel, shell, public scenario/rule assets,
+  licence and limitations; it needs no network service. External estate
+  integrations remain optional capability upgrades.
+. ECHIDNA receives proof obligations and returns receipts through a port. A
+  prover result cannot become a legal authority or mutate accepted case events.
+. The immediate container surface is OCI/Wolfi via nerdctl. Stapeln metadata is
+  future-facing and cannot be described as verified deployment yet.
+
+== Reversal conditions
+
+Ports may become direct dependencies only after a pinned upstream release
+provides a stable, tested surface compatible with this repository's ownership,
+error-totality, offline and deterministic-replay requirements. Any such change
+requires an ADR update, conformance tests and a dependency revision change.

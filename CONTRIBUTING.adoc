@@ -1,0 +1,9 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Contributing
+
+Run `just doctor`, `just check`, `just test-golden` and `just build-wasm`.
+Changes to event schemas, authority packs, rubrics, certificate claims or ABI
+ordinals require an ADR/conformance update. Legal material requires the review
+policy; do not paste proprietary training material. Retain
+PMPL-2.0-or-later SPDX headers on original code, documentation, and scenario
+content.

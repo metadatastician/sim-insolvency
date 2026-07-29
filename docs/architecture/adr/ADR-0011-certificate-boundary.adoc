@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0011: Certificate Boundary and Non-Accreditation
+:status: accepted
+
+Context:: Completion evidence must be verifiable without misrepresenting status.
+Decision:: Issue only a digest/signature-bound Certificate of Completion and
+Assessed Performance with explicit disclaimer and limited internal classes.
+Alternatives:: Qualification/pass terminology would be false and unsafe.
+Consequences:: Verification proves integrity, not accreditation.
+Current limitations:: Phase A uses development/local signing profiles and
+unreviewed rules.
+Reversal:: External accreditation may add a separately governed credential.

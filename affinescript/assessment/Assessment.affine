@@ -1,0 +1,38 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+
+enum ObservationPolarity { Supporting, Contrary, Insufficient }
+enum ResultClass {
+  Completed,
+  CompletedWithFeedback,
+  ThresholdDemonstrated,
+  ThresholdNotYetDemonstrated,
+  Invalidated
+}
+
+struct Observation {
+  competencyId: String,
+  eventId: String,
+  polarity: ObservationPolarity,
+  note: String
+}
+
+struct CompetencyScore {
+  competencyId: String,
+  level: Int
+}
+
+struct AssessedResult {
+  resultClass: ResultClass,
+  criticalError: Bool,
+  ledgerDigest: String
+}
+
+fn threshold(criticalError: Bool, requiredMinimum: Int) -> ResultClass {
+  if criticalError {
+    Invalidated
+  } else if requiredMinimum >= 2 {
+    ThresholdDemonstrated
+  } else {
+    ThresholdNotYetDemonstrated
+  }
+}

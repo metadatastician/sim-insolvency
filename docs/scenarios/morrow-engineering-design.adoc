@@ -1,0 +1,90 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Morrow Engineering Ltd — Authored Scenario Design
+:toc: left
+
+== Identity
+
+----
+scenario_id: morrow-engineering-001
+title: Morrow Engineering Ltd
+jurisdiction: england-wales
+domain: corporate-insolvency
+mode: assessment
+seed: recorded in each session
+----
+
+The company is a fictional small manufacturer under acute cash pressure.
+Management information is incomplete. It has asset-finance obligations, HMRC
+arrears, employee liabilities, disputed trade debt, two directors giving
+different accounts, a potentially overdrawn director loan account, a recent
+connected-party payment, a secured creditor considering action and an
+interested purchaser of uncertain reliability. None of those learner-visible
+ingredients asserts a legal conclusion.
+
+== Shared pre-appointment phase
+
+The learner must establish engagement scope/independence, obtain authority,
+triage immediate cash and asset risks, request accounts/bank/security/employee/
+tax/contract information, interview directors, record uncertainty, compare
+procedures and document advice. Time and enquiry budget prevent exhaustive
+investigation.
+
+== Procedure comparison
+
+Informal restructuring::
+Potentially low cost and continuity-preserving, but conditional on credible
+short-term funding, creditor forbearance, reliable information and governance.
+
+CVA::
+Genuinely considered where a viable underlying business and fundable proposal
+can be evidenced. Bounded Phase A outcome is recommendation/referral because a
+full CVA lifecycle is not implemented.
+
+Administration::
+Requires reasoned statutory-purpose and appointment-route analysis. It may
+preserve business/assets long enough for a bounded sale/rescue decision, but
+adds cost and control consequences. The branch covers control, notification,
+proposals, creditor implications, sale/rescue analysis, reporting and an exit
+that may include CVL.
+
+CVL::
+May be proportionate where rescue is unsupported and cessation/liquidation is
+appropriate. The branch covers advice, decisions at an educational abstraction,
+appointment, control, records/director enquiries, assets, claims,
+investigation, reporting, distribution abstraction and closure.
+
+Compulsory liquidation::
+HMRC or another creditor can escalate. Delay can remove options or end the
+bounded case in referral/terminal consequence.
+
+Continued trading or cessation::
+This is an action dimension, not a standalone formal procedure. The learner
+must justify risk, authority, funding and preservation effects.
+
+== Stable reality and variable consequences
+
+Historical facts never change with the selected route. Outcomes vary through
+elapsed time, deterioration, creditor action, purchaser confidence, director
+co-operation, protected/lost evidence, communication and resource allocation.
+All variability is seed- and command-deterministic.
+
+== Workstreams
+
+All thirteen required workstreams exist. The shared phase activates engagement,
+financial analysis, advice and communications. Selection activates appointment
+and route-specific work; estate protection, employees, creditors, directors,
+investigations, funds/reporting and closure can overlap.
+
+== Assessment hooks
+
+The scenario rewards source-linked belief, explicit uncertainty, timely
+secured-creditor/HMRC engagement, proportionate purchaser diligence, protection
+of records/assets, comparison of rescue assumptions and an auditable decision.
+It does not reward naming a supposed preference or breach without evidence and
+authority.
+
+== Content safety
+
+All names and documents are fictional and visibly watermarked. Reality is kept
+outside learner bundles. The authored design contains no proprietary training
+question and no claim of current comprehensive law.

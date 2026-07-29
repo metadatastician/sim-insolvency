@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Changelog
+
+== 0.1.0-phase-a — unreleased
+
+* Added estate reconnaissance and RSR/Guix-first repository basis.
+* Added foundation, ontology, authority, assessment, scenario and threat specs.
+* Added AffineScript contracts, Idris2 ABI proofs and executable Zig kernel.
+* Added Morrow Engineering CVL/Administration golden paths and group dissent.
+* Added typed-wasm fallback artefact, Gossamer projection and estate ports.
+* Applied PMPL-2.0-or-later to code, documentation and scenario materials.
+* Added learner/facilitator standalone bundles with hidden-material separation.
+* Added ECHIDNA-ready proof goal and receipt contracts across all ABI layers.
+* Added a non-root Chainguard Wolfi Containerfile, nerdctl commands and a
+  future Stapeln layer manifest.

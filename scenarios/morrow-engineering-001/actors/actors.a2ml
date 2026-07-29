@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+[[actor]]
+id = "actor-director-a"
+role = "director"
+fictional = true
+
+[[actor]]
+id = "actor-director-b"
+role = "director"
+fictional = true
+
+[[actor]]
+id = "actor-secured-creditor-contact"
+role = "secured-creditor-contact"
+fictional = true
+
+[[actor]]
+id = "actor-hmrc-contact"
+role = "creditor-contact"
+fictional = true
+
+[[actor]]
+id = "actor-purchaser-contact"
+role = "prospective-purchaser"
+fictional = true

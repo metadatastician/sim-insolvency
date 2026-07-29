@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+[pack]
+id = "england-wales-corporate-provisional"
+version = "0.1.0"
+jurisdiction = "england-wales"
+subject = "corporate-insolvency"
+authority-cut-off = "2026-07-01"
+status = "PROVISIONAL"
+comprehensive = false
+practitioner-reviewed = false
+authoritative-scoring = false
+
+[compatibility]
+scenarios = ["morrow-engineering-001@0.1.0"]
+
+[warning]
+text = "Training subset only. No professional-certification or current-law completeness claim."

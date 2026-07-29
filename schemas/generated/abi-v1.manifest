@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+abi.version=1
+status.ok=0
+status.invalid-version=1
+status.invalid-length=2
+status.invalid-encoding=3
+status.not-authorised=4
+status.not-available=5
+status.not-supported=6
+status.conflict=7
+status.integrity-failure=8
+status.resource-exhausted=9
+status.internal-failure=10
+proof.verdict.unknown=0
+proof.verdict.proved=1
+proof.verdict.disproved=2
+proof.verdict.timeout=3
+proof.verdict.error-total=4
+proof.goal.max-bytes=16384
+proof.context.max-bytes=49152
+proof.timeout.max-ms=300000
+ownership.input=borrowed-for-call
+ownership.output=caller-allocated
+lengths=explicit
+allocation=none-across-boundary

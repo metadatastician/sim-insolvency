@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0013: Rule-Pack Authority Versioning
+:status: accepted
+
+Context:: Insolvency authorities change and assessment cannot silently drift.
+Decision:: Scenarios pin compatible pack/version/digest and authority cut-off;
+rules carry citation, dates, review and tests.
+Alternatives:: Embedded summaries or latest-at-runtime rules make replay invalid.
+Consequences:: Missing/revoked/unreviewed mandatory authority refuses
+authoritative scoring.
+Current limitations:: Initial pack is explicitly provisional.
+Reversal:: None while source-attributed time-aware assessment is required.

@@ -1,0 +1,29 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Learning Model
+:toc: left
+
+== Construct
+
+The assessed construct is defensible practice reasoning under uncertainty and
+resource pressure. The simulator records what evidence the learner could
+reasonably access at the time, not hindsight alone.
+
+== Evidence of learning
+
+Observations derive from requested and overlooked evidence, claims and their
+support, explicit uncertainty, risk calibration, option comparison, reasons,
+sequence, timing, resources, communications, obligation handling and later
+belief correction.
+
+== Feedback timing
+
+Assessment mode provides process affordances and limitation notices but no
+correctness feedback before final submission. Debrief links feedback to events,
+disclosures, beliefs, rules and authorities.
+
+== Route plurality
+
+Rubrics define competent standard routes, competent alternatives, minimally
+acceptable routes, common errors and critical errors. No rubric encodes one
+secret click sequence. A route is judged using what was known at the decision
+time and whether uncertainty and downside were handled proportionately.

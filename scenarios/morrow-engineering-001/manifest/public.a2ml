@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+[scenario]
+id = "morrow-engineering-001"
+title = "Morrow Engineering Ltd"
+version = "0.1.0"
+watermark = "SIMULATION — NOT FOR FILING"
+
+[premise]
+summary = "A fictional small manufacturer faces acute cash pressure, incomplete information and competing procedural possibilities."
+
+[initial-disclosures]
+ids = [
+  "ev-engagement-email",
+  "ev-cash-summary",
+  "ev-director-statements",
+]
+
+[procedure-candidates]
+ids = [
+  "informal-restructuring",
+  "cva",
+  "administration",
+  "cvl",
+  "compulsory-liquidation",
+  "continued-trading-or-cessation",
+]

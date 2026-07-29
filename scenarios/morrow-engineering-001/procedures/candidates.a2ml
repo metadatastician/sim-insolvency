@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+[[candidate]]
+id = "informal-restructuring"
+depth = "bounded-analysis"
+questions = ["funding", "forbearance", "information-reliability", "governance"]
+
+[[candidate]]
+id = "cva"
+depth = "bounded-analysis-and-referral"
+questions = ["viability", "contributions", "creditor-position", "funding"]
+
+[[candidate]]
+id = "administration"
+depth = "end-to-end-bounded"
+questions = ["purpose", "appointment-route", "control", "sale-or-rescue", "exit"]
+
+[[candidate]]
+id = "cvl"
+depth = "end-to-end-bounded"
+questions = ["cessation", "appointment", "assets", "claims", "investigation", "closure"]
+
+[[candidate]]
+id = "compulsory-liquidation"
+depth = "threat-or-terminal"
+questions = ["creditor-action", "delay", "loss-of-options"]
+
+[[candidate]]
+id = "continued-trading-or-cessation"
+depth = "action-dimension"
+questions = ["authority", "funding", "risk", "asset-preservation"]

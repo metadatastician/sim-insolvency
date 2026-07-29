@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# TRUSTED HOST ONLY. This file is excluded from learner/browser bundles.
+[reality]
+scenario = "morrow-engineering-001@0.1.0"
+fictional = true
+delivery = "never-to-learner-client"
+
+[fixed-history]
+cash-pressure = "severe"
+management-information = "incomplete"
+secured-creditor-intent = "considering-action-not-yet-committed"
+purchaser = "interested-but-funding-not-verified"
+directors = "differing-recollections-and-incentives"
+connected-payment = "payment-occurred; legal-characterisation-not-authored-as-a-visible-fact"
+
+[deterministic-consequences]
+communication-risk-minute = 240
+asset-deterioration-minute = 480
+external-petition-consequence-minute = 720

@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0015: Hexadeca API Adapter Strategy
+:status: accepted
+
+Context:: The named repository could not be located; an unmerged IDApTIK branch
+has a sixteen-tag wire order but no implemented transports.
+Decision:: Provide a narrow versioned `HexadecaPort` stub that returns
+`not-supported`. Do not copy or claim external integration.
+Alternatives:: Guessing the owner/API or adopting an unrelated branch would
+fabricate a dependency.
+Consequences:: Core work proceeds behind a stable seam and integration remains
+visibly blocked.
+Current limitations:: No external calls are available.
+Reversal:: Pin a canonical repository only after interface/build/conformance
+inspection.

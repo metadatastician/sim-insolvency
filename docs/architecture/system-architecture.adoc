@@ -1,0 +1,43 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= System Architecture
+:toc: left
+
+[source,text]
+----
+                    +------------------------+
+                    | trusted scenario host  |
+                    | reality + rule packs   |
+                    +-----------+------------+
+                                |
+                       validated commands
+                                |
++-----------+       +-----------v------------+       +----------------+
+| Gossamer  |<----->| AffineScript-facing    |<----->| VeriSimPort    |
+| projection|       | application/kernel     |       | persistence    |
++-----------+       +-----------+------------+       +----------------+
+                                |
+                         append-only events
+                                |
+                    +-----------v------------+
+                    | pure projections       |
+                    | beliefs/norms/workflows|
+                    +-----------+------------+
+                                ^
+                    +-----------+------------+
+                    | BurblePort gateway     |
+                    | untrusted proposals    |
+                    +------------------------+
+----
+
+The kernel accepts commands, checks authority/evidence/time/resources/procedure
+preconditions and atomically appends events. Projections are replayable folds.
+Scenario reality is a trusted input unavailable to the Gossamer learner
+projection. VeriSimDB indexes/persists envelopes but has no authority to invent
+events. Burble transports discussion/proposals; only locally authorised
+commands reach validation.
+
+Zig currently supplies the executable kernel fallback and all conventional FFI.
+AffineScript owns domain-facing contracts and progressively absorbs supported
+logic. Idris2 owns ABI and invariant definitions. typed-wasm verifies the
+deployment carrier. No C source or C intermediate glue is introduced by this
+repository.

@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0008: Burble Collaboration Gateway
+:status: accepted
+
+Context:: Group learning needs rooms and discussion without remote authority.
+Decision:: Burble transports presence/discussion/proposal envelopes; the local
+gateway validates and authorises any resulting command.
+Alternatives:: Direct shared state or arbitrary WebSocket chat violates the
+authority boundary and requested stack.
+Consequences:: Dissent and facilitator actions are ledger events.
+Current limitations:: Proposal/vote/reveal semantics are application-owned.
+Reversal:: A stable upstream extension may replace the adapter after conformance.

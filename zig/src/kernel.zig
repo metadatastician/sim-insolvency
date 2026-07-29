@@ -498,8 +498,22 @@ pub const Certificate = struct {
 
 pub fn issueCertificate(session: *Session, result: CompetencyResult, learner: []const u8, key: []const u8) CommandError!Certificate {
     if (!session.submitted or learner.len == 0 or key.len == 0) return error.PrerequisiteMissing;
+    const certificate = try makeCertificate(session.ledger.headDigest(), result, learner, key);
+    _ = try session.emit(.certificate_issued, "issuer", certificate.result_class);
+    return certificate;
+}
+
+pub fn certificateForOutcome(outcome: GoldenOutcome, learner: []const u8, key: []const u8) CommandError!Certificate {
+    return makeCertificate(outcome.digest, outcome.result, learner, key);
+}
+
+pub fn certificateFromFields(ledger_digest: [32]u8, result: CompetencyResult, learner: []const u8, key: []const u8) CommandError!Certificate {
+    return makeCertificate(ledger_digest, result, learner, key);
+}
+
+fn makeCertificate(ledger_digest: [32]u8, result: CompetencyResult, learner: []const u8, key: []const u8) CommandError!Certificate {
+    if (learner.len == 0 or key.len == 0) return error.PrerequisiteMissing;
     const class = if (result.critical_error) "invalidated" else if (result.threshold()) "threshold-demonstrated" else "threshold-not-yet-demonstrated";
-    const ledger_digest = session.ledger.headDigest();
     var hash = std.crypto.hash.sha2.Sha256.init(.{});
     hash.update(learner);
     hash.update(scenario_id);
@@ -509,13 +523,21 @@ pub fn issueCertificate(session: *Session, result: CompetencyResult, learner: []
     hash.update(authority_cut_off);
     hash.update(rubric_version);
     hash.update(class);
+    hash.update(std.mem.asBytes(&result.information_gathering));
+    hash.update(std.mem.asBytes(&result.procedure_comparison));
+    hash.update(std.mem.asBytes(&result.evidence_use));
+    hash.update(std.mem.asBytes(&result.uncertainty_handling));
+    hash.update(std.mem.asBytes(&result.prioritisation));
+    hash.update(std.mem.asBytes(&result.timeliness));
+    hash.update(std.mem.asBytes(&result.record_quality));
+    hash.update(std.mem.asBytes(&result.ethical_reasoning));
+    hash.update(std.mem.asBytes(&result.critical_error));
     hash.update(&ledger_digest);
     hash.update(app_version);
     hash.update(disclaimer);
     var cert_digest: [32]u8 = undefined;
     hash.final(&cert_digest);
     const signature = hmacSha256(key, &cert_digest);
-    _ = try session.emit(.certificate_issued, "issuer", class);
     return .{
         .result_class = class,
         .ledger_digest = ledger_digest,

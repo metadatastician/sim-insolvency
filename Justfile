@@ -105,10 +105,12 @@ replay bundle:
     @echo "Replay fixture requested: {{bundle}}"
     {{zig_env}} zig test zig/src/kernel.zig --test-filter "replay"
 
-verify-certificate certificate:
-    @echo "Verifying certificate envelope: {{certificate}}"
-    test -s "{{certificate}}"
-    {{zig_env}} zig test zig/src/kernel.zig --test-filter "certificate"
+export-certificate learner output: build
+    ./zig-out/bin/sim-insolvency certificate "{{learner}}" > "{{output}}"
+    @echo "Exported development certificate envelope: {{output}}"
+
+verify-certificate certificate key="phase-a-development-key-not-for-production": build
+    ./zig-out/bin/sim-insolvency verify-certificate "{{certificate}}" "{{key}}"
 
 docs:
     @find docs -name '*.adoc' -type f | sort

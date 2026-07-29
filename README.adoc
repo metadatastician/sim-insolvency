@@ -52,6 +52,11 @@ not use a Nix flake. `just doctor`, `just build`, `just test`, `just prove`,
 release and Wolfi image are designed to run without an estate checkout or
 network access.
 
+Development certificate envelopes can be exported with
+`just export-certificate learner-pseudonym result.a2ml` and checked with
+`just verify-certificate result.a2ml`. The bundled HMAC key is explicitly a
+development profile, not a production issuer or professional credential.
+
 == Licence
 
 Original code, documentation, and fictional scenario materials are all

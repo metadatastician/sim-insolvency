@@ -11,7 +11,7 @@ defensible decision-making.
 
 [IMPORTANT]
 ====
-Sim Insolvency is a fictional professional-learning simulation. It is not a law
+Insolvency Tycoon is a fictional professional-learning simulation. It is not a law
 firm, insolvency practice, live case-management system, legal advice, supervised
 experience, statutory authorisation, an accredited qualification, a JIEB pass,
 or accredited CPD unless a competent external body separately approves it.

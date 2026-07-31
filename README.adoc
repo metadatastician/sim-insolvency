@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: PMPL-2.0-or-later
 // SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell (hyperpolymath)
-= Sim Insolvency
+= Insolvency Tycoon
 :toc: left
 :reproducible:
 

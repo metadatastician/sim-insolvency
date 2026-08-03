@@ -28,7 +28,7 @@ pub fn main(init: std.process.Init) !void {
     }
     if (std.mem.eql(u8, command, "certificate")) {
         const learner = if (args.len > 2) args[2] else "learner-pseudonym";
-        try showCertificate(init.io, learner);
+        try showCertificate(init.io, learner, certificateKey(init));
         return;
     }
     if (std.mem.eql(u8, command, "verify-digest")) {
@@ -75,10 +75,24 @@ fn showHome() void {
     , .{ sim.scenario_id, sim.authority_cut_off, sim.rule_pack_id, sim.rule_pack_version });
 }
 
-fn showCertificate(io: std.Io, learner: []const u8) !void {
-    const development_key = "phase-a-development-key-not-for-production";
+const CertificateKey = struct {
+    key: []const u8,
+    id: []const u8,
+};
+
+fn certificateKey(init: std.process.Init) CertificateKey {
+    if (init.environ_map.get("SIM_INSOLVENCY_CERT_KEY")) |key| {
+        if (key.len > 0) return .{ .key = key, .id = "operator-supplied" };
+    }
+    return .{
+        .key = "phase-a-development-key-not-for-production",
+        .id = "phase-a-development",
+    };
+}
+
+fn showCertificate(io: std.Io, learner: []const u8, cert_key: CertificateKey) !void {
     const outcome = try sim.runGolden(.cvl_competent_standard);
-    const certificate = try sim.certificateForOutcome(outcome, learner, development_key);
+    const certificate = try sim.certificateForOutcome(outcome, learner, cert_key.key);
     const ledger_hex = std.fmt.bytesToHex(certificate.ledger_digest, .lower);
     const certificate_hex = std.fmt.bytesToHex(certificate.certificate_digest, .lower);
     const signature_hex = std.fmt.bytesToHex(certificate.signature, .lower);
@@ -107,7 +121,7 @@ fn showCertificate(io: std.Io, learner: []const u8) !void {
         \\ledger-digest = "{s}"
         \\certificate-digest = "{s}"
         \\signature-algorithm = "HMAC-SHA-256-DEVELOPMENT-ONLY"
-        \\key-id = "phase-a-development"
+        \\key-id = "{s}"
         \\signature = "{s}"
         \\verify = "sim-insolvency verify-digest <certificate-digest> <signature> <trusted-key>"
         \\disclaimer = "{s}"
@@ -134,6 +148,7 @@ fn showCertificate(io: std.Io, learner: []const u8) !void {
         outcome.consequence.elapsed_minutes,
         &ledger_hex,
         &certificate_hex,
+        cert_key.id,
         &signature_hex,
         sim.disclaimer,
     });

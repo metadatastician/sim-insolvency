@@ -115,5 +115,8 @@ verify-certificate certificate key="phase-a-development-key-not-for-production":
 docs:
     @find docs -name '*.adoc' -type f | sort
 
+docs-health:
+    ./tools/check-wiki-health.sh
+
 clean:
     rm -rf zig-out .zig-cache idris2/build

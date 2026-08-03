@@ -1,0 +1,35 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Programme Glossary
+:page-id: WIKI-SHARED-001
+:page-title: Programme Glossary
+:page-audience: All
+:page-maturity: DRAFT
+:page-product-version: 0.1
+:page-authority-status: Terminology aid; not legal advice
+:page-owner: Documentation lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: Every release
+:page-related-issues: Documentation epic
+:page-programme-gate: G2 — Foundation specified
+:page-event-chains: EC-006
+
+include::../_Status-Panel.adoc[]
+
+Authority cut-off:: Latest date through which a scenario's identified authority
+sources have been considered.
+Command:: An attempted state change, validated before any event is accepted.
+Disclosed record:: Evidence currently available to a learner or group.
+Event:: An accepted, immutable occurrence in the authoritative ledger.
+Event chain:: A linked sequence from uncertain event through consequences,
+responses, residual exposure and trigger evidence.
+Gate:: An evidence-based programme decision; not a date or percentage complete.
+Learner belief:: A claim, hypothesis, uncertainty or risk recorded by a learner.
+Normative state:: Derived obligations, permissions, prohibitions and deadlines.
+Potential evidence:: Authored material that can become available under stated
+conditions.
+Projection:: A rebuildable view derived from the ledger.
+Rule pack:: A versioned set of cited, dated and reviewed normative rules.
+Scenario reality:: The fixed fictional truth, withheld from learners until an
+authorised post-submission debrief.
+Vertical slice:: The smallest coherent end-to-end implementation of the intended
+architecture.

@@ -1,0 +1,29 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Certificate Meaning
+:page-id: WIKI-ASSESSMENT-002
+:page-title: Certificate Meaning
+:page-audience: Learners, verifiers and clients
+:page-maturity: SPECIFIED
+:page-product-version: certificate schema 0.1
+:page-authority-status: Non-accreditation boundary
+:page-owner: Assessment lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: Before any external issue
+:page-related-issues: Certificate and claims-control epic
+:page-programme-gate: G5 — Assessment valid
+:page-event-chains: EC-010
+
+include::../_Status-Panel.adoc[]
+
+The only initial award label is *Certificate of Completion and Assessed
+Performance*. It records learner or pseudonymous identity, scenario and rule
+pack versions, authority cut-off, rubric and application versions, completion
+time, competency results, critical-error status, ledger digest, certificate
+digest, verification instructions and disclaimer.
+
+Its internal result class may be `completed`, `completed-with-feedback`,
+`threshold-demonstrated`, `threshold-not-yet-demonstrated` or `invalidated`.
+These are application results, not regulated or academic awards. A valid digest
+shows that the envelope has not changed since issue; it does not prove identity,
+legal correctness, independent accreditation or professional competence beyond
+the specified simulated assessment.

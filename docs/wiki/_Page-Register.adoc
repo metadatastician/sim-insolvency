@@ -1,0 +1,48 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Human Page Register
+:page-id: WIKI-REG-001
+:page-title: Human Page Register
+:page-audience: Contributors and auditors
+:page-maturity: SPECIFIED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Mixed; see individual pages
+:page-owner: Documentation workstream
+:page-last-reviewed: 2026-07-29
+:page-next-review: Every release gate
+:page-related-issues: Documentation epic
+:page-programme-gate: G2 through G9
+:page-event-chains: EC-011
+
+include::_Status-Panel.adoc[]
+
+The machine-readable authority for page metadata is
+link:../../programme/wiki-page-register.toml[`programme/wiki-page-register.toml`].
+
+[cols="2,3,2,2",options="header"]
+|===
+|Page ID |Page |Audience |Current maturity
+|WIKI-HOME-001 |link:Home.adoc[Home] |All |SPECIFIED
+|WIKI-STS-001 |link:programme/Current-Status.adoc[Current Status] |All |RESEARCHED
+|WIKI-PRG-001 |link:programme/Programme-Overview.adoc[Programme Overview] |All |SPECIFIED
+|WIKI-LFC-001 |link:programme/Lifecycle.adoc[Lifecycle] |All |SPECIFIED
+|WIKI-V1-001 |link:programme/Definition-of-v1.adoc[Definition of v1] |All |SPECIFIED
+|WIKI-RMV-001 |link:programme/Road-to-v1.adoc[Road to v1] |All |INDICATIVE
+|WIKI-ECM-001 |link:programme/Event-Chain-Methodology.adoc[Event Chain Methodology] |Programme |SPECIFIED
+|WIKI-KEY-001 |link:programme/Key-Issues.adoc[Key Issues] |Programme |RESEARCHED
+|WIKI-DEC-001 |link:programme/Decisions.adoc[Decisions] |All |RESEARCHED
+|WIKI-GOV-001 |link:programme/Governance.adoc[Governance] |All |SPECIFIED
+|WIKI-LIM-001 |link:programme/Known-Limitations.adoc[Known Limitations] |All |RESEARCHED
+|WIKI-USR-001 |link:users/Start-Here.adoc[Learner Start Here] |Learner |DESIGNED
+|WIKI-FAC-001 |link:facilitators/Start-Here.adoc[Facilitator Start Here] |Facilitator |INDICATIVE
+|WIKI-DEV-001 |link:developers/Start-Here.adoc[Developer Start Here] |Developer |RESEARCHED
+|WIKI-CLI-001 |link:clients/Start-Here.adoc[Client Start Here] |Client |INDICATIVE
+|WIKI-PRO-001 |link:product/What-Sim-Insolvency-Is.adoc[What Sim Insolvency Is] |All |SPECIFIED
+|WIKI-PRO-002 |link:product/What-Sim-Insolvency-Is-Not.adoc[What It Is Not] |All |SPECIFIED
+|WIKI-ASP-001 |link:assessment/How-Assessment-Works.adoc[How Assessment Works] |All |DESIGNED
+|WIKI-CER-001 |link:assessment/Certificate-Meaning.adoc[Certificate Meaning] |All |IMPLEMENTED
+|WIKI-AUT-001 |link:authority/Authority-Freshness.adoc[Authority Freshness] |All |DESIGNED
+|WIKI-SCN-001 |link:scenarios/Morrow-Engineering-Overview.adoc[Morrow Engineering] |All |IMPLEMENTED
+|WIKI-TRU-001 |link:product/Security-Privacy-Accessibility.adoc[Security, Privacy and Accessibility] |All |RESEARCHED
+|WIKI-EVL-001 |link:evaluation/Framework.adoc[Evaluation Framework] |All |SPECIFIED
+|WIKI-GLS-001 |link:shared/Glossary.adoc[Glossary] |All |SPECIFIED
+|===

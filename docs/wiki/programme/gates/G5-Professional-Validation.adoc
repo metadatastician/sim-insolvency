@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+== G5 — Professional validation threshold met
+
+Status:: Open; no practitioner or independent assessment validation completed.
+Entry evidence:: Named source review, scenario review, blueprint, rubric and
+critical-error review, assessor agreement and change disposition.
+Decision test:: Released scoring claims are traceable, current and professionally
+defensible for their stated low-stakes purpose.
+Required reviewers:: Insolvency practitioner and assessment specialist.
+Blocking exposure:: Mandatory unreviewed rule or invalid competency inference.
+Event chains:: EC-001, EC-002, EC-006, EC-008.

@@ -1,0 +1,40 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Learner and User Start Here
+:page-id: WIKI-USERS-001
+:page-title: Learner and User Start Here
+:page-audience: Learners and users
+:page-maturity: DRAFT
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Provisional; not legal advice
+:page-owner: Learning experience lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: Before first supervised pilot
+:page-related-issues: Learner experience and accessibility epic
+:page-programme-gate: G6 — Pilot-ready
+:page-event-chains: EC-004, EC-005
+
+include::../_Status-Panel.adoc[]
+
+== What you will do
+
+You will work through a fictional corporate-insolvency case. You inspect the
+record available at the time, request evidence, record claims and uncertainty,
+compare procedures, manage deadlines and resources, and explain consequential
+decisions. The case can develop through a bounded CVL or Administration path.
+
+Assessment considers the quality and timing of your reasoning, not merely the
+financial outcome. A defensible alternative can score well; an apparently good
+outcome reached through unsupported assumptions may not.
+
+== Before starting
+
+Use fictional or pseudonymous identity data. Do not enter live client, employee
+or creditor information. In assessment mode, hints and hidden scenario reality
+remain unavailable until submission. Submission is final for that run.
+
+The result is a Certificate of Completion and Assessed Performance for the
+identified simulation. It is not a qualification, licence, regulatory
+authorisation, JIEB result, or evidence of supervised professional experience.
+
+See link:../assessment/How-Assessment-Works.adoc[How Assessment Works] and
+link:../product/What-Sim-Insolvency-Is-Not.adoc[What Sim Insolvency Is Not].

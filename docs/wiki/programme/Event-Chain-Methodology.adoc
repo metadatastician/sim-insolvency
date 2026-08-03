@@ -1,0 +1,86 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Event Chain Methodology
+:page-id: WIKI-ECM-001
+:page-title: Event Chain Methodology
+:page-audience: Programme contributors, reviewers and decision-makers
+:page-maturity: SPECIFIED
+:page-product-version: Programme framework v0.1
+:page-authority-status: Not applicable
+:page-owner: Programme risk owner
+:page-last-reviewed: 2026-07-29
+:page-next-review: Monthly and after every trigger
+:page-related-issues: Open serious event issues
+:page-programme-gate: All
+:page-event-chains: EC-001 through EC-012
+:toc: left
+
+include::../_Status-Panel.adoc[]
+
+== Purpose
+
+Event Chain Methodology represents uncertain events which can alter programme
+activities, gates, releases, quality or opportunity. It supplements ordinary
+issues, dependencies, milestones, gates and risk management; it does not replace
+them.
+
+An event chain is:
+
+----
+initiating event
+→ immediate consequence
+→ triggered event
+→ changed activity state
+→ further event
+→ programme outcome
+----
+
+== Event records
+
+Every event records a stable ID, name, type, risk/opportunity classification,
+description, trigger, early warnings, time window, qualitative confidence,
+immediate effect, affected activities/state/gates/releases/cost/quality,
+professional/authority/assessment impact, linked events, owner, mitigation,
+contingency, recovery, residual exposure, evidence, review date and state.
+
+Allowed qualitative values are `Very low`, `Low`, `Medium`, `High`, `Very
+high`, and `Unknown`. Numerical probability is prohibited until empirical
+delivery data justifies it.
+
+Allowed operational states are `Watching`, `Triggered`, `Responding`,
+`Contained`, `Materialised`, `Recovered`, `Expired`, and `Accepted`.
+
+== Intervention rule
+
+Every chain identifies the earliest observable indicator and at least one point
+where intervention can break or soften the chain. An event issue stays open
+while serious exposure exists; absence of occurrence is not closure evidence.
+
+== Initial chains
+
+The initial register covers:
+
+* EC-001 legal change invalidates content;
+* EC-002 professional review unavailable;
+* EC-003 AffineScript capability gap;
+* EC-004 hidden assessment truth leaks;
+* EC-005 Morrow scenario proves too broad;
+* EC-006 rule interpretation dispute;
+* EC-007 Burble or Gossamer dependency delay;
+* EC-008 pilot reveals invalid rubric assumptions;
+* EC-009 institutional buyer opportunity;
+* EC-010 accreditation opportunity;
+* EC-011 solo-maintainer overload;
+* EC-012 authority source adapter silently fails.
+
+The data authority is
+link:../../../programme/event-register.toml[`event-register.toml`] and
+link:../../../programme/event-chain-register.toml[`event-chain-register.toml`].
+The source diagram is
+link:../../../programme/event-chains/initial-chains.d2[`initial-chains.d2`].
+
+== Validation
+
+Monthly review checks owner, evidence, rating, warnings, mitigation and affected
+gates. A triggered event must update its issue, affected status page and gate
+evidence. A material opportunity is governed with the same traceability as a
+risk and cannot silently expand v1.

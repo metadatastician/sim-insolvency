@@ -1,0 +1,69 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Programme Governance
+:page-id: WIKI-GOV-001
+:page-title: Programme Governance
+:page-audience: All
+:page-maturity: SPECIFIED
+:page-product-version: Programme framework v0.1
+:page-authority-status: Professional roles not yet appointed
+:page-owner: Programme lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: G2 decision
+:page-related-issues: Programme objective and governance epic
+:page-programme-gate: All
+:page-event-chains: EC-001, EC-002, EC-006, EC-011, EC-012
+:toc: left
+
+include::../_Status-Panel.adoc[]
+
+== Accountability
+
+The programme lead controls product scope, repository coordination and gate
+preparation. That role cannot self-certify professional legal accuracy,
+assessment validity, security independence or accreditation.
+
+Named roles are required before the relevant gate:
+
+* product/programme owner;
+* technical architecture reviewer;
+* insolvency practitioner or suitably qualified domain reviewer;
+* legal-source/rule-pack reviewer;
+* assessment-validity reviewer;
+* security/privacy reviewer;
+* accessibility reviewer;
+* pilot facilitator and client sponsor where applicable.
+
+Until appointed, those roles are `Unassigned`; their evidence cannot be
+inferred from tests or prose.
+
+== Decision and gate discipline
+
+Gate closure requires a recorded decision with evidence, reviewers, residual
+risks and date. A person with a material conflict should not be the only
+reviewer. Provisional legal interpretations cannot become released scoring
+rules without source and review evidence.
+
+Scope changes use the v1 change-control rule. High work in progress, missing
+review capacity or documentation drift activates EC-011 mitigations: reduce
+scope, limit concurrent work, automate traceability checks and seek staged
+external assistance.
+
+== Programme records
+
+Repository-controlled records include lifecycle/gates, decisions/ADRs, issue
+hierarchy, event chains, key issues, traceability, page register, release
+evidence and evaluation findings. GitHub projects are projections over these
+records, not the only authoritative copy.
+
+== Licensing and claims
+
+Original code, documentation and fictional learning content use
+PMPL-2.0-or-later. Third-party authority text and citations retain their own
+rights. No proprietary course questions or protected training materials may be
+copied. Commercial, accreditation, qualification or service claims require a
+separate approved decision and evidence.
+
+== Review history
+
+2026-07-29:: Initial programme governance specified; reviewer appointments and
+formal G0–G2 decisions remain open.

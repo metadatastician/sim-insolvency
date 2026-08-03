@@ -1,0 +1,80 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Programme Overview
+:page-id: WIKI-PRG-001
+:page-title: Programme Overview
+:page-audience: All
+:page-maturity: SPECIFIED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Provisional; professional review pending
+:page-owner: Programme lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: G3 decision
+:page-related-issues: Programme objective
+:page-programme-gate: G0 through G12
+:page-event-chains: EC-001 through EC-012
+:toc: left
+
+include::../_Status-Panel.adoc[]
+
+== Purpose
+
+The extended programme exists to determine whether a bounded, evidence-driven
+insolvency simulator can become a professionally defensible learning and
+assessment product, and to build and operate that product if the evidence
+supports it.
+
+It joins several kinds of work which software delivery alone cannot settle:
+
+* product and learner experience;
+* fictional case design and evidence semantics;
+* legal-source mapping and authority freshness;
+* competency assessment and validity;
+* professional review;
+* privacy, security and accessibility;
+* deployment, support, purchasing and institutional implementation;
+* evaluation, maintenance and eventual retirement.
+
+== What exists now
+
+The repository contains foundation, ontology, event, evidence, rule-pack,
+assessment, certificate, threat-model and architecture specifications. A native
+Zig Phase A kernel exercises the Morrow Engineering scenario, both formal
+branches, deterministic replay, golden runs, group-session test behaviour,
+debrief and a development certificate envelope. Idris2 ABI definitions and an
+AffineScript-facing contract are present.
+
+The implementation does not yet prove that the entire intended product is
+professionally valid or ready for institutional use. Gossamer, Burble,
+VeriSimDB, typed-wasm, Hexadeca and Echidna relationships have varying maturity
+and are capability-gated or represented by ports.
+
+== Programme outcomes
+
+A bounded v1 is successful only if:
+
+. a learner can complete a coherent local-first assessment;
+. the scenario and scoring have professional and assessment-validity evidence;
+. authority identity and freshness are explicit;
+. hidden truth and certificate evidence survive security review;
+. the build and operation are reproducible;
+. accessibility and privacy have been evaluated;
+. facilitator and client implementation routes are supportable;
+. released claims remain narrower than the evidence.
+
+== Repository relationships
+
+The current relationship register is
+link:../../architecture/estate-reconnaissance.adoc[Estate Reconnaissance].
+The expected programme includes `sim-insolvency`, `authority-watch`,
+Gossamer, Burble, AffineScript, typed-wasm, SNIFS, no-nonsense-nntps,
+Unified Hexadeca API and proven-tests-and-benches. Repository names and owners
+must be re-resolved before integration; an intended relationship is not proof
+of an operational dependency.
+
+== Validation
+
+Programme progress is evaluated by the evidence gates in
+link:Lifecycle.adoc[Lifecycle], the multi-dimensional confidence dashboard in
+link:Current-Status.adoc[Current Status], verified artefacts, professional
+review, pilot evidence and evaluation findings. Issue closure is evidence of
+activity, not automatic evidence that a gate condition has been achieved.

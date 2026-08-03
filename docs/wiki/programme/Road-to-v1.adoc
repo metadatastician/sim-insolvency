@@ -1,0 +1,77 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Road to v1
+:page-id: WIKI-RMV-001
+:page-title: Road to v1
+:page-audience: All
+:page-maturity: INDICATIVE
+:page-product-version: Planning horizon only
+:page-authority-status: Dependent on reviewed release pack
+:page-owner: Programme lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: Monthly and after material events
+:page-related-issues: Programme objective and active gate issues
+:page-programme-gate: G0 through G9
+:page-event-chains: All
+:toc: left
+
+include::../_Status-Panel.adoc[]
+
+[CAUTION]
+====
+This 18-month view is an indicative planning target, not a release promise.
+It assumes bounded scope, access to professional reviewers, sufficient
+maintenance capacity and no material authority or toolchain event.
+====
+
+== Capability horizons
+
+Now::
+Adopt programme governance, formalise G0–G2 decisions, define v1, stabilise
+documentation/traceability, close architecture gaps and prepare Morrow for
+professional review.
+
+Next::
+Complete G3/G4 evidence, validate scenario/rubric/authority mappings, run
+trusted alpha cohorts, resolve accessibility and hidden-state findings.
+
+Later::
+Conduct controlled institutional/professional pilot, complete operational and
+client evidence, prepare and decide on a bounded release candidate.
+
+Post-v1::
+Additional cases, procedure lifecycles, jurisdictions, authoring tools, hosted
+services and recognition partnerships.
+
+Research horizon::
+Generalised scenario assistance, stronger proof automation, broader authority
+ingestion and assessment-reliability models.
+
+== Indicative 18-month plan
+
+[cols="1,3,4",options="header"]
+|===
+|Months |Focus |Significant outcomes
+|0–2 |Programme foundation |Wiki/project/issue hierarchy, specifications, reconnaissance, event baseline, v1 decision and reviewer strategy.
+|3–5 |Architecture proofs |AffineScript, typed-wasm, Zig/Idris2, ledger/storage, Gossamer and Authority Watch manual-core evidence.
+|6–9 |Vertical slice hardening |Morrow evidence/advice/options, CVL/Admin, replay, assessment, security and accessibility fixes.
+|10–12 |Assessment and collaboration |Reviewed rubric/golden runs/debrief/certificate, bounded group mode and integrity evidence.
+|13–15 |Professional alpha |Practitioner/assessment review, revision, usability/accessibility tests and facilitator/client guidance.
+|16–18 |Closed pilot and pilot release decision |Controlled pilot, evaluation, authority workflow, release-candidate review and bounded v1 pilot decision.
+|===
+
+== Reserve and contingency
+
+The schedule requires explicit reserve for professional-review delay, authority
+change, AffineScript/typed-wasm adapters, scenario reduction and accessibility
+rework. Contingencies include narrowing group mode, retaining local adapters,
+reducing procedural depth outside the two deep branches, delaying external
+recognition and extending the pilot horizon. Professional validity, hidden-state
+integrity and authority freshness are not acceptable schedule sacrifices.
+
+== Forecast confidence
+
+Current confidence in an 18-month bounded pilot is *Amber/Unknown*. Technical
+vertical-slice evidence makes the target plausible, but professional reviewer
+capacity, authority governance, assessment validity, accessibility and the
+solo-maintainer event chain are unresolved. See
+link:Current-Status.adoc[Current Status] for dimension ratings.

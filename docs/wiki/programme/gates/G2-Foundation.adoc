@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+== G2 — Foundation baseline approved
+
+Status:: Open; extensive specifications exist but have not had formal review.
+Entry evidence:: Foundation, ontology, epistemic layers, event semantics,
+rule-pack model, assessment model, certificate boundary and threat model.
+Decision test:: Specifications are mutually coherent, versioned and sufficient
+to constrain implementation.
+Required reviewers:: Product, architecture, assessment and trust leads.
+Blocking exposure:: Contradictory semantics or unverifiable certification claim.
+Event chains:: EC-001, EC-004, EC-006.

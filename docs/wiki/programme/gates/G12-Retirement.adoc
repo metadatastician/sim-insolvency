@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+== G12 — Retirement or migration approved
+
+Status:: Not entered.
+Entry evidence:: Notice, archive, record and certificate-verification
+continuity, migration route, dependency disposition and closure support.
+Decision test:: Users and clients retain an understandable, verifiable record
+and safe route away.
+Required reviewers:: Programme, operations, trust and records leads.
+Blocking exposure:: Orphaned learner evidence or unverifiable certificates.
+Event chains:: EC-001, EC-011, EC-012.

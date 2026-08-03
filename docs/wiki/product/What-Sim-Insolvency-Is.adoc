@@ -1,0 +1,29 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= What Sim Insolvency Is
+:page-id: WIKI-PRODUCT-001
+:page-title: What Sim Insolvency Is
+:page-audience: All
+:page-maturity: SPECIFIED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Product definition
+:page-owner: Product lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: At scope change
+:page-related-issues: Programme objective
+:page-programme-gate: G1 — Product definition
+:page-event-chains: EC-005
+
+include::../_Status-Panel.adoc[]
+
+Sim Insolvency is a local-first, evidence-driven and time-aware practice
+simulator. It combines an authored fictional reality, controlled evidence
+disclosure, an append-only decision record, versioned authority packs,
+concurrent workstreams, deterministic consequences and evidence-based
+assessment. Phase A centres on Morrow Engineering Ltd and supports a common
+advisory phase followed by bounded CVL or Administration lifecycles, while CVA,
+informal restructuring and compulsory-liquidation risk remain genuine options
+for analysis.
+
+It is designed as a programme: software, scenarios, authority maintenance,
+professional review, facilitation, evaluation, client implementation and
+operational governance are all necessary to sustain a trustworthy product.

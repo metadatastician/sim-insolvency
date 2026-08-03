@@ -1,0 +1,45 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Decision Register
+:page-id: WIKI-DEC-001
+:page-title: Decision Register
+:page-audience: All
+:page-maturity: RESEARCHED
+:page-product-version: Programme framework v0.1
+:page-authority-status: Mixed
+:page-owner: Programme governance
+:page-last-reviewed: 2026-07-29
+:page-next-review: Every architecture or gate decision
+:page-related-issues: Architecture decision and gate issues
+:page-programme-gate: All
+:page-event-chains: All
+:toc: left
+
+include::../_Status-Panel.adoc[]
+
+== Purpose
+
+This page is the human index. Authoritative technical decisions remain in
+link:../../architecture/adr/[`docs/architecture/adr/`]. Programme decisions
+which do not fit an architecture ADR must still use the same evidence and
+review discipline.
+
+[cols="1,3,2,2",options="header"]
+|===
+|Decision |Question |Status |Review trigger
+|ADR-0001 |Is AffineScript the principal language? |Accepted |Compiler capability materially changes
+|ADR-0002 |Is typed-wasm the deployment target? |Accepted |Carrier/verifier model changes
+|ADR-0003 |What is authoritative case state? |Accepted |Replay/event model fails requirements
+|ADR-0004 |How is hidden truth separated? |Accepted |Security/assessment evidence rejects model
+|ADR-0009 |What is local persistence? |Accepted provisionally |VeriSimDB stable Zig/local interface
+|ADR-0011 |What may the certificate claim? |Accepted |External recognition agreement
+|ADR-0016 |Must releases be standalone? |Accepted |Deployment evidence shows contrary need
+|ADR-0017 |How may Echidna consume proof work? |Accepted provisionally |Stable orchestration contract
+|ADR-0018 |How are containers built? |Accepted provisionally |Stapeln verification becomes production-ready
+|PRG-0001 |What is the bounded v1? |Proposed |G2 decision or material event
+|PRG-0002 |What evidence closes G3? |Proposed |Architecture review
+|PRG-0003 |Who approves professional content? |Open |Reviewer model agreed
+|===
+
+Every new record identifies question, context, options, decision, reasoning,
+evidence, consequences, affected issues/pages/chains, review trigger and state:
+`Proposed`, `Accepted provisionally`, `Accepted`, `Superseded`, or `Reversed`.

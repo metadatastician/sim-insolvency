@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+== G11 — Expansion authorised
+
+Status:: Not entered.
+Entry evidence:: Demand, evidence burden, compatibility, capacity, authority
+maintenance and assessment-validation plan for the proposed expansion.
+Decision test:: Added procedure, scenario, jurisdiction, tool or recognition
+does not weaken the validated core.
+Required reviewers:: Programme and affected specialist leads.
+Blocking exposure:: Scope outruns review or maintenance capacity.
+Event chains:: EC-009, EC-010, EC-011.

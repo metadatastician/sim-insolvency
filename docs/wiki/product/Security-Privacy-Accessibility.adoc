@@ -1,0 +1,32 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Security, Privacy and Accessibility
+:page-id: WIKI-TRUST-001
+:page-title: Security, Privacy and Accessibility
+:page-audience: Users, developers, clients and reviewers
+:page-maturity: DRAFT
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Engineering assurance; independent review pending
+:page-owner: Trust lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: At G6
+:page-related-issues: Security privacy and accessibility epic
+:page-programme-gate: G6 — Pilot-ready
+:page-event-chains: EC-004, EC-007, EC-011
+
+include::../_Status-Panel.adoc[]
+
+The reference path is local-first, offline-capable and telemetry-free. Networked
+group learning is explicit opt-in. Only fictional case data is permitted;
+learner identity may be pseudonymous. Exported scenario documents require a
+simulation watermark.
+
+Trust controls include strict parsing, versioned ports, append-only
+hash-chained events, rule-pack identity, digest-bound certificates,
+capability-limited scenario actions and validated command gateways for untrusted
+collaboration messages. Assessment-mode hidden reality must not be present in
+learner-accessible bundles.
+
+Accessibility is a product requirement, but the current shell has not completed
+WCAG conformance testing, assistive-technology testing or an independent
+accessibility audit. No production security or accessibility certification is
+claimed.

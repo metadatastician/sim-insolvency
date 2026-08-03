@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+== G9 — Version 1 released
+
+Status:: Not entered.
+Entry evidence:: G8 decision, approved artefacts, release notes, terms,
+implementation pack, verification service/process and release authorisation.
+Decision test:: The bounded v1 can be obtained, understood, operated and
+verified without overstating its status.
+Required reviewers:: Accountable programme owner and release authority.
+Blocking exposure:: Certificate or authority verification unavailable.
+Event chains:: EC-001, EC-009, EC-010.

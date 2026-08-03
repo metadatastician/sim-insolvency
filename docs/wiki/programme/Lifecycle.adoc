@@ -1,0 +1,76 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Extended Programme Lifecycle
+:page-id: WIKI-LFC-001
+:page-title: Extended Programme Lifecycle
+:page-audience: Programme, contributors, reviewers and clients
+:page-maturity: SPECIFIED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Not applicable
+:page-owner: Programme governance
+:page-last-reviewed: 2026-07-29
+:page-next-review: G3 decision
+:page-related-issues: Programme objective and G0–G12 gate issues
+:page-programme-gate: G0 through G12
+:page-event-chains: All
+:toc: left
+
+include::../_Status-Panel.adoc[]
+
+== Principle
+
+The programme progresses from conception through operation and eventual
+retirement. Stages describe the dominant kind of work; several may overlap.
+Gates are evidence decisions, not issue-count milestones. A gate closes only
+when its decision record identifies reviewed evidence and permitted residual
+risk.
+
+The machine-readable definitions are
+link:../../../programme/lifecycle.toml[`programme/lifecycle.toml`] and
+link:../../../programme/gates.toml[`programme/gates.toml`].
+
+== Stages
+
+[cols="1,2,4,4",options="header"]
+|===
+|Stage |Name |Purpose |Expected evidence
+|L0 |Conception |Define the problem, users, value hypothesis and boundaries. |Vision, initial users, hazards and programme hypothesis.
+|L1 |Feasibility and reconnaissance |Test technical, educational, legal and commercial feasibility. |Estate reconnaissance, source landscape, stakeholders and go/no-go record.
+|L2 |Foundation and specification |Establish product, semantic, assessment and trust foundations. |Foundation, ontology, event/evidence/rule-pack/assessment/certificate specifications.
+|L3 |Architecture and toolchain validation |Prove that the requested stack can support the bounded product. |AffineScript, typed-wasm, Zig FFI, Idris2 ABI, Gossamer, Burble, storage/replay and security evidence.
+|L4 |Vertical slice |Demonstrate an end-to-end assessment. |Morrow, evidence workspace, procedure reasoning, both deep branches, assessment, debrief and certificate evidence.
+|L5 |Professional and assessment validation |Test whether content, tasks, sources and scoring are defensible. |Practitioner review, source traceability, blueprint, rubric/critical-error/golden-run review.
+|L6 |Alpha |Test the complete experience internally and with trusted specialists. |Usable local build, small cohort, usability/accessibility/assessment findings and revision.
+|L7 |Closed beta and institutional pilot |Test controlled implementation with target organisations. |Agreements, onboarding, cohort, support, privacy/security and evaluation evidence.
+|L8 |Release candidate |Establish bounded release readiness. |Reviewed pack/scenario, signed builds, support/buyer/deployment/incident/rollback evidence.
+|L9 |Version 1 release |Release the clearly described bounded product. |v1 artefacts, verified sources, terms, implementation pack and release decision.
+|L10 |Operational evaluation |Determine whether the release works in sustained use. |Learning, reliability, support, security, authority and client outcome evidence.
+|L11 |Expansion |Add approved procedures, cases, jurisdictions, tools or recognition. |Expansion decision, evidence plan and compatibility strategy.
+|L12 |Retirement or migration |Preserve records and provide an orderly route away. |Notice, archive, verification continuity, migration and closure evidence.
+|===
+
+== Gates
+
+[cols="1,3,4",options="header"]
+|===
+|Gate |Decision |Minimum evidence condition
+|G0 |Programme concept accepted |Problem, users, boundary, hazards and accountable owner reviewed.
+|G1 |Feasibility demonstrated |Technical, professional, educational, source and delivery feasibility evidence supports continuation.
+|G2 |Foundation baseline approved |Semantic, assessment, authority, certification and trust specifications are coherent and reviewed.
+|G3 |Architecture proven |Requested stack or explicit bounded adapters build, interoperate, replay and fail safely.
+|G4 |Vertical slice complete |A learner can complete, submit, receive debrief/result and verify evidence on both deep branches.
+|G5 |Professional validation threshold met |Released content and scoring have source traceability and named professional/assessment review.
+|G6 |Alpha exit |Critical usability, accessibility, integrity and reliability findings are resolved or explicitly accepted.
+|G7 |Pilot exit |Controlled cohort evidence supports or rejects wider release with implementation lessons recorded.
+|G8 |Release candidate approved |All v1 release claims trace to current evidence; operations and rollback are ready.
+|G9 |Version 1 released |Approved artefacts, documentation, terms and verified authority pack are issued.
+|G10 |Operational evaluation completed |Sustained-use evidence and improvement decisions are recorded.
+|G11 |Expansion authorised |Expansion value, evidence burden, compatibility and maintenance capacity are approved.
+|G12 |Retirement or migration approved |Record preservation, certificate verification and user/client migration are assured.
+|===
+
+== Gate decision record
+
+Every gate issue and decision must state purpose, entry criteria, evidence,
+deliverables, reviewers, permitted and prohibited unresolved risks, exit
+criteria, result, date, linked issues and event chains. `Done` issues alone are
+never a gate result.

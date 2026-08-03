@@ -1,0 +1,33 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Morrow Engineering Ltd — Scenario Overview
+:page-id: WIKI-SCENARIO-001
+:page-title: Morrow Engineering Ltd Scenario Overview
+:page-audience: Learners, facilitators, authors and validators
+:page-maturity: IMPLEMENTED
+:page-product-version: morrow-engineering-001
+:page-authority-status: Provisional rule pack; fictional case
+:page-owner: Scenario lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: Before professional validation
+:page-related-issues: Morrow Engineering validation epic
+:page-programme-gate: G4 — Vertical slice works
+:page-event-chains: EC-004, EC-005, EC-008
+
+include::../_Status-Panel.adoc[]
+
+Morrow Engineering Ltd is a fictional small manufacturer under severe
+cash-flow pressure. The disclosed case can include incomplete management
+information, asset finance, HMRC and employee liabilities, disputed trade debt,
+conflicting director accounts, a potentially overdrawn director loan account,
+a recent connected-party payment, secured-creditor pressure and an uncertain
+purchaser. These are matters to investigate, not learner-visible conclusions.
+
+The same immutable scenario reality supports a shared pre-appointment advisory
+phase and defensible CVL or Administration paths. CVA and informal
+restructuring can be investigated and recommended or rejected at bounded depth.
+Compulsory liquidation is a credible threat or consequence of delay. Events
+vary with time, evidence, resource allocation and decisions—not by rewriting
+history to fit the selected procedure.
+
+The scenario is executable, but content scope, legal mappings, rubric validity
+and hidden-truth isolation still require formal review.

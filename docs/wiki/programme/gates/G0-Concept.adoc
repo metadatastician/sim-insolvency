@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+== G0 — Programme concept accepted
+
+Status:: Open; historical evidence exists but no formal decision is recorded.
+Entry evidence:: Problem, intended users, public-interest value, exclusions,
+hazards and accountable owner.
+Decision test:: The bounded programme is worth investigating without implying
+legal advice, qualification or accreditation.
+Required reviewers:: Programme and product leads.
+Blocking exposure:: Unbounded claims or unidentified users.
+Event chains:: EC-005, EC-010, EC-011.

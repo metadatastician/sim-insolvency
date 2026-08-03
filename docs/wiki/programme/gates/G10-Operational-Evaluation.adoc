@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+== G10 — Operational evaluation completed
+
+Status:: Not entered.
+Entry evidence:: Sustained-use learning, reliability, accessibility, support,
+security, authority-currency and client outcome evidence.
+Decision test:: Continue, change, constrain or retire decisions reflect observed
+operation rather than release assumptions.
+Required reviewers:: Operations, evaluation and programme leads.
+Blocking exposure:: Unknown material incident or stale authority.
+Event chains:: EC-001, EC-008, EC-011, EC-012.

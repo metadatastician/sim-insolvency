@@ -1,0 +1,28 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Authority Freshness
+:page-id: WIKI-AUTHORITY-001
+:page-title: Authority Freshness
+:page-audience: Rule authors, reviewers, assessors and clients
+:page-maturity: SPECIFIED
+:page-product-version: rule-pack schema 0.1
+:page-authority-status: Provisional registry; practitioner review pending
+:page-owner: Authority lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: Before every assessment release
+:page-related-issues: Authority maintenance epic
+:page-programme-gate: G5 — Assessment valid
+:page-event-chains: EC-001, EC-006, EC-012
+
+include::../_Status-Panel.adoc[]
+
+Every normative assessment rule must identify jurisdiction, source, citation,
+effective dates, interpretation note, pack version, review status and tests.
+Each scenario declares an authority cut-off. Authoritative scoring must stop
+when the requested pack is absent, incompatible or revoked, or when mandatory
+sources lack the required review status.
+
+Freshness is an operational process, not a timestamp alone: source adapters are
+monitored, proposed changes are triaged, legal interpretation is reviewed,
+affected scenarios and rubric observations are retested, and superseded packs
+remain identifiable for deterministic replay. The initial England and Wales
+corporate-insolvency pack is deliberately provisional and incomplete.

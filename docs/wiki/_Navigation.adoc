@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Wiki Navigation
+:page-id: WIKI-NAV-001
+:page-title: Wiki Navigation
+:page-audience: All
+:page-maturity: SPECIFIED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Not applicable
+:page-owner: Documentation workstream
+:page-last-reviewed: 2026-07-29
+:page-next-review: Before alpha
+:page-related-issues: Documentation epic
+:page-programme-gate: G2 through G9
+:page-event-chains: EC-011
+
+include::_Status-Panel.adoc[]
+
+== Primary navigation
+
+. link:Home.adoc[Home]
+. link:programme/Current-Status.adoc[Current Status]
+. link:users/Start-Here.adoc[For Learners]
+. link:facilitators/Start-Here.adoc[For Facilitators]
+. link:developers/Start-Here.adoc[For Developers]
+. link:clients/Start-Here.adoc[For Clients]
+. link:programme/Programme-Overview.adoc[Programme]
+. link:product/What-Sim-Insolvency-Is.adoc[Product]
+. link:scenarios/Morrow-Engineering-Overview.adoc[Scenarios]
+. link:assessment/How-Assessment-Works.adoc[Assessment]
+. link:authority/Authority-Freshness.adoc[Authority and Currency]
+. link:product/Security-Privacy-Accessibility.adoc[Security, Privacy and Accessibility]
+. link:evaluation/Framework.adoc[Evaluation]
+. link:programme/Road-to-v1.adoc[Roadmap]
+. link:shared/Glossary.adoc[Glossary]
+
+Technical trees are deliberately entered through the developer portal rather
+than exposed as the first view for an ordinary learner.

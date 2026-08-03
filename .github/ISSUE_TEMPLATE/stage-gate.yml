@@ -1,0 +1,50 @@
+name: Programme gate decision
+description: Open and evidence a G0–G12 decision
+title: "[GATE] "
+labels: ["programme", "gate"]
+body:
+  - type: input
+    id: gate
+    attributes:
+      label: Gate and lifecycle stage
+      placeholder: G4 / L4
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Decision purpose and entry criteria
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Required evidence and deliverables
+    validations:
+      required: true
+  - type: textarea
+    id: reviewers
+    attributes:
+      label: Required reviewers
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Permitted and prohibited unresolved risks
+    validations:
+      required: true
+  - type: input
+    id: chains
+    attributes:
+      label: Event chains
+      placeholder: EC-004, EC-008
+    validations:
+      required: true
+  - type: textarea
+    id: exit
+    attributes:
+      label: Exit criteria and decision record
+      description: Closing this issue requires an explicit reviewed decision, not merely completed tasks.
+    validations:
+      required: true

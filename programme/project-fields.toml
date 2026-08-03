@@ -1,0 +1,97 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+schema_version = 1
+project_title = "Sim Insolvency Extended Programme"
+
+[[field]]
+name = "Status"
+type = "single_select"
+options = ["Backlog", "Ready", "In progress", "Blocked", "In review", "Done", "Cancelled"]
+[[field]]
+name = "Lifecycle Stage"
+type = "single_select"
+options = ["L0", "L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L9", "L10", "L11", "L12"]
+[[field]]
+name = "Programme Gate"
+type = "single_select"
+options = ["G0", "G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11", "G12", "None"]
+[[field]]
+name = "Workstream"
+type = "single_select"
+options = ["Programme", "Product", "Architecture", "Kernel", "Scenario", "Assessment", "Authority", "Professional validation", "Shell", "Collaboration", "Security/privacy", "Accessibility", "Documentation", "Proof/assurance", "Packaging/deployment", "Client/procurement", "Pilot/evaluation", "Operations"]
+[[field]]
+name = "Issue Type"
+type = "single_select"
+options = ["Objective", "Gate", "Epic", "Feature", "Scenario", "Assessment", "Authority", "Research", "Validation", "Proof", "Security", "Accessibility", "Documentation", "Integration", "Infrastructure", "Packaging", "Client", "Procurement", "Pilot", "Evaluation", "Operations", "Risk", "Event", "Decision", "Defect", "Maintenance", "Retirement"]
+[[field]]
+name = "Maturity"
+type = "single_select"
+options = ["Proposed", "Researched", "Specified", "Designed", "Implemented", "Validated", "Approved", "Operational", "Deprecated", "Retired"]
+[[field]]
+name = "Release Horizon"
+type = "single_select"
+options = ["Now", "Next", "Later", "Post-v1", "Unscheduled"]
+[[field]]
+name = "Target Release"
+type = "text"
+[[field]]
+name = "Priority"
+type = "single_select"
+options = ["P0", "P1", "P2", "P3"]
+[[field]]
+name = "Effort"
+type = "single_select"
+options = ["XS", "S", "M", "L", "XL"]
+[[field]]
+name = "Confidence"
+type = "single_select"
+options = ["Low", "Medium", "High"]
+[[field]]
+name = "Owner"
+type = "text"
+[[field]]
+name = "Target Start"
+type = "date"
+[[field]]
+name = "Target Finish"
+type = "date"
+[[field]]
+name = "Actual Finish"
+type = "date"
+[[field]]
+name = "Validation Status"
+type = "single_select"
+options = ["Not required", "Not started", "In progress", "Evidence ready", "Accepted", "Rejected", "Expired"]
+[[field]]
+name = "Authority Status"
+type = "single_select"
+options = ["Not applicable", "Unreviewed", "Provisional", "Reviewed", "Approved", "Superseded", "Revoked"]
+[[field]]
+name = "Assessment Status"
+type = "single_select"
+options = ["Not applicable", "Unspecified", "Specified", "Implemented", "Professionally reviewed", "Empirically validated"]
+[[field]]
+name = "Documentation Status"
+type = "single_select"
+options = ["Missing", "Draft", "Current", "Review due", "Stale", "Archived"]
+[[field]]
+name = "Security Status"
+type = "single_select"
+options = ["Not assessed", "Threat modelled", "Controls implemented", "Reviewed", "Accepted risk", "Blocked"]
+[[field]]
+name = "Client Readiness"
+type = "single_select"
+options = ["Not applicable", "Internal only", "Pilot proposition", "Procurement draft", "Buyer ready", "Operational"]
+[[field]]
+name = "Event Chain ID"
+type = "text"
+[[field]]
+name = "Risk Exposure"
+type = "single_select"
+options = ["None", "Low", "Medium", "High", "Critical"]
+[[field]]
+name = "Decision Required"
+type = "single_select"
+options = ["No", "Yes", "Decision pending", "Decided"]
+[[field]]
+name = "Last Reviewed"
+type = "date"

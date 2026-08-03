@@ -1,0 +1,35 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= How Assessment Works
+:page-id: WIKI-ASSESSMENT-001
+:page-title: How Assessment Works
+:page-audience: Learners, assessors and validators
+:page-maturity: DRAFT
+:page-product-version: rubric 0.1 / pre-alpha
+:page-authority-status: Provisional; validation pending
+:page-owner: Assessment lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: After professional review and pilot
+:page-related-issues: Assessment validity epic
+:page-programme-gate: G5 — Assessment valid
+:page-event-chains: EC-002, EC-006, EC-008
+
+include::../_Status-Panel.adoc[]
+
+Assessment draws observations from evidence requested or overlooked, claims,
+uncertainty, reasons, timing, action order, resource use, communications,
+obligation handling and later correction. It supports competent standard and
+alternative routes, minimally acceptable routes, common errors and critical
+errors. It does not compare a learner only with one hidden ideal path.
+
+Two outputs remain distinct:
+
+* the competency assessment evaluates reasoning and action against information
+  reasonably available at the time;
+* the case-consequence report describes effects on assets, business, costs,
+  evidence, creditors, employees, investigations and elapsed time.
+
+Before submission the learner sees unresolved claims, acknowledged uncertainty,
+missed deadlines and unfinished workstreams, but not correctness. After final
+submission the debrief may reveal reality, provenance, authority links,
+alternatives and missed opportunities. The rubric requires professional and
+empirical validation before high-stakes use.

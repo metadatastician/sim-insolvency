@@ -1,0 +1,33 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Client and Purchaser Start Here
+:page-id: WIKI-CLIENTS-001
+:page-title: Client and Purchaser Start Here
+:page-audience: Prospective clients, sponsors and procurement teams
+:page-maturity: DRAFT
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Indicative product information; not a commercial offer
+:page-owner: Programme lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: Before external pilot invitation
+:page-related-issues: Client readiness epic
+:page-programme-gate: G9 — Procurement-ready
+:page-event-chains: EC-009, EC-010
+
+include::../_Status-Panel.adoc[]
+
+== Current proposition
+
+Sim Insolvency is intended to provide repeatable, evidence-rich practice and
+assessment using fictional cases. Its design supports local operation,
+source-linked debrief, deterministic replay, pseudonymous portfolios and
+separation between learner competence and case outcome.
+
+The present build is pre-alpha. It has not undergone practitioner validation,
+independent security assessment, accessibility conformance testing,
+psychometric validation, accreditation or production service assurance. No
+price, service level, implementation date, data-processing commitment or
+accreditation claim is made by this page.
+
+An institutional pilot should proceed only after G6 evidence is accepted and
+with a written pilot protocol covering purpose, cohort, facilitation, data,
+support, incident handling, evaluation and the non-qualification boundary.

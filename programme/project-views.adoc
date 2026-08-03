@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Programme Project Views
+
+These are the canonical view definitions. Where GitHub Projects cannot create
+or version a view through its supported API, maintainers configure it in the
+UI from this specification and record the review date.
+
+[cols="2,4,3",options="header"]
+|===
+|View |Filter or grouping |Purpose
+|Executive roadmap |Group by Release Horizon, then Lifecycle Stage |Concise programme direction
+|Lifecycle |Group by Lifecycle Stage; sort by Gate and priority |End-to-end maturity
+|Current 90 days |Target Finish within 90 days or Status in progress/blocked |Immediate execution
+|Foundation and specifications |Workstream Programme/Product/Documentation; L0–L2 |Baseline evidence
+|Product development |Workstream Architecture/Kernel/Shell/Collaboration |Build work
+|Scenario and assessment |Workstream Scenario/Assessment |Learning vertical slice
+|Authority and legal |Workstream Authority |Sources, interpretations and currency
+|Professional validation |Workstream Professional validation |External review
+|Event chains and risks |Issue Type Event/Risk |Uncertainty and response
+|Decisions |Issue Type Decision or Decision Required not No |Decision queue
+|Documentation |Workstream Documentation |Wiki health and claims
+|Client and procurement |Workstream Client/procurement |Buyer-facing readiness
+|Pilot and evaluation |Workstream Pilot/evaluation |Evidence from use
+|Version 1 readiness |Programme Gate G8/G9 |Release decision
+|Deferred and post-v1 |Release Horizon Later/Post-v1/Unscheduled |Protected scope boundary
+|===

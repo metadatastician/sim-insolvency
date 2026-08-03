@@ -1,0 +1,119 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Current Status
+:page-id: WIKI-STS-001
+:page-title: Current Status
+:page-audience: All
+:page-maturity: RESEARCHED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Provisional; no practitioner-approved release pack
+:page-owner: Programme lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: Monthly and at every gate decision
+:page-related-issues: Active programme objective, gate and key-issue set
+:page-programme-gate: Primary G3; partial G4 evidence
+:page-event-chains: EC-001, EC-003, EC-004, EC-005, EC-007, EC-011, EC-012
+:toc: left
+
+include::../_Status-Panel.adoc[]
+
+== Plain-language status
+
+The programme has moved beyond conception and generic scaffolding. Its
+foundation is specified and an executable technical vertical slice exists.
+However, the requested architecture is not yet proven end to end, the scenario
+and rubric have not received practitioner validation, and the authority pack is
+provisional. The honest description is *pre-alpha with partial L2–L4 evidence*.
+
+No gate is retrospectively marked closed merely because related files or tests
+exist. G0–G2 need explicit decision records under this framework. G3 is the
+current primary gate; G4 has meaningful implementation evidence but cannot be
+declared complete until architecture, hidden-state, assessment and user-path
+evidence are reviewed together.
+
+== Confidence dashboard
+
+[cols="2,1,4",options="header"]
+|===
+|Dimension |Rating |Evidence and explanation
+|Product implementation |Amber |Native vertical slice and eight golden runs exist; native shell and external integrations remain bounded.
+|Toolchain |Amber |Zig and Idris2 paths run; AffineScript and typed-wasm support is partial and externally dependent.
+|Scenario completeness |Amber |Morrow Engineering has CVL and Administration routes; professional breadth/depth review is absent.
+|Rule-pack completeness |Red |Only a small provisional subset exists; no comprehensive reviewed pack.
+|Professional validation |Red |No practitioner validation evidence has been recorded.
+|Assessment validity |Unknown |A rubric and competency observations exist, but no content-validity or reliability study.
+|Security |Amber |Threat model and tamper checks exist; hidden-state packaging and production signing need independent review.
+|Accessibility |Unknown |No completed accessibility evaluation or tested accommodation model.
+|Documentation |Amber |Technical docs are substantial; audience and programme guidance begins with this wiki.
+|Client readiness |Red |Commercial and implementation material is indicative; no offering, price, SLA or DPA is approved.
+|Operations |Amber |Standalone packaging and Wolfi path exist; production deployment, incident and backup evidence do not.
+|Authority maintenance |Red |Authority Watch integration is not operational; silent-adapter-failure controls are not proven.
+|===
+
+== Capability state
+
+Completed or demonstrable now:
+
+* foundation and ontology specifications;
+* append-only deterministic native kernel;
+* Morrow Engineering scenario with bounded CVL and Administration branches;
+* local evidence/notebook/procedure/assessment/debrief projections;
+* golden-run, replay, ABI, scenario and certificate-tamper tests;
+* offline single-learner reference mode;
+* development standalone and container definitions.
+
+In progress or partial:
+
+* AffineScript principal-language migration;
+* typed-wasm carrier verification;
+* Gossamer-native shell;
+* VeriSimDB persistence;
+* bounded Burble group transport;
+* Authority Watch relationship;
+* professional rule/scenario/rubric review;
+* documentation, accessibility and client implementation.
+
+Blocked or externally dependent:
+
+* usable Unified Hexadeca API package;
+* production-complete Stapeln verification;
+* accreditation or regulated recognition;
+* practitioner availability and reviewed authority corpus.
+
+== Top decisions awaiting resolution
+
+. What evidence is sufficient to close G3 when estate components remain immature?
+. Who may approve a released rule pack and Morrow scoring interpretation?
+. What exact hidden-state packaging is acceptable for assessment deployments?
+. Which certificate signing and verification governance is acceptable for pilots?
+. What is the minimum accessible learner experience for alpha entry?
+
+== Top programme risks
+
+* hidden assessment truth leakage;
+* stale authority appearing current;
+* insufficient professional-review capacity;
+* AffineScript/typed-wasm gaps increasing boundary and test complexity;
+* scenario scope overwhelming validation capacity;
+* solo-maintainer overload and documentation drift.
+
+== Pilot and release horizon
+
+There is no active pilot and no committed release date. The planning horizon is
+a bounded 18-month v1 pilot target, explicitly indicative and contingent on
+professional validation, toolchain proof, authority governance, security and
+accessibility evidence.
+
+== Next three significant outcomes
+
+. Adopt this programme framework and record G0–G2 decisions.
+. Close or explicitly exception G3 with reproducible AffineScript, typed-wasm,
+  Zig/Idris2, shell, storage and hidden-state evidence.
+. Prepare Morrow Engineering, its authority mappings and rubric for structured
+  practitioner and assessment review.
+
+== Documentation health
+
+Canonical wiki metadata and register validation are introduced in this change.
+Substantive link, review-date, issue-backlink and release-claim validation remain
+progressive checks; the health command reports unsupported checks rather than
+silently claiming full coverage.

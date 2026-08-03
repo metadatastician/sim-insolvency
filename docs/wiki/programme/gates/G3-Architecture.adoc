@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+== G3 — Architecture proven
+
+Status:: Open; native kernel and ports work, while typed-wasm and estate runtime
+integrations remain incomplete.
+Entry evidence:: AffineScript contracts, Zig-only FFI, Idris2 proofs/manifests,
+deterministic replay, Verisim port, typed-wasm evidence and boundary tests.
+Decision test:: Requested components interoperate or fail behind explicit,
+tested, removable adapters.
+Required reviewers:: Architecture and proof leads.
+Blocking exposure:: Hidden untyped boundary, non-total ABI or false integration.
+Event chains:: EC-003, EC-007, EC-012.

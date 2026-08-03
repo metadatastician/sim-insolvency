@@ -1,0 +1,63 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Known Limitations
+:page-id: WIKI-LIM-001
+:page-title: Known Limitations
+:page-audience: All
+:page-maturity: RESEARCHED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Provisional and unreviewed
+:page-owner: Programme lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: Every release
+:page-related-issues: Key-issue and defect registers
+:page-programme-gate: G3 through G9
+:page-event-chains: EC-001 through EC-012
+:toc: left
+
+include::../_Status-Panel.adoc[]
+
+== Product and content
+
+* Only one authored company scenario is present.
+* CVL and Administration are bounded educational paths, not comprehensive
+  practice systems.
+* CVA, informal restructuring and compulsory liquidation are intentionally
+  shallower alternatives/consequences.
+* Rules are a small provisional subset and have not received practitioner
+  approval.
+* No live case or client data should be entered.
+
+== Assessment
+
+* The rubric and golden runs are developer-authored and not yet supported by a
+  completed content-validity or reliability study.
+* A certificate is internal evidence of completion and assessed performance,
+  not a qualification, licence, JIEB result, statutory authorisation or
+  accredited CPD.
+* Hidden-state and production certificate controls require independent review.
+
+== Technology
+
+* AffineScript remains experimental and not all intended runtime code has
+  migrated from the Zig fallback.
+* typed-wasm, native Gossamer, external Burble, VeriSimDB, Authority Watch,
+  Hexadeca, Echidna and Stapeln integration are incomplete or capability-gated.
+* The local deterministic adapters preserve architecture but are not evidence
+  that external services work.
+* The GitHub-hosted quality workflow is currently vulnerable to the account’s
+  Actions budget condition; an owned-compute Bag integration is planned.
+
+== Programme and delivery
+
+* Professional, assessment, accessibility, privacy/client and operational
+  reviewers are not yet appointed.
+* No pilot, price, contract, service level, support commitment or release date
+  is available.
+* The 18-month pilot horizon is indicative and exposed to reviewer capacity,
+  authority change, toolchain gaps and solo-maintainer overload.
+
+== Validation rule
+
+Limitations are removed only when named evidence and review demonstrate that
+the condition has changed. Aspirational documentation or a closed issue is not
+enough.

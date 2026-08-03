@@ -1,0 +1,89 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Sim Insolvency Extended Programme
+:page-id: WIKI-HOME-001
+:page-title: Sim Insolvency Extended Programme
+:page-audience: All
+:page-maturity: SPECIFIED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Provisional rule pack; practitioner review pending
+:page-owner: Programme lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: At G3 or G4 decision
+:page-related-issues: Programme objective and active gate issues
+:page-programme-gate: G3 — Architecture proven; G4 evidence in progress
+:page-event-chains: EC-001 through EC-012
+:toc: left
+
+include::_Status-Panel.adoc[]
+
+== Start here
+
+Sim Insolvency is an evidence-driven, time-aware professional-learning
+simulator. It is intended to help people practise how to gather information,
+handle uncertainty, compare insolvency procedures, manage concurrent work and
+make defensible decisions in a fictional corporate-insolvency case.
+
+[IMPORTANT]
+====
+It is not legal advice, a law firm, an insolvency practice, live case-management
+software, supervised experience, statutory authorisation, a professional
+qualification, a JIEB result, or accredited CPD unless a competent external
+body separately approves a clearly identified offering.
+====
+
+The programme is broader than this repository. It includes the simulator,
+authored scenarios, authority maintenance, professional review, assessment
+validity, group learning, deployment, client implementation, evaluation and
+long-term operation. This wiki is its human navigation layer. Source-controlled
+specifications and ADRs remain authoritative where they are more precise.
+
+== Choose your route
+
+* link:users/Start-Here.adoc[For learners and ordinary users] — what the
+  assessment feels like and what its result means.
+* link:facilitators/Start-Here.adoc[For facilitators, tutors and assessors] —
+  running a bounded group or pilot session without compromising assessment.
+* link:developers/Start-Here.adoc[For developers and contributors] — the
+  architecture, repository estate, proof boundaries and contribution route.
+* link:clients/Start-Here.adoc[For clients and purchasers] — an indicative,
+  non-commercial-commitment view for individuals and organisations.
+
+== Where the programme is now
+
+The native Phase A vertical slice is executable and includes deterministic
+replay, a bounded Morrow Engineering scenario, CVL and Administration paths,
+assessment/debrief separation and a development certificate envelope. Several
+intended estate integrations remain behind ports or test doubles. The initial
+rule pack is provisional and not practitioner reviewed.
+
+See link:programme/Current-Status.adoc[Current Status] for the evidence-based
+dashboard and link:programme/Definition-of-v1.adoc[Definition of v1] for the
+scope boundary.
+
+== Core programme pages
+
+* link:programme/Programme-Overview.adoc[Programme overview]
+* link:programme/Lifecycle.adoc[Extended lifecycle and evidence gates]
+* link:programme/Road-to-v1.adoc[Road to v1 and indicative 18-month horizon]
+* link:programme/Event-Chain-Methodology.adoc[Event Chain Methodology]
+* link:programme/Key-Issues.adoc[Key issues]
+* link:programme/Decisions.adoc[Decision register]
+* link:programme/Governance.adoc[Governance]
+* link:programme/Known-Limitations.adoc[Known limitations]
+
+== Product and trust pages
+
+* link:product/What-Sim-Insolvency-Is.adoc[What Sim Insolvency is]
+* link:product/What-Sim-Insolvency-Is-Not.adoc[What it is not]
+* link:assessment/How-Assessment-Works.adoc[How assessment works]
+* link:assessment/Certificate-Meaning.adoc[Certificate meaning]
+* link:authority/Authority-Freshness.adoc[Authority freshness]
+* link:scenarios/Morrow-Engineering-Overview.adoc[Morrow Engineering overview]
+* link:shared/Glossary.adoc[Glossary]
+
+== Canonical-source rule
+
+`docs/wiki/` is canonical. A GitHub Wiki or generated site may mirror these
+pages later, but must never become the only copy. Every substantive claim must
+remain reviewable through an ordinary commit and traceable to work, evidence
+and a programme gate.

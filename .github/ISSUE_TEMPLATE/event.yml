@@ -1,0 +1,43 @@
+name: Programme event or event chain
+description: Record an uncertain threat, opportunity or linked response
+title: "[EVENT] "
+labels: ["programme", "event"]
+body:
+  - type: input
+    id: identifier
+    attributes:
+      label: Event or chain ID
+      placeholder: EC-004
+    validations:
+      required: true
+  - type: dropdown
+    id: classification
+    attributes:
+      label: Classification
+      options: [Threat, Opportunity, Mixed, Trigger observation]
+    validations:
+      required: true
+  - type: textarea
+    id: chain
+    attributes:
+      label: Trigger, effects and branches
+    validations:
+      required: true
+  - type: textarea
+    id: response
+    attributes:
+      label: Responses, owners and trigger evidence
+    validations:
+      required: true
+  - type: input
+    id: gates
+    attributes:
+      label: Affected stages and gates
+    validations:
+      required: true
+  - type: textarea
+    id: residual
+    attributes:
+      label: Residual exposure and review cadence
+    validations:
+      required: true

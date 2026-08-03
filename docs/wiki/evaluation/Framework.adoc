@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Evaluation Framework
+:page-id: WIKI-EVALUATION-001
+:page-title: Evaluation Framework
+:page-audience: Researchers, pilot leads, assessors and clients
+:page-maturity: DRAFT
+:page-product-version: evaluation framework 0.1
+:page-authority-status: Research design; ethics review may be required
+:page-owner: Evaluation lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: Before pilot protocol approval
+:page-related-issues: Pilot and evaluation epic
+:page-programme-gate: G7 — Pilot evaluated
+:page-event-chains: EC-008, EC-009
+
+include::../_Status-Panel.adoc[]
+
+Evaluation asks whether participants can use the simulator, whether recorded
+observations support the intended competency interpretations, whether
+alternative defensible routes are treated fairly, and whether facilitation,
+authority links and debrief are useful. It must also look for harm: misleading
+confidence, hidden-truth leakage, inaccessible interaction, privacy loss and
+overclaiming.
+
+A pilot protocol records cohort and recruitment, consent and data minimisation,
+baseline experience, environment, interventions, completion and dropout,
+technical incidents, rubric disagreement, participant feedback and assessor
+agreement. Findings must distinguish product defects, scenario defects,
+authority disputes and limits of the evaluation design. A positive pilot is
+evidence for a decision, not automatic proof of validity or readiness.

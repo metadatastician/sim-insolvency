@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= What Sim Insolvency Is Not
+:page-id: WIKI-PRODUCT-002
+:page-title: What Sim Insolvency Is Not
+:page-audience: All
+:page-maturity: APPROVED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Mandatory product-claims boundary
+:page-owner: Programme lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: Every release
+:page-related-issues: Certificate and claims-control epic
+:page-programme-gate: G1 — Product definition
+:page-event-chains: EC-001, EC-010
+
+include::../_Status-Panel.adoc[]
+
+[IMPORTANT]
+====
+Sim Insolvency is not a law firm, insolvency practice, live case-management
+system, legal advice service, substitute for supervised experience, route to
+statutory authorisation, professional qualification, JIEB examination result,
+or accredited CPD unless a competent external body separately approves a
+clearly delimited offering.
+====
+
+It does not accept live case data, make appointments, file statutory documents,
+exercise office-holder powers, determine disputed law, or certify regulatory
+competence. Simulation documents must remain visibly watermarked. Provisional
+or unreviewed rules cannot support a professional-certification claim.

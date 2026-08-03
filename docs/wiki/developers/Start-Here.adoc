@@ -1,0 +1,33 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Developer Start Here
+:page-id: WIKI-DEVELOPERS-001
+:page-title: Developer Start Here
+:page-audience: Developers, maintainers and proof engineers
+:page-maturity: SPECIFIED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Architecture only; no legal-authority claim
+:page-owner: Technical lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: At G4 decision
+:page-related-issues: Architecture and vertical-slice epics
+:page-programme-gate: G3 — Architecture proven
+:page-event-chains: EC-003, EC-007, EC-011
+
+include::../_Status-Panel.adoc[]
+
+== Working model
+
+The repository is Guix-first and PMPL-2.0-or-later throughout. AffineScript is
+the principal domain-facing language; executable gaps sit behind versioned Zig
+ports. Idris2 owns machine-checked ABI invariants. The deployment intention is
+typed-wasm. Verisim is the persistence target, Gossamer the shell, Burble the
+collaboration transport, and `HexadecaPort` the stable unified API boundary.
+
+The event ledger is authoritative. Commands are validated before events are
+accepted. Projections are disposable. Scenario reality, potential evidence,
+disclosed evidence, learner beliefs and normative state remain separate.
+
+Start with `just doctor`, then `just check`. `just docs-health` validates this
+wiki. Do not add Python, TypeScript, Node, React, C FFI, Nix or an untyped
+JavaScript implementation. Read link:../programme/Known-Limitations.adoc[Known
+Limitations] before treating an estate adapter as complete.

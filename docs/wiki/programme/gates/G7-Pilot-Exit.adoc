@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+== G7 — Pilot exit
+
+Status:: Not entered.
+Entry evidence:: Approved protocol, agreements, onboarding, controlled cohort,
+incidents, outcome evidence and implementation lessons.
+Decision test:: Evidence supports a bounded release decision and identifies
+where assessment interpretations remain limited.
+Required reviewers:: Pilot sponsor, evaluation, assessment and trust leads.
+Blocking exposure:: Unresolved participant harm or invalid rubric assumption.
+Event chains:: EC-008, EC-009, EC-011.

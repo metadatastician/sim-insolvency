@@ -1,0 +1,21 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Gate Decision Pages
+
+Gate pages are durable evidence checklists. The matching GitHub issue coordinates
+the decision but cannot replace this record. Every decision must state entry
+criteria, reviewed evidence, reviewers, unresolved risks, linked event chains,
+outcome, date and conditions. Until that record exists, the gate is open.
+
+include::G0-Concept.adoc[]
+include::G1-Feasibility.adoc[]
+include::G2-Foundation.adoc[]
+include::G3-Architecture.adoc[]
+include::G4-Vertical-Slice.adoc[]
+include::G5-Professional-Validation.adoc[]
+include::G6-Alpha-Exit.adoc[]
+include::G7-Pilot-Exit.adoc[]
+include::G8-Release-Candidate.adoc[]
+include::G9-Version-1.adoc[]
+include::G10-Operational-Evaluation.adoc[]
+include::G11-Expansion.adoc[]
+include::G12-Retirement.adoc[]

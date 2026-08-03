@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+== G8 — Release candidate approved
+
+Status:: Not entered.
+Entry evidence:: Frozen candidate, reviewed scenario/rule pack, reproducible
+artefacts, SBOM, incident/rollback/support and buyer documentation.
+Decision test:: Every v1 claim traces to current evidence and an owned operating
+control.
+Required reviewers:: Programme, technical, authority, trust and client leads.
+Blocking exposure:: Unsupported claim, unverifiable build or absent rollback.
+Event chains:: EC-001, EC-009, EC-012.

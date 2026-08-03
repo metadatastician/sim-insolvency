@@ -1,0 +1,75 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+schema_version = 1
+
+[[page]]
+id = "WIKI-HOME-001"
+path = "docs/wiki/Home.adoc"
+[[page]]
+id = "WIKI-PRG-001"
+path = "docs/wiki/programme/Programme-Overview.adoc"
+[[page]]
+id = "WIKI-STS-001"
+path = "docs/wiki/programme/Current-Status.adoc"
+[[page]]
+id = "WIKI-LFC-001"
+path = "docs/wiki/programme/Lifecycle.adoc"
+[[page]]
+id = "WIKI-V1-001"
+path = "docs/wiki/programme/Definition-of-v1.adoc"
+[[page]]
+id = "WIKI-RMV-001"
+path = "docs/wiki/programme/Road-to-v1.adoc"
+[[page]]
+id = "WIKI-ECM-001"
+path = "docs/wiki/programme/Event-Chain-Methodology.adoc"
+[[page]]
+id = "WIKI-KEY-001"
+path = "docs/wiki/programme/Key-Issues.adoc"
+[[page]]
+id = "WIKI-DEC-001"
+path = "docs/wiki/programme/Decisions.adoc"
+[[page]]
+id = "WIKI-GOV-001"
+path = "docs/wiki/programme/Governance.adoc"
+[[page]]
+id = "WIKI-LIM-001"
+path = "docs/wiki/programme/Known-Limitations.adoc"
+[[page]]
+id = "WIKI-USERS-001"
+path = "docs/wiki/users/Start-Here.adoc"
+[[page]]
+id = "WIKI-FACILITATORS-001"
+path = "docs/wiki/facilitators/Start-Here.adoc"
+[[page]]
+id = "WIKI-DEVELOPERS-001"
+path = "docs/wiki/developers/Start-Here.adoc"
+[[page]]
+id = "WIKI-CLIENTS-001"
+path = "docs/wiki/clients/Start-Here.adoc"
+[[page]]
+id = "WIKI-PRODUCT-001"
+path = "docs/wiki/product/What-Sim-Insolvency-Is.adoc"
+[[page]]
+id = "WIKI-PRODUCT-002"
+path = "docs/wiki/product/What-Sim-Insolvency-Is-Not.adoc"
+[[page]]
+id = "WIKI-ASSESSMENT-001"
+path = "docs/wiki/assessment/How-Assessment-Works.adoc"
+[[page]]
+id = "WIKI-ASSESSMENT-002"
+path = "docs/wiki/assessment/Certificate-Meaning.adoc"
+[[page]]
+id = "WIKI-AUTHORITY-001"
+path = "docs/wiki/authority/Authority-Freshness.adoc"
+[[page]]
+id = "WIKI-SCENARIO-001"
+path = "docs/wiki/scenarios/Morrow-Engineering-Overview.adoc"
+[[page]]
+id = "WIKI-TRUST-001"
+path = "docs/wiki/product/Security-Privacy-Accessibility.adoc"
+[[page]]
+id = "WIKI-EVALUATION-001"
+path = "docs/wiki/evaluation/Framework.adoc"
+[[page]]
+id = "WIKI-SHARED-001"
+path = "docs/wiki/shared/Glossary.adoc"

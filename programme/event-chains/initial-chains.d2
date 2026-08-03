@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+direction: right
+
+trigger: "uncertain event"
+effects: "direct effects"
+responses: "planned responses"
+residual: "residual exposure"
+gate: "gate evidence / decision"
+
+trigger -> effects -> responses -> residual -> gate
+
+legal: "EC-001 legal change" -> effects
+proof: "EC-003 AffineScript gap" -> responses
+leak: "EC-004 hidden truth leak" -> residual
+pilot: "EC-008 rubric invalidation" -> gate
+capacity: "EC-011 maintainer overload" -> responses
+adapter: "EC-012 source-adapter failure" -> residual

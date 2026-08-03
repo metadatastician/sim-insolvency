@@ -1,0 +1,52 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Key Issues
+:page-id: WIKI-KEY-001
+:page-title: Key Issues
+:page-audience: Programme decision-makers and contributors
+:page-maturity: RESEARCHED
+:page-product-version: Programme framework v0.1
+:page-authority-status: Mixed
+:page-owner: Programme lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: Monthly
+:page-related-issues: Key-issue and gate issues
+:page-programme-gate: G1 through G9
+:page-event-chains: EC-001 through EC-012
+:toc: left
+
+include::../_Status-Panel.adoc[]
+
+Key issues materially affect programme viability, professional validity,
+assessment integrity, legal currency, user safety, security, commercial
+readiness, release timing or sustained operation. They are not simply urgent
+tasks.
+
+[cols="2,2,3,2",options="header"]
+|===
+|Issue |Current status |Next decision |Affected gates
+|Definition of v1 |Specified provisionally |Approve or revise bounded v1 |G2–G9
+|Professional reviewer model |Unresolved |Name roles, independence and availability model |G1, G5–G9
+|Authority Watch governance |Designed only |Approve manual-first freshness authority |G3, G5–G10
+|Assessment validity |Evidence required |Approve validation study and reviewer |G5–G10
+|Certificate claims |Bounded in implementation |Approve production issuer and revocation policy |G5–G9
+|Hidden-state protection |Threat model only |Approve assessment packaging/security test |G3–G8
+|AffineScript maturity |Partial external capability |Define G3 adapter acceptance |G3–G4
+|typed-wasm maturity |Partial external capability |Define carrier and verifier acceptance |G3–G4
+|Gossamer integration |Port plus headless projection |Choose native-shell evidence threshold |G3–G6
+|Burble group learning |Bounded local model |Approve collaboration protocol and integrity tests |G3–G7
+|Morrow scope |Implemented, unreviewed |Approve professional review boundary |G4–G6
+|Procedure depth |Two deep routes implemented |Confirm required depth for v1 |G4–G6
+|Rule-pack coverage |Provisional subset |Approve release-source and review plan |G2, G5–G9
+|Source licensing |Partially registered |Complete source/licence audit |G5–G9
+|Data protection |Architecture only |Define pilot data roles and DPIA need |G6–G8
+|Institutional procurement |Indicative only |Test buyer evidence requirements |G7–G9
+|Accessibility |Unknown |Commission baseline evaluation |G4, G6–G9
+|Maintenance capacity |High concern |Set WIP, ownership and assistance threshold |All
+|Funding and staffing |Unknown |Define bounded pilot resource plan |G1, G6–G9
+|===
+
+The machine-readable register in
+link:../../../programme/key-issues.toml[`programme/key-issues.toml`] records
+owner, next decision, review target, evidence, gates, event chains and narrative.
+An `Unassigned` owner is itself a visible programme condition, not a default
+which satisfies governance.

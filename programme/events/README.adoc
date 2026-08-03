@@ -1,0 +1,8 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Programme Event Records
+
+This directory holds detailed programme-event evidence when an event warrants
+more than its register entry. Event records use stable `EV-*` identifiers and
+link to one or more `EC-*` chains. They describe observable trigger, source,
+date, confidence, affected gates, response owner and resolution; they never
+silently change project status.

@@ -13,3 +13,5 @@
 * Added ECHIDNA-ready proof goal and receipt contracts across all ABI layers.
 * Added a non-root Chainguard Wolfi Containerfile, nerdctl commands and a
   future Stapeln layer manifest.
+* Added programme lifecycle registers, governed wiki corpus, wiki health gate
+  and programme/stage-gate issue templates.

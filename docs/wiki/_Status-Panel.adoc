@@ -1,0 +1,16 @@
+[cols="1,3",options="header"]
+|===
+|Field |Value
+|Page ID |{page-id}
+|Title |{page-title}
+|Audience |{page-audience}
+|Maturity |{page-maturity}
+|Product version |{page-product-version}
+|Authority status |{page-authority-status}
+|Owner |{page-owner}
+|Last reviewed |{page-last-reviewed}
+|Next review |{page-next-review}
+|Related issues |{page-related-issues}
+|Programme gate |{page-programme-gate}
+|Event chains |{page-event-chains}
+|===

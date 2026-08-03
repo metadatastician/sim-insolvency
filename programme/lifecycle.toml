@@ -1,0 +1,42 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+schema_version = 1
+
+[[stage]]
+id = "L0"
+name = "Conception"
+[[stage]]
+id = "L1"
+name = "Feasibility and reconnaissance"
+[[stage]]
+id = "L2"
+name = "Foundation and specification"
+[[stage]]
+id = "L3"
+name = "Architecture and toolchain validation"
+[[stage]]
+id = "L4"
+name = "Vertical slice"
+[[stage]]
+id = "L5"
+name = "Professional and assessment validation"
+[[stage]]
+id = "L6"
+name = "Alpha"
+[[stage]]
+id = "L7"
+name = "Closed beta and institutional pilot"
+[[stage]]
+id = "L8"
+name = "Release candidate"
+[[stage]]
+id = "L9"
+name = "Version 1 release"
+[[stage]]
+id = "L10"
+name = "Operational evaluation"
+[[stage]]
+id = "L11"
+name = "Expansion"
+[[stage]]
+id = "L12"
+name = "Retirement or migration"

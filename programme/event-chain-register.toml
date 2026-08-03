@@ -1,0 +1,51 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+schema_version = 1
+
+[[chain]]
+id = "EC-001"
+title = "Legal change invalidates content"
+owner = "Authority lead"
+[[chain]]
+id = "EC-002"
+title = "Professional review unavailable"
+owner = "Programme lead"
+[[chain]]
+id = "EC-003"
+title = "AffineScript capability gap"
+owner = "Technical lead"
+[[chain]]
+id = "EC-004"
+title = "Hidden scenario truth leaks"
+owner = "Trust lead"
+[[chain]]
+id = "EC-005"
+title = "Morrow scope is too broad"
+owner = "Scenario lead"
+[[chain]]
+id = "EC-006"
+title = "Rule interpretation is disputed"
+owner = "Authority lead"
+[[chain]]
+id = "EC-007"
+title = "Burble or Gossamer integration is delayed"
+owner = "Technical lead"
+[[chain]]
+id = "EC-008"
+title = "Pilot invalidates rubric assumptions"
+owner = "Assessment lead"
+[[chain]]
+id = "EC-009"
+title = "Institutional buyer opportunity emerges"
+owner = "Client lead"
+[[chain]]
+id = "EC-010"
+title = "Accreditation opportunity emerges"
+owner = "Programme lead"
+[[chain]]
+id = "EC-011"
+title = "Solo-maintainer overload"
+owner = "Programme governance"
+[[chain]]
+id = "EC-012"
+title = "Authority source adapter silently fails"
+owner = "Authority and operations leads"

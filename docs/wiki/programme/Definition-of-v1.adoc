@@ -1,0 +1,68 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Definition of v1
+:page-id: WIKI-V1-001
+:page-title: Definition of v1
+:page-audience: All
+:page-maturity: SPECIFIED
+:page-product-version: Proposed bounded v1
+:page-authority-status: Release requires reviewed current pack
+:page-owner: Product and programme leads
+:page-last-reviewed: 2026-07-29
+:page-next-review: G2 and every scope-change request
+:page-related-issues: Definition of v1 key issue
+:page-programme-gate: G2 through G9
+:page-event-chains: EC-001, EC-003, EC-005, EC-007, EC-011
+:toc: left
+
+include::../_Status-Panel.adoc[]
+
+== Recommended boundary
+
+The first release should contain:
+
+* England and Wales corporate insolvency only;
+* one deeply authored company scenario, Morrow Engineering Ltd;
+* one shared advisory phase;
+* deep bounded CVL and Administration routes;
+* bounded but genuinely assessable CVA and informal-restructuring alternatives;
+* a compulsory-liquidation threat/consequence path;
+* single-learner assessment and a facilitated small-group mode;
+* local-first operation with network use optional;
+* a source-linked, effective-dated, professionally reviewed release rule pack;
+* manual-first Authority Watch integration;
+* professionally reviewed scenario and rubric;
+* separate competency and case-consequence reports;
+* a tamper-evident Certificate of Completion and Assessed Performance;
+* a Gossamer application shell;
+* a bounded Burble communication gateway.
+
+This is a product boundary, not a statement that every item is implemented or
+validated today.
+
+== Explicit post-v1 work
+
+Personal insolvency, multiple jurisdictions, comprehensive procedure coverage,
+general scenario generation, an authoring studio, public hosted multi-tenancy,
+large-scale institutional administration, formal accreditation, automatic
+legal interpretation, broad case-law ingestion and a scenario marketplace are
+post-v1 unless a gate-level decision changes the boundary.
+
+== Change control
+
+A post-v1 ambition may enter the v1 critical path only when the change request
+identifies:
+
+. the user and evidence-based reason;
+. additional professional and authority burden;
+. architecture, security, accessibility and operations impact;
+. affected event chains and schedule reserve;
+. what is removed or deferred to keep the release bounded;
+. an explicit gate decision.
+
+== Completion evidence
+
+V1 is not defined by code alone. G9 requires source/currentness review,
+professional and assessment-validity evidence, signed/reproducible artefacts,
+security/privacy/accessibility evidence, complete learner/facilitator/client
+guidance, support and incident arrangements, and a release decision whose
+claims trace back to that evidence.

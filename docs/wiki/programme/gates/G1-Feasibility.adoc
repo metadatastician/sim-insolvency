@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+== G1 — Feasibility demonstrated
+
+Status:: Open; reconnaissance supports continuation with material gaps.
+Entry evidence:: Estate/toolchain reconnaissance, authority-source landscape,
+professional-review route, delivery constraints and cost assumptions.
+Decision test:: A coherent vertical slice can be built without substituting a
+prohibited stack or inventing unavailable estate capabilities.
+Required reviewers:: Technical, learning and programme leads.
+Blocking exposure:: No defensible path through essential toolchain or content.
+Event chains:: EC-002, EC-003, EC-007, EC-011.

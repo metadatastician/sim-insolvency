@@ -1,0 +1,110 @@
+name: Programme work
+description: Traceable work across the Sim Insolvency extended programme
+title: "[WORK] "
+labels: ["programme"]
+body:
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Issue type
+      options:
+        - Objective
+        - Epic
+        - Feature
+        - Scenario
+        - Assessment
+        - Authority
+        - Research
+        - Validation
+        - Proof
+        - Security
+        - Accessibility
+        - Documentation
+        - Integration
+        - Infrastructure
+        - Packaging
+        - Client
+        - Procurement
+        - Pilot
+        - Evaluation
+        - Operations
+        - Risk
+        - Decision
+        - Defect
+        - Maintenance
+        - Retirement
+    validations:
+      required: true
+  - type: input
+    id: lifecycle
+    attributes:
+      label: Lifecycle stage
+      description: L0–L12
+      placeholder: L4
+    validations:
+      required: true
+  - type: input
+    id: gate
+    attributes:
+      label: Programme gate
+      description: G0–G12, or None
+      placeholder: G4
+    validations:
+      required: true
+  - type: input
+    id: workstream
+    attributes:
+      label: Workstream
+    validations:
+      required: true
+  - type: dropdown
+    id: maturity
+    attributes:
+      label: Intended maturity
+      options: [Proposed, Researched, Specified, Designed, Implemented, Validated, Approved, Operational, Deprecated, Retired]
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome and scope
+      description: State the observable outcome, inclusions and exclusions.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance evidence
+      description: List evidence, tests, review and documentation required.
+    validations:
+      required: true
+  - type: input
+    id: authority
+    attributes:
+      label: Authority or assessment status
+      description: State Not applicable when neither is affected.
+    validations:
+      required: true
+  - type: input
+    id: event_chains
+    attributes:
+      label: Event-chain links
+      description: EC identifiers, or None with a reason.
+    validations:
+      required: true
+  - type: input
+    id: dependencies
+    attributes:
+      label: Dependencies and parent
+      description: Parent issue and blocked-by relationships.
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Claims and safety boundary
+      options:
+        - label: No qualification, accreditation, legal-advice or production-readiness claim is introduced without approved evidence.
+          required: true
+        - label: Repository specifications and decision records will be updated when this work changes them.
+          required: true

@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+== G4 — Vertical slice complete
+
+Status:: Open; executable Phase A evidence is partial.
+Entry evidence:: Both deep routes, evidence/notebook, deadlines, workstreams,
+assessment, debrief, replay, result envelope and standalone shell.
+Decision test:: Golden runs complete without learner-visible hidden truth and
+re-import reproduces events, projections, assessment and certificate digest.
+Required reviewers:: Product, scenario, assessment and security leads.
+Blocking exposure:: Dead end, truth leak or unverifiable result.
+Event chains:: EC-004, EC-005, EC-008.

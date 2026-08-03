@@ -1,0 +1,33 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Facilitator Start Here
+:page-id: WIKI-FACILITATORS-001
+:page-title: Facilitator Start Here
+:page-audience: Facilitators, tutors and assessors
+:page-maturity: DRAFT
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Provisional; professional validation pending
+:page-owner: Facilitation lead
+:page-last-reviewed: 2026-07-29
+:page-next-review: Before first facilitated pilot
+:page-related-issues: Group facilitation and pilot epic
+:page-programme-gate: G6 — Pilot-ready
+:page-event-chains: EC-002, EC-007
+
+include::../_Status-Panel.adoc[]
+
+== Role and boundary
+
+The facilitator controls room admission, the shared case clock and authorised
+reveals. Discussion, proposals, votes, objections and dissent may be exchanged,
+but a remote message never changes authoritative case state. An application
+command must pass the same validation used in standalone mode and then enter the
+ledger.
+
+Before a session, verify the scenario version, rule-pack identity and authority
+cut-off; agree participant pseudonyms and roles; test local fallback; and state
+the certificate boundary. During a session, preserve dissent, avoid revealing
+correctness, and record interventions. After submission, separate competency
+debrief from case consequences and export the session record.
+
+The Phase A collaboration adapter is bounded and not yet suitable for
+unsupervised high-stakes assessment.

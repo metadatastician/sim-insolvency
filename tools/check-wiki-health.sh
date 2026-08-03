@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: PMPL-2.0-or-later
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+register="${repo_root}/programme/wiki-page-register.toml"
+required=(
+  page-id page-title page-audience page-maturity page-product-version
+  page-authority-status page-owner page-last-reviewed page-next-review
+  page-related-issues page-programme-gate page-event-chains
+)
+errors=0
+pages=0
+ids_file="$(mktemp)"
+trap 'rm -f "${ids_file}"' EXIT
+
+while IFS= read -r relative; do
+  file="${repo_root}/${relative}"
+  pages=$((pages + 1))
+  if [[ ! -f "${file}" ]]; then
+    printf 'ERROR registered page missing: %s\n' "${relative}" >&2
+    errors=$((errors + 1))
+    continue
+  fi
+  for attribute in "${required[@]}"; do
+    if ! grep -q "^:${attribute}:" "${file}"; then
+      printf 'ERROR %s lacks :%s:\n' "${relative}" "${attribute}" >&2
+      errors=$((errors + 1))
+    fi
+  done
+  page_id="$(sed -n 's/^:page-id:[[:space:]]*//p' "${file}" | head -n 1)"
+  printf '%s\t%s\n' "${page_id}" "${relative}" >> "${ids_file}"
+done < <(sed -n 's/^path = "\(.*\)"/\1/p' "${register}")
+
+duplicates="$(cut -f1 "${ids_file}" | sort | uniq -d)"
+if [[ -n "${duplicates}" ]]; then
+  printf 'ERROR duplicate page IDs:\n%s\n' "${duplicates}" >&2
+  errors=$((errors + 1))
+fi
+
+registered="$(wc -l < "${ids_file}")"
+if [[ "${registered}" -lt 21 ]]; then
+  printf 'ERROR only %s registered substantive pages; at least 21 required\n' "${registered}" >&2
+  errors=$((errors + 1))
+fi
+
+if grep -RniE '(^|[^-])(accredited|professionally qualified|licensed insolvency practitioner)([^-]|$)' \
+  "${repo_root}/docs/wiki/clients" "${repo_root}/docs/wiki/product" |
+  grep -viE 'not |unless|no .*claim|non-accreditation|does not' >/dev/null; then
+  printf 'ERROR potentially unqualified regulated-status claim found\n' >&2
+  errors=$((errors + 1))
+fi
+
+if [[ "${errors}" -ne 0 ]]; then
+  printf 'Wiki health: FAIL (%s pages checked, %s errors)\n' "${pages}" "${errors}" >&2
+  exit 1
+fi
+
+printf 'Wiki health: PASS (%s registered pages; unique IDs and status metadata present)\n' "${pages}"

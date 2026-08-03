@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+== G6 — Alpha exit
+
+Status:: Not entered.
+Entry evidence:: Installable local build, internal/trusted-specialist cohort,
+usability and accessibility findings, integrity tests and support playbook.
+Decision test:: Critical findings are fixed or explicitly accepted for a bounded
+institutional pilot.
+Required reviewers:: Product, trust, accessibility and pilot leads.
+Blocking exposure:: Unsafe use, inaccessible core task or unreliable recovery.
+Event chains:: EC-004, EC-007, EC-011.

@@ -48,7 +48,7 @@ typecheck:
     ./tools/typecheck-affinescript.sh
 
 prove:
-    cd idris2 && idris2 --build sim-insolvency-abi.ipkg
+    cd idris2 && idris2 --typecheck sim-insolvency-abi.ipkg
 
 test:
     {{zig_env}} zig build test

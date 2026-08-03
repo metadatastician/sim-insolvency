@@ -1,0 +1,28 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+schema_version = 1
+
+[[issue]]
+id = "KEY-001"
+title = "Practitioner and assessment validation are absent"
+exposure = "critical"
+gate = "G5"
+[[issue]]
+id = "KEY-002"
+title = "Estate toolchain integrations remain partly port-backed"
+exposure = "high"
+gate = "G3"
+[[issue]]
+id = "KEY-003"
+title = "Hidden truth isolation needs adversarial validation"
+exposure = "critical"
+gate = "G4"
+[[issue]]
+id = "KEY-004"
+title = "Programme capacity is concentrated in a solo maintainer"
+exposure = "high"
+gate = "G6"
+[[issue]]
+id = "KEY-005"
+title = "Operational and client evidence does not yet exist"
+exposure = "high"
+gate = "G7"

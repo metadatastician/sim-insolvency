@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Sim Insolvency Extended Programme — Project Definition
+
+The GitHub Project named *Sim Insolvency Extended Programme* is the operational
+index for work across product, scenario, authority, assessment, validation,
+deployment, adoption and operation. It does not replace repository-controlled
+specifications, decisions or evidence.
+
+Every project item must identify its lifecycle stage, intended gate,
+workstream, issue type, maturity, validation state and relevant event chain.
+Items carrying authority, assessment, security or client-facing claims must
+also use the corresponding status field. Gate items are evidence decisions;
+their status cannot be inferred from completion percentages.
+
+The project is private while the repository and programme are pre-alpha.
+Machine-readable field intent is in `project-fields.toml`; proposed views are in
+`project-views.adoc`. GitHub field identifiers are deployment details and must
+not be copied into canonical programme semantics.

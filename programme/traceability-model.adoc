@@ -1,0 +1,21 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Programme Traceability Model
+
+Traceability runs in both directions:
+
+`claim -> wiki/specification -> issue -> implementation/evidence -> validation
+-> gate decision -> release`
+
+and
+
+`event -> event chain -> affected issue/gate -> response -> residual exposure
+-> decision`.
+
+Stable identifiers belong in source. GitHub issue and project identifiers are
+links, not domain identity. A gate issue may close only with links to its entry
+criteria, evidence, review record, unresolved risks and explicit decision.
+Client-facing claims must identify the approved release and evidence gate.
+
+No workflow state silently upgrades page maturity, authority status,
+assessment validity or client readiness. Those changes require a reviewed
+source edit or decision record.

@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+schema_version = 1
+
+[[event]]
+id = "EV-001"
+title = "Material authority source changes"
+type = "threat"
+monitor = "Authority freshness review"
+[[event]]
+id = "EV-002"
+title = "Independent reviewer becomes available"
+type = "opportunity"
+monitor = "Professional validation workstream"
+[[event]]
+id = "EV-003"
+title = "Pilot produces rubric disagreement"
+type = "threat_or_learning"
+monitor = "Pilot incident and observation log"
+[[event]]
+id = "EV-004"
+title = "Institutional pilot invitation"
+type = "opportunity"
+monitor = "Client and procurement workstream"

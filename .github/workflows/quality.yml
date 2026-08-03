@@ -19,3 +19,4 @@ jobs:
       - run: ./tools/validate-scenario.sh
       - run: ./tools/check-abi-drift.sh
       - run: ./tools/check-no-prohibited-stack.sh
+      - run: ./tools/check-wiki-health.sh

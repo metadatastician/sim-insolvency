@@ -15,3 +15,5 @@
   future Stapeln layer manifest.
 * Added programme lifecycle registers, governed wiki corpus, wiki health gate
   and programme/stage-gate issue templates.
+* Added a canary-verified hidden-truth leak gate over bundle structure,
+  shipped files, binary strings, runtime output and kernel timing drift.

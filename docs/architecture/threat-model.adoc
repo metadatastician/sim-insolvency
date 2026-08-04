@@ -12,7 +12,9 @@ availability.
 
 Hidden truth leakage::
 Reality excluded from learner bundles; opaque identifiers; no debug projection;
-sealed/facilitator-controlled reveal; leak scanner over shipped artefacts.
+sealed/facilitator-controlled reveal; canary-verified scanner with a deny-list
+derived from scenario reality, covering bundle structure, shipped files,
+binary strings and runtime output, plus kernel timing drift.
 
 Ledger/replay tampering::
 Contiguous sequence, causal-parent checks, idempotency uniqueness and SHA-256

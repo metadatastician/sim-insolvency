@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: PMPL-2.0-or-later
 const std = @import("std");
 pub const ports = @import("ports.zig");
+pub const consequences = @import("consequences.zig");
 
 pub const abi_version: u32 = 1;
 pub const app_version = "0.1.0-phase-a";
@@ -419,17 +420,17 @@ pub const Session = struct {
     }
 
     fn applyTimedEvents(self: *Session) CommandError!void {
-        if (self.logical_minute >= 240 and self.communications == 0) {
+        if (self.logical_minute >= consequences.communication_risk_minute and self.communications == 0) {
             self.workstreams[@intFromEnum(Workstream.communications)] = .at_risk;
             _ = try self.emit(.deadline_approaching, "kernel", "secured-creditor-response-window");
         }
-        if (self.logical_minute >= 480 and !self.protected_assets) {
+        if (self.logical_minute >= consequences.asset_deterioration_minute and !self.protected_assets) {
             self.consequence.assets_preserved -= 20;
             self.consequence.evidence_preserved -= 10;
             self.workstreams[@intFromEnum(Workstream.estate_protection)] = .overdue;
             _ = try self.emit(.deadline_missed, "kernel", "asset-and-record-protection-delay");
         }
-        if (self.logical_minute >= 720 and self.procedure == .undecided) {
+        if (self.logical_minute >= consequences.external_petition_consequence_minute and self.procedure == .undecided) {
             self.procedure = .compulsory_liquidation;
             self.consequence.business_continuity -= 35;
             self.consequence.creditor_impact -= 20;
@@ -464,8 +465,8 @@ pub const Session = struct {
         result.procedure_comparison = score(@popCount(self.considered), 3, 5);
         result.evidence_use = score(self.claims + self.hypotheses, 2, 5);
         result.uncertainty_handling = score(self.uncertainties + self.risks, 2, 5);
-        result.prioritisation = if (self.protected_assets) 3 else if (self.logical_minute < 480) 2 else 0;
-        result.timeliness = if (self.logical_minute < 480) 3 else if (self.logical_minute < 720) 2 else 0;
+        result.prioritisation = if (self.protected_assets) 3 else if (self.logical_minute < consequences.asset_deterioration_minute) 2 else 0;
+        result.timeliness = if (self.logical_minute < consequences.asset_deterioration_minute) 3 else if (self.logical_minute < consequences.external_petition_consequence_minute) 2 else 0;
         result.record_quality = score(self.reasons, 4, 7);
         result.ethical_reasoning = if (self.workstreams[@intFromEnum(Workstream.engagement_and_independence)] == .completed) 3 else 0;
         result.critical_error = self.procedure == .compulsory_liquidation and self.claims == 0;

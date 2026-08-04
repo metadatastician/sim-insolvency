@@ -118,6 +118,9 @@ docs:
 docs-health:
     ./tools/check-wiki-health.sh
 
+test-docs-health:
+    ./tools/test-wiki-health.sh
+
 hidden-truth:
     test -d dist/sim-insolvency-learner || { just build && ./tools/package-standalone.sh learner; }
     ./tools/check-hidden-truth.sh

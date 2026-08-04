@@ -8,7 +8,7 @@ set -euo pipefail
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 scanner="${root}/tools/check-hidden-truth.sh"
 passes=0
-total=8
+total=9
 
 stage() { # $1 = destination; copy the minimal tree the scanner needs
   mkdir -p "$1"
@@ -68,18 +68,28 @@ EOF
 chmod 0755 "${scratch}/runtime/dist/sim-insolvency-learner/bin/sim-insolvency"
 expect_fail "${scratch}/runtime" "runtime: token emitted at run time only"
 
-# 6. Vacuity guard: a reality file that derives zero tokens must abort.
+# 6. Runtime channel: a binary that cannot actually execute (bad
+#    interpreter / wrong arch / missing loader) must fail the gate. The
+#    shell's own "cannot execute" text contains no forbidden token, so a
+#    scanner that only checks for tokens would PASS here vacuously.
+stage "${scratch}/runtime-broken"
+printf '#!/nonexistent-interpreter-zzz\n' > \
+  "${scratch}/runtime-broken/dist/sim-insolvency-learner/bin/sim-insolvency"
+chmod 0755 "${scratch}/runtime-broken/dist/sim-insolvency-learner/bin/sim-insolvency"
+expect_fail "${scratch}/runtime-broken" "runtime: bundle binary fails to execute (must not pass vacuously)"
+
+# 7. Vacuity guard: a reality file that derives zero tokens must abort.
 stage "${scratch}/vacuous"
 tr -d '-' < "${root}/scenarios/morrow-engineering-001/reality/reality.a2ml" \
   > "${scratch}/vacuous/scenarios/morrow-engineering-001/reality/reality.a2ml"
 expect_fail "${scratch}/vacuous" "vacuity: empty deny-list aborts"
 
-# 7. Allowlist hygiene: an entry matching nothing must fail.
+# 8. Allowlist hygiene: an entry matching nothing must fail.
 stage "${scratch}/allow"
 echo "bogus-unused-phrase-zzz" >> "${scratch}/allow/tools/hidden-truth-allowlist.txt"
 expect_fail "${scratch}/allow" "allowlist: unused entry rejected"
 
-# 8. Drift channel: kernel constant diverging from reality must fail.
+# 9. Drift channel: kernel constant diverging from reality must fail.
 stage "${scratch}/drift"
 sed -i 's/communication-risk-minute = 240/communication-risk-minute = 999/' \
   "${scratch}/drift/scenarios/morrow-engineering-001/reality/reality.a2ml"

@@ -32,17 +32,17 @@ link:../../programme/wiki-page-register.toml[`programme/wiki-page-register.toml`
 |WIKI-DEC-001 |link:programme/Decisions.adoc[Decisions] |All |RESEARCHED
 |WIKI-GOV-001 |link:programme/Governance.adoc[Governance] |All |SPECIFIED
 |WIKI-LIM-001 |link:programme/Known-Limitations.adoc[Known Limitations] |All |RESEARCHED
-|WIKI-USR-001 |link:users/Start-Here.adoc[Learner Start Here] |Learner |DESIGNED
-|WIKI-FAC-001 |link:facilitators/Start-Here.adoc[Facilitator Start Here] |Facilitator |INDICATIVE
-|WIKI-DEV-001 |link:developers/Start-Here.adoc[Developer Start Here] |Developer |RESEARCHED
-|WIKI-CLI-001 |link:clients/Start-Here.adoc[Client Start Here] |Client |INDICATIVE
-|WIKI-PRO-001 |link:product/What-Sim-Insolvency-Is.adoc[What Sim Insolvency Is] |All |SPECIFIED
-|WIKI-PRO-002 |link:product/What-Sim-Insolvency-Is-Not.adoc[What It Is Not] |All |SPECIFIED
-|WIKI-ASP-001 |link:assessment/How-Assessment-Works.adoc[How Assessment Works] |All |DESIGNED
-|WIKI-CER-001 |link:assessment/Certificate-Meaning.adoc[Certificate Meaning] |All |IMPLEMENTED
-|WIKI-AUT-001 |link:authority/Authority-Freshness.adoc[Authority Freshness] |All |DESIGNED
-|WIKI-SCN-001 |link:scenarios/Morrow-Engineering-Overview.adoc[Morrow Engineering] |All |IMPLEMENTED
-|WIKI-TRU-001 |link:product/Security-Privacy-Accessibility.adoc[Security, Privacy and Accessibility] |All |RESEARCHED
-|WIKI-EVL-001 |link:evaluation/Framework.adoc[Evaluation Framework] |All |SPECIFIED
-|WIKI-GLS-001 |link:shared/Glossary.adoc[Glossary] |All |SPECIFIED
+|WIKI-USERS-001 |link:users/Start-Here.adoc[Learner Start Here] |Learner |DESIGNED
+|WIKI-FACILITATORS-001 |link:facilitators/Start-Here.adoc[Facilitator Start Here] |Facilitator |INDICATIVE
+|WIKI-DEVELOPERS-001 |link:developers/Start-Here.adoc[Developer Start Here] |Developer |RESEARCHED
+|WIKI-CLIENTS-001 |link:clients/Start-Here.adoc[Client Start Here] |Client |INDICATIVE
+|WIKI-PRODUCT-001 |link:product/What-Sim-Insolvency-Is.adoc[What Sim Insolvency Is] |All |SPECIFIED
+|WIKI-PRODUCT-002 |link:product/What-Sim-Insolvency-Is-Not.adoc[What It Is Not] |All |SPECIFIED
+|WIKI-ASSESSMENT-001 |link:assessment/How-Assessment-Works.adoc[How Assessment Works] |All |DESIGNED
+|WIKI-ASSESSMENT-002 |link:assessment/Certificate-Meaning.adoc[Certificate Meaning] |All |IMPLEMENTED
+|WIKI-AUTHORITY-001 |link:authority/Authority-Freshness.adoc[Authority Freshness] |All |DESIGNED
+|WIKI-SCENARIO-001 |link:scenarios/Morrow-Engineering-Overview.adoc[Morrow Engineering] |All |IMPLEMENTED
+|WIKI-TRUST-001 |link:product/Security-Privacy-Accessibility.adoc[Security, Privacy and Accessibility] |All |RESEARCHED
+|WIKI-EVALUATION-001 |link:evaluation/Framework.adoc[Evaluation Framework] |All |SPECIFIED
+|WIKI-SHARED-001 |link:shared/Glossary.adoc[Glossary] |All |SPECIFIED
 |===

@@ -44,6 +44,35 @@ if [[ "${registered}" -lt 21 ]]; then
   errors=$((errors + 1))
 fi
 
+# The human-readable page register exists to make page IDs auditable at a
+# glance; that only holds if its "Page ID" column agrees with each page's
+# own :page-id: attribute. Presence checks above do not catch drift
+# between the two, so assert equality row by row.
+human_register="${repo_root}/docs/wiki/_Page-Register.adoc"
+register_dir="$(dirname "${human_register}")"
+register_rows=0
+while IFS=$'\t' read -r row_id row_path; do
+  [[ -n "${row_id}" ]] || continue
+  register_rows=$((register_rows + 1))
+  target="${register_dir}/${row_path}"
+  if [[ ! -f "${target}" ]]; then
+    printf 'ERROR _Page-Register.adoc row %s links to missing page: %s\n' "${row_id}" "${row_path}" >&2
+    errors=$((errors + 1))
+    continue
+  fi
+  page_declared_id="$(sed -n 's/^:page-id:[[:space:]]*//p' "${target}" | head -n 1)"
+  if [[ "${row_id}" != "${page_declared_id}" ]]; then
+    printf 'ERROR _Page-Register.adoc row id %s for %s != page :page-id: %s\n' \
+      "${row_id}" "${row_path}" "${page_declared_id}" >&2
+    errors=$((errors + 1))
+  fi
+done < <(grep -E '^\|WIKI-' "${human_register}" | sed -n \
+  's/^|\(WIKI-[A-Z0-9]*-[0-9]*\)[[:space:]]*|link:\([^[]*\)\[.*/\1\t\2/p')
+if [[ "${register_rows}" -eq 0 ]]; then
+  printf 'ERROR _Page-Register.adoc: no WIKI- rows parsed; register↔page-id check cannot be vacuous\n' >&2
+  errors=$((errors + 1))
+fi
+
 if grep -RniE '(^|[^-])(accredited|professionally qualified|licensed insolvency practitioner)([^-]|$)' \
   "${repo_root}/docs/wiki/clients" "${repo_root}/docs/wiki/product" |
   grep -viE 'not |unless|no .*claim|non-accreditation|does not' >/dev/null; then

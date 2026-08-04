@@ -89,13 +89,36 @@ if [[ -f "${wasm_artifact}" ]]; then
 fi
 
 # 5. Runtime channel: every learner CLI command from the shipped binary.
+#    Each invocation must actually execute (nonzero exit fails the gate
+#    instead of letting the shell's own "cannot execute" text stand in
+#    for scanned output) and must produce output the gate recognises
+#    (absence of forbidden tokens is not enough if nothing ran).
 bundle_bin="${learner}/bin/sim-insolvency"
 [[ -x "${bundle_bin}" ]] || fail "runtime channel: bundle binary not executable"
-runtime_output="$(
-  { "${bundle_bin}" home; "${bundle_bin}" demo cvl; "${bundle_bin}" demo administration;
-    "${bundle_bin}" group-demo; "${bundle_bin}" golden;
-    "${bundle_bin}" certificate learner-pseudonym; } 2>&1 || true
-)"
+
+runtime_output=""
+run_channel_command() { # $1 label, $2 expected marker, $3.. = CLI args
+  local label="$1" marker="$2" out status
+  shift 2
+  set +e
+  out="$("${bundle_bin}" "$@" 2>&1)"
+  status=$?
+  set -e
+  if (( status != 0 )); then
+    fail "runtime channel: ${label} failed to run (exit ${status}); a broken bundle binary must fail this gate, not pass it vacuously. Output: ${out}"
+  fi
+  if [[ "${out}" != *"${marker}"* ]]; then
+    fail "runtime channel: ${label} ran but produced no recognisable output (missing '${marker}'); the gate must assert expected content, not only the absence of forbidden tokens"
+  fi
+  runtime_output+="${out}"$'\n'
+}
+run_channel_command "home"               "Sim Insolvency"       home
+run_channel_command "demo cvl"           "digest="              demo cvl
+run_channel_command "demo administration" "digest="             demo administration
+run_channel_command "group-demo"         "digest="              group-demo
+run_channel_command "golden"             "digest="              golden
+run_channel_command "certificate"        "certificate-digest =" certificate learner-pseudonym
+
 scan_stream "runtime" "learner CLI output" <<<"${runtime_output}"
 
 # 6. Drift channel: kernel timing constants must equal reality values.

@@ -1,0 +1,4 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Sanctioned phrases that contain a hidden-truth token as a substring.
+# Each entry must occur in the scanned corpus or the scanner fails (hygiene).
+connected-payment-records

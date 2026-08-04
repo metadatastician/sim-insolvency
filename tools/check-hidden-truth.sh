@@ -76,4 +76,42 @@ while IFS= read -r -d '' file; do
   scan_stream "files" "${file#"${root}"/}" < "${file}"
 done < <(find "${shipped[@]}" -type f -print0)
 
-printf 'PASS hidden-truth: %d tokens; structure, files\n' "${#tokens[@]}"
+# 4. Binary channel: strings over the shipped binary and wasm artefact.
+scan_stream "binary" "dist learner binary" < <(strings "${learner}/bin/sim-insolvency")
+wasm_artifact="${root}/zig-out/bin/sim_insolvency_kernel.wasm"
+if [[ -f "${wasm_artifact}" ]]; then
+  scan_stream "binary" "wasm artefact" < <(strings "${wasm_artifact}")
+fi
+
+# 5. Runtime channel: every learner CLI command from the shipped binary.
+bundle_bin="${learner}/bin/sim-insolvency"
+[[ -x "${bundle_bin}" ]] || fail "runtime channel: bundle binary not executable"
+runtime_output="$(
+  { "${bundle_bin}" home; "${bundle_bin}" demo cvl; "${bundle_bin}" demo administration;
+    "${bundle_bin}" group-demo; "${bundle_bin}" golden;
+    "${bundle_bin}" certificate learner-pseudonym; } 2>&1 || true
+)"
+scan_stream "runtime" "learner CLI output" <<<"${runtime_output}"
+
+# 6. Drift channel: kernel timing constants must equal reality values.
+consequences_src="${root}/zig/src/consequences.zig"
+[[ -s "${consequences_src}" ]] || fail "drift channel: missing ${consequences_src#"${root}"/}"
+while IFS='=' read -r key value; do
+  key="$(echo "${key}" | tr -d ' ')"
+  value="$(echo "${value}" | tr -d ' ')"
+  [[ -n "${key}" && "${key}" != \#* ]] || continue
+  zig_name="$(echo "${key}" | tr '-' '_')"
+  grep -qE "pub const ${zig_name}: u32 = ${value};" "${consequences_src}" ||
+    fail "drift channel: ${key} = ${value} not mirrored as ${zig_name} in consequences.zig"
+done < <(awk '/^\[deterministic-consequences\]/{f=1;next} /^\[/{f=0} f&&/=/' "${reality}")
+
+# 7. Allowlist hygiene: every entry must occur somewhere in the scanned corpus.
+for phrase in "${allow[@]}"; do
+  found=0
+  grep -RFq "${phrase}" "${shipped[@]}" 2>/dev/null && found=1
+  strings "${learner}/bin/sim-insolvency" | grep -qF "${phrase}" && found=1
+  grep -qF "${phrase}" <<<"${runtime_output}" && found=1
+  (( found )) || fail "unused allowlist entry: ${phrase}"
+done
+
+printf 'PASS hidden-truth: %d tokens; structure, files, binary, runtime, drift\n' "${#tokens[@]}"

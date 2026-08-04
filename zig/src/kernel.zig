@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: PMPL-2.0-or-later
 const std = @import("std");
 pub const ports = @import("ports.zig");
+pub const consequences = @import("consequences.zig");
 
 pub const abi_version: u32 = 1;
 pub const app_version = "0.1.0-phase-a";
@@ -419,17 +420,17 @@ pub const Session = struct {
     }
 
     fn applyTimedEvents(self: *Session) CommandError!void {
-        if (self.logical_minute >= 240 and self.communications == 0) {
+        if (self.logical_minute >= consequences.communication_risk_minute and self.communications == 0) {
             self.workstreams[@intFromEnum(Workstream.communications)] = .at_risk;
             _ = try self.emit(.deadline_approaching, "kernel", "secured-creditor-response-window");
         }
-        if (self.logical_minute >= 480 and !self.protected_assets) {
+        if (self.logical_minute >= consequences.asset_deterioration_minute and !self.protected_assets) {
             self.consequence.assets_preserved -= 20;
             self.consequence.evidence_preserved -= 10;
             self.workstreams[@intFromEnum(Workstream.estate_protection)] = .overdue;
             _ = try self.emit(.deadline_missed, "kernel", "asset-and-record-protection-delay");
         }
-        if (self.logical_minute >= 720 and self.procedure == .undecided) {
+        if (self.logical_minute >= consequences.external_petition_consequence_minute and self.procedure == .undecided) {
             self.procedure = .compulsory_liquidation;
             self.consequence.business_continuity -= 35;
             self.consequence.creditor_impact -= 20;
@@ -464,8 +465,8 @@ pub const Session = struct {
         result.procedure_comparison = score(@popCount(self.considered), 3, 5);
         result.evidence_use = score(self.claims + self.hypotheses, 2, 5);
         result.uncertainty_handling = score(self.uncertainties + self.risks, 2, 5);
-        result.prioritisation = if (self.protected_assets) 3 else if (self.logical_minute < 480) 2 else 0;
-        result.timeliness = if (self.logical_minute < 480) 3 else if (self.logical_minute < 720) 2 else 0;
+        result.prioritisation = if (self.protected_assets) 3 else if (self.logical_minute < consequences.asset_deterioration_minute) 2 else 0;
+        result.timeliness = if (self.logical_minute < consequences.asset_deterioration_minute) 3 else if (self.logical_minute < consequences.external_petition_consequence_minute) 2 else 0;
         result.record_quality = score(self.reasons, 4, 7);
         result.ethical_reasoning = if (self.workstreams[@intFromEnum(Workstream.engagement_and_independence)] == .completed) 3 else 0;
         result.critical_error = self.procedure == .compulsory_liquidation and self.claims == 0;
@@ -601,7 +602,7 @@ pub const GoldenOutcome = struct {
     event_count: usize,
 };
 
-pub fn runGolden(run: GoldenRun) CommandError!GoldenOutcome {
+fn playGolden(run: GoldenRun) CommandError!Session {
     var session = try Session.init(@as(u64, 0x4d4f52524f57) + @as(u64, @intFromEnum(run)));
     if (run != .critical_error) try session.completeConflictCheck();
     try session.requestEvidence("bank-security-records", 5);
@@ -649,6 +650,11 @@ pub fn runGolden(run: GoldenRun) CommandError!GoldenOutcome {
         }
         try session.completeBranch();
     }
+    return session;
+}
+
+pub fn runGolden(run: GoldenRun) CommandError!GoldenOutcome {
+    var session = try playGolden(run);
     const result = try session.assess();
     try session.close();
     return .{
@@ -735,4 +741,77 @@ test "disclosure is monotonic" {
     try session.requestEvidence("unknown-request", 1);
     try std.testing.expect(after >= initial);
     try std.testing.expect(session.evidence_count >= after);
+}
+
+// Mirrors the hyphenated tokens of reality.a2ml [fixed-history] and
+// [deterministic-consequences]; tools/check-hidden-truth.sh derives the
+// authoritative list from the file itself.
+const hidden_truth_tokens = [_][]const u8{
+    "cash-pressure",
+    "management-information",
+    "secured-creditor-intent",
+    "connected-payment",
+    "communication-risk-minute",
+    "asset-deterioration-minute",
+    "external-petition-consequence-minute",
+    "considering-action-not-yet-committed",
+    "interested-but-funding-not-verified",
+    "differing-recollections-and-incentives",
+    "payment-occurred",
+    "legal-characterisation-not-authored-as-a-visible-fact",
+};
+const hidden_truth_allow = [_][]const u8{
+    "connected-payment-records",
+};
+
+fn containsHiddenTruth(text: []const u8) bool {
+    var buf: [2 * max_payload]u8 = undefined;
+    if (text.len > buf.len) return true;
+    @memcpy(buf[0..text.len], text);
+    const masked = buf[0..text.len];
+    for (hidden_truth_allow) |phrase| {
+        var start: usize = 0;
+        while (std.mem.indexOfPos(u8, masked, start, phrase)) |idx| {
+            @memset(masked[idx .. idx + phrase.len], 'x');
+            start = idx + phrase.len;
+        }
+    }
+    for (hidden_truth_tokens) |token| {
+        if (std.mem.indexOf(u8, masked, token) != null) return true;
+    }
+    return false;
+}
+
+test "hidden-truth detector positive control" {
+    try std.testing.expect(containsHiddenTruth("note: payment-occurred at month end"));
+    try std.testing.expect(containsHiddenTruth("secured-creditor-intent"));
+    try std.testing.expect(containsHiddenTruth("connected-payment = made"));
+    try std.testing.expect(!containsHiddenTruth("connected-payment-records"));
+    try std.testing.expect(!containsHiddenTruth("cash pressure is evidenced"));
+    try std.testing.expect(!containsHiddenTruth("secured-creditor-response-window"));
+}
+
+test "golden runs never expose hidden truth in ledger or certificate" {
+    const runs = [_]GoldenRun{
+        .cvl_competent_standard,
+        .cvl_competent_alternative,
+        .administration_competent_standard,
+        .administration_competent_alternative,
+        .threshold_borderline,
+        .critical_error,
+        .deadline_failure,
+        .group_session_with_dissent,
+    };
+    for (runs) |run| {
+        var session = try playGolden(run);
+        _ = try session.assess();
+        try session.close();
+        for (session.ledger.events[0..session.ledger.len]) |*event| {
+            try std.testing.expect(!containsHiddenTruth(event.payloadSlice()));
+            try std.testing.expect(!containsHiddenTruth(event.actorSlice()));
+        }
+        const outcome = try runGolden(run);
+        const certificate = try certificateForOutcome(outcome, "learner-pseudonym", "test-key");
+        try std.testing.expect(!containsHiddenTruth(certificate.result_class));
+    }
 }

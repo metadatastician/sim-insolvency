@@ -21,5 +21,7 @@ jobs:
       - run: ./tools/check-abi-drift.sh
       - run: ./tools/check-no-prohibited-stack.sh
       - run: ./tools/check-wiki-health.sh
+      - run: zig build
+      - run: ./tools/package-standalone.sh learner
       - run: ./tools/check-hidden-truth.sh
       - run: ./tools/test-hidden-truth-scanner.sh

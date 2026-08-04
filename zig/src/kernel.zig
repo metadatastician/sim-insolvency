@@ -742,3 +742,76 @@ test "disclosure is monotonic" {
     try std.testing.expect(after >= initial);
     try std.testing.expect(session.evidence_count >= after);
 }
+
+// Mirrors the hyphenated tokens of reality.a2ml [fixed-history] and
+// [deterministic-consequences]; tools/check-hidden-truth.sh derives the
+// authoritative list from the file itself.
+const hidden_truth_tokens = [_][]const u8{
+    "cash-pressure",
+    "management-information",
+    "secured-creditor-intent",
+    "connected-payment",
+    "communication-risk-minute",
+    "asset-deterioration-minute",
+    "external-petition-consequence-minute",
+    "considering-action-not-yet-committed",
+    "interested-but-funding-not-verified",
+    "differing-recollections-and-incentives",
+    "payment-occurred",
+    "legal-characterisation-not-authored-as-a-visible-fact",
+};
+const hidden_truth_allow = [_][]const u8{
+    "connected-payment-records",
+};
+
+fn containsHiddenTruth(text: []const u8) bool {
+    var buf: [2 * max_payload]u8 = undefined;
+    if (text.len > buf.len) return true;
+    @memcpy(buf[0..text.len], text);
+    const masked = buf[0..text.len];
+    for (hidden_truth_allow) |phrase| {
+        var start: usize = 0;
+        while (std.mem.indexOfPos(u8, masked, start, phrase)) |idx| {
+            @memset(masked[idx .. idx + phrase.len], 'x');
+            start = idx + phrase.len;
+        }
+    }
+    for (hidden_truth_tokens) |token| {
+        if (std.mem.indexOf(u8, masked, token) != null) return true;
+    }
+    return false;
+}
+
+test "hidden-truth detector positive control" {
+    try std.testing.expect(containsHiddenTruth("note: payment-occurred at month end"));
+    try std.testing.expect(containsHiddenTruth("secured-creditor-intent"));
+    try std.testing.expect(containsHiddenTruth("connected-payment = made"));
+    try std.testing.expect(!containsHiddenTruth("connected-payment-records"));
+    try std.testing.expect(!containsHiddenTruth("cash pressure is evidenced"));
+    try std.testing.expect(!containsHiddenTruth("secured-creditor-response-window"));
+}
+
+test "golden runs never expose hidden truth in ledger or certificate" {
+    const runs = [_]GoldenRun{
+        .cvl_competent_standard,
+        .cvl_competent_alternative,
+        .administration_competent_standard,
+        .administration_competent_alternative,
+        .threshold_borderline,
+        .critical_error,
+        .deadline_failure,
+        .group_session_with_dissent,
+    };
+    for (runs) |run| {
+        var session = try playGolden(run);
+        _ = try session.assess();
+        try session.close();
+        for (session.ledger.events[0..session.ledger.len]) |*event| {
+            try std.testing.expect(!containsHiddenTruth(event.payloadSlice()));
+            try std.testing.expect(!containsHiddenTruth(event.actorSlice()));
+        }
+        const outcome = try runGolden(run);
+        const certificate = try certificateForOutcome(outcome, "learner-pseudonym", "test-key");
+        try std.testing.expect(!containsHiddenTruth(certificate.result_class));
+    }
+}

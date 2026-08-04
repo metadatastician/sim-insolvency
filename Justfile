@@ -42,7 +42,7 @@ container-run:
 container-inspect:
     nerdctl --data-root .nerdctl image inspect sim-insolvency:local
 
-check: lint typecheck prove test
+check: lint typecheck prove test hidden-truth test-hidden-truth-gate
 
 typecheck:
     ./tools/typecheck-affinescript.sh
@@ -117,6 +117,12 @@ docs:
 
 docs-health:
     ./tools/check-wiki-health.sh
+
+hidden-truth:
+    ./tools/check-hidden-truth.sh
+
+test-hidden-truth-gate:
+    ./tools/test-hidden-truth-scanner.sh
 
 clean:
     rm -rf zig-out .zig-cache idris2/build

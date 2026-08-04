@@ -602,7 +602,7 @@ pub const GoldenOutcome = struct {
     event_count: usize,
 };
 
-pub fn runGolden(run: GoldenRun) CommandError!GoldenOutcome {
+fn playGolden(run: GoldenRun) CommandError!Session {
     var session = try Session.init(@as(u64, 0x4d4f52524f57) + @as(u64, @intFromEnum(run)));
     if (run != .critical_error) try session.completeConflictCheck();
     try session.requestEvidence("bank-security-records", 5);
@@ -650,6 +650,11 @@ pub fn runGolden(run: GoldenRun) CommandError!GoldenOutcome {
         }
         try session.completeBranch();
     }
+    return session;
+}
+
+pub fn runGolden(run: GoldenRun) CommandError!GoldenOutcome {
+    var session = try playGolden(run);
     const result = try session.assess();
     try session.close();
     return .{

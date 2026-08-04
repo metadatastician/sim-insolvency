@@ -8,7 +8,7 @@ set -euo pipefail
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 scanner="${root}/tools/check-hidden-truth.sh"
 passes=0
-total=7
+total=8
 
 stage() { # $1 = destination; copy the minimal tree the scanner needs
   mkdir -p "$1"
@@ -78,5 +78,11 @@ expect_fail "${scratch}/vacuous" "vacuity: empty deny-list aborts"
 stage "${scratch}/allow"
 echo "bogus-unused-phrase-zzz" >> "${scratch}/allow/tools/hidden-truth-allowlist.txt"
 expect_fail "${scratch}/allow" "allowlist: unused entry rejected"
+
+# 8. Drift channel: kernel constant diverging from reality must fail.
+stage "${scratch}/drift"
+sed -i 's/communication-risk-minute = 240/communication-risk-minute = 999/' \
+  "${scratch}/drift/scenarios/morrow-engineering-001/reality/reality.a2ml"
+expect_fail "${scratch}/drift" "drift: kernel constant diverges from reality"
 
 printf 'PASS hidden-truth canaries: %d/%d\n' "${passes}" "${total}"

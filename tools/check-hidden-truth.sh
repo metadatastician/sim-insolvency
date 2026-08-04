@@ -35,11 +35,13 @@ allow=()
 [[ -f "${allowlist_file}" ]] &&
   mapfile -t allow < <(grep -v -e '^#' -e '^[[:space:]]*$' "${allowlist_file}" || true)
 
-mask() { # stdin -> stdout with allowlisted phrases blanked
-  local args=()
-  local phrase
-  for phrase in "${allow[@]}"; do args+=(-e "s/${phrase}/ALLOWED-PHRASE/g"); done
-  if (( ${#args[@]} )); then sed "${args[@]}"; else cat; fi
+mask() { # stdin -> stdout with allowlisted phrases blanked (literal, no regex)
+  local text phrase
+  text="$(cat)"
+  for phrase in "${allow[@]}"; do
+    text="${text//"${phrase}"/ALLOWED-PHRASE}"
+  done
+  printf '%s\n' "${text}"
 }
 
 scan_stream() { # $1 channel label, $2 origin label; stdin = text to scan
@@ -71,6 +73,9 @@ shipped=("${learner}" "${root}/shell" "${root}/rule-packs"
   "${scenario}/evidence/engagement-email.adoc"
   "${scenario}/evidence/cash-summary.adoc"
   "${scenario}/evidence/director-statements.adoc")
+for path in "${shipped[@]}"; do
+  [[ -e "${path}" ]] || fail "files channel: missing input ${path#"${root}"/}"
+done
 while IFS= read -r -d '' file; do
   grep -Iq . "${file}" || continue   # skip binaries here; Task 5 covers them
   scan_stream "files" "${file#"${root}"/}" < "${file}"

@@ -6,6 +6,7 @@ workflows:
     '.github/workflows/quality.yml':
         - 'actions/checkout@v6.0.2'
         - 'mlugg/setup-zig@v2.2.1'
+    '.github/workflows/secret-scanner.yml': []
 dependencies:
     'actions/checkout@v6.0.2':
         ref: 'v6.0.2'
@@ -17,4 +18,3 @@ dependencies:
         commit: 'sha1-d1434d08867e3ee9daa34448df10607b98908d29'
         owner_id: 7289241
         repo_id: 812112570
-    '.github/workflows/secret-scanner.yml': []

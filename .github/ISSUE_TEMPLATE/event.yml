@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
 name: Programme event or event chain
 description: Record an uncertain threat, opportunity or linked response
 title: "[EVENT] "

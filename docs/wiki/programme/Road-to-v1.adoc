@@ -7,7 +7,7 @@
 :page-product-version: Planning horizon only
 :page-authority-status: Dependent on reviewed release pack
 :page-owner: Programme lead
-:page-last-reviewed: 2026-07-29
+:page-last-reviewed: 2026-08-07
 :page-next-review: Monthly and after material events
 :page-related-issues: Programme objective and active gate issues
 :page-programme-gate: G0 through G9
@@ -32,7 +32,11 @@ professional review.
 
 Next::
 Complete G3/G4 evidence, validate scenario/rubric/authority mappings, run
-trusted alpha cohorts, resolve accessibility and hidden-state findings.
+trusted alpha cohorts, and resolve accessibility findings. The hidden-state
+detection finding is no longer unresolved at the tooling level — a
+machine-verified scanner exists (KEY-003 mitigated; see
+link:gates/G4-Vertical-Slice.adoc[G4]) — but independent security review of
+that scanner and of production packaging is still outstanding.
 
 Later::
 Conduct controlled institutional/professional pilot, complete operational and

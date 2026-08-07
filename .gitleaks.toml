@@ -1,0 +1,74 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Gitleaks configuration — narrow, value/path-anchored tuning.
+#
+# PR #6 added gitleaks secret scanning to this repo (secret-scanner.yml calls
+# the estate's shared secret-scanner-reusable.yml) but shipped no tuning
+# file, although the PR body itself prescribed "a narrow, path-anchored"
+# one. This file is that follow-through.
+#
+# DESIGN RULE — KEEP THIS WHEN EDITING: allowlist by an exact, anchored VALUE
+# (`^...$`), or by a path that structurally cannot hold a live credential —
+# never a bare substring, and never a path allowlisted merely because "that
+# file looks fine". A scanner tuned into silence with a blanket allowlist is
+# a fake gate — exactly the defect class this repo's other gates
+# (hidden-truth, wiki-health) exist to eliminate.
+#
+# VERIFIED 2026-08-07: scanning this repo — both the plain source tree and
+# the AsciiDoc-mirror pass that secret-scanner-reusable.yml also runs, since
+# gitleaks' default allowlist drops any path ending in "doc" — with the
+# exact CI-pinned `gitleaks v8.18.4` binary (checksum ba6dbb65...28d0101d4
+# per secret-scanner-reusable.yml) currently finds ZERO leaks, with or
+# without this file. None of the items below actually trip the default
+# ruleset today: the HMAC dev-key literal is a low-entropy hyphenated
+# English phrase, not a generic-api-key-shaped value, and the rest are
+# plain-prose documentation or narrative data. This file is therefore
+# precautionary tuning, not a fix for a reproduced false positive — it
+# documents why these items are safe now and keeps them safe if the ruleset
+# or gitleaks version changes under us.
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Known-benign, credential-shaped material: the Phase A dev HMAC signing key and its key-id label, the hidden-truth scanner's own phrase allowlist, and one scenario's fictional reality file"
+
+regexes = [
+  # Phase A development HMAC signing key, committed in the open BY DESIGN.
+  # SECURITY.md documents that without SIM_INSOLVENCY_CERT_KEY set in the
+  # environment, the binary signs with this published dev key and marks the
+  # resulting certificate key-id = "phase-a-development" so it can never be
+  # mistaken for a production credential. Appears at zig/src/main.zig:88 and
+  # as the Justfile `verify-certificate` default parameter (Justfile:112).
+  '''^phase-a-development-key-not-for-production$''',
+
+  # The key-id LABEL for the key above (not the key itself):
+  # zig/src/main.zig:89 and documented in SECURITY.md:13. A plain hyphenated
+  # English phrase with no digits or symbols — it identifies which key
+  # signed a certificate, the same non-secret role as the OpenPGP-fingerprint
+  # entry in the estate baseline .gitleaks.toml; it discloses nothing.
+  # (docs/assessment/certificate-schema.adoc describes the signature_key_id
+  # FIELD generically and never contains this literal, so it needs no entry
+  # here.)
+  '''^phase-a-development$''',
+]
+
+paths = [
+  # tools/hidden-truth-allowlist.txt is itself an allowlist for a DIFFERENT,
+  # in-repo scanner (check-hidden-truth.sh / test-hidden-truth-scanner.sh): a
+  # short list of sanctioned in-fiction phrases that legitimately contain a
+  # hidden-truth token as a substring (e.g. "connected-payment-records").
+  # check-hidden-truth.sh already fails the build if an entry here does not
+  # occur in the scanned corpus, so its contents are load-bearing test data,
+  # never credentials.
+  '''(^|/)tools/hidden-truth-allowlist\.txt$''',
+
+  # scenarios/morrow-engineering-001/reality/reality.a2ml is the FICTIONAL
+  # ground truth for one learning scenario — SECURITY.md's confidentiality
+  # concern here is narrative spoilage ("do not include ... hidden scenario
+  # reality in reports"), not credentials. Its fields are narrative labels
+  # (cash-pressure, management-information, ...) and in-fiction
+  # minute-offsets; nothing in the directory is a live secret. Narrowed to
+  # this one scenario's reality file, not scenarios/**, so any future
+  # scenario's reality file is still scanned until it earns the same review.
+  '''(^|/)scenarios/morrow-engineering-001/reality/reality\.a2ml$''',
+]

@@ -7,7 +7,7 @@
 :page-product-version: Programme framework v0.1
 :page-authority-status: Mixed
 :page-owner: Programme lead
-:page-last-reviewed: 2026-07-29
+:page-last-reviewed: 2026-08-07
 :page-next-review: Monthly
 :page-related-issues: Key-issue and gate issues
 :page-programme-gate: G1 through G9
@@ -29,7 +29,7 @@ tasks.
 |Authority Watch governance |Designed only |Approve manual-first freshness authority |G3, G5–G10
 |Assessment validity |Evidence required |Approve validation study and reviewer |G5–G10
 |Certificate claims |Bounded in implementation |Approve production issuer and revocation policy |G5–G9
-|Hidden-state protection |Threat model only |Approve assessment packaging/security test |G3–G8
+|Hidden-state protection |Machine-verified (KEY-003 mitigated); independent security review pending |Commission independent review of the packaging/security test |G3–G8
 |AffineScript maturity |Partial external capability |Define G3 adapter acceptance |G3–G4
 |typed-wasm maturity |Partial external capability |Define carrier and verifier acceptance |G3–G4
 |Gossamer integration |Port plus headless projection |Choose native-shell evidence threshold |G3–G6
@@ -47,6 +47,10 @@ tasks.
 
 The machine-readable register in
 link:../../../programme/key-issues.toml[`programme/key-issues.toml`] records
-owner, next decision, review target, evidence, gates, event chains and narrative.
-An `Unassigned` owner is itself a visible programme condition, not a default
-which satisfies governance.
+`id`, `title`, `exposure`, `gate`, `status` (`open` / `mitigated` / `closed`)
+and, where a status is not `open`, an `evidence` array citing the concrete
+artefacts that support it — for example KEY-003 cites the hidden-truth scanner
+and its canary suite. It does not yet record owner, next decision, review
+target or narrative for every entry; those columns above are maintained by
+hand on this page until the schema is extended further. An absent `evidence`
+array means no artefact has been cited, not that the issue is closed.

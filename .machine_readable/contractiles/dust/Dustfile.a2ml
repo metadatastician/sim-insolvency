@@ -1,0 +1,61 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# Dustfile — rollback, recovery and deprecation for sim-insolvency.
+# Verb:      dust
+# Authority: advisory
+#
+# Declaration only — see ../INDEX.a2ml on shape.
+
+@abstract:
+How to undo things here, and what has been retired. Most of this repository is
+recoverable by rebuild: the only irreplaceable artefacts are authored scenario
+content and the decision record.
+@end
+
+## Recovery
+
+### rebuild-from-source
+- description: Every binary artefact is reproducible from source.
+- procedure: "just clean && just build && just test"
+- irrecoverable: "nothing — zig-out/, .zig-cache/ and dist/ are all derived"
+
+### rebuild-learner-bundle
+- description: dist/ is gitignored and derived.
+- procedure: "just standalone (or `just hidden-truth`, which packages one if absent)"
+- notes: tools/package-standalone.sh REFUSES if the destination exists. Move the old bundle aside rather than forcing — the refusal is a guard against a half-overwritten bundle being scanned as if fresh.
+
+### recover-certificate-verification
+- description: A certificate can be re-verified without the original run.
+- procedure: "just verify-certificate <file> <key> — recomputes the digest and signature from the envelope's own fields"
+- notes: Requires the key it was signed with. Development-key certificates verify with the published development key by design.
+
+## Irreplaceable
+
+### authored-scenario-content
+- description: scenarios/morrow-engineering-001/ is hand-authored, including the hidden reality that the whole assessment depends on.
+- backup: "git history only"
+- notes: There is exactly one scenario. Losing it loses the product.
+
+### decision-record
+- description: docs/architecture/adr/ and the programme registers under programme/.
+- backup: "git history only"
+
+## Deprecated / retired
+
+### bespoke-machine-readable-state
+- what: ".machine_readable/STATE.a2ml (a bespoke [project]/[claims] pair)"
+- retired: "2026-08-07"
+- replaced_by: ".machine_readable/descriptiles/STATE.a2ml"
+- notes: The original [claims] block is preserved verbatim in the replacement so no claim was silently dropped.
+
+### empty-scaffold-directories
+- what: "tests/, benches/, fixtures/, certificates/ — directory trees containing no files"
+- retired: "2026-08-04 (tests/), 2026-08-07 (remainder)"
+- rationale: "Empty scaffolding implies a suite that does not exist. Zig tests are inline in zig/src/ and run via `zig build test`; the real fixtures live under scenarios/*/fixtures/."
+
+### seven-canary-hidden-truth-suite
+- what: "the 7-canary form of tools/test-hidden-truth-scanner.sh"
+- retired: "2026-08-04"
+- replaced_by: "9 canaries — a drift-channel canary and a runtime positive-marker canary were added after review found the runtime channel could pass vacuously"
+- notes: Retained here because the number appears in older documents and pull-request bodies.

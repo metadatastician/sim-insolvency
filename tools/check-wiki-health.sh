@@ -39,8 +39,8 @@ if [[ -n "${duplicates}" ]]; then
 fi
 
 registered="$(wc -l < "${ids_file}")"
-if [[ "${registered}" -lt 21 ]]; then
-  printf 'ERROR only %s registered substantive pages; at least 21 required\n' "${registered}" >&2
+if [[ "${registered}" -lt 38 ]]; then
+  printf 'ERROR only %s registered substantive pages; at least 38 required\n' "${registered}" >&2
   errors=$((errors + 1))
 fi
 

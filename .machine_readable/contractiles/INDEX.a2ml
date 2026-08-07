@@ -1,0 +1,80 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# INDEX.a2ml — Contractile registry for sim-insolvency.
+#
+# Machine-readable catalogue of the contractile verbs present in this repository.
+# Consumers SHOULD read this file to discover the verb set rather than
+# hard-coding it.
+
+---
+id = "sim-insolvency-contractiles"
+version = "1.0.0"          # 1.0.0 (2026-08-07): first contractile set for this repo.
+last_updated = "2026-08-07"
+shape = "declaration-only"
+
+# SHAPE — read this before consuming anything here.
+#
+# The estate's canonical contractile shape is a "trident": a declaration
+# (<Verb>file.a2ml), a runner (<verb>.ncl) and K9 automation (<verb>.k9.ncl),
+# coherence-pinned by a manifest. This repository ships the DECLARATIONS ONLY.
+#
+# That is deliberate. The estate's contractile runner is unverified — declaration
+# files exist across the estate but whether any executor consumes them has not
+# been demonstrated here, and manifests elsewhere still pin
+# sha256 = "pending-first-verify". Shipping .ncl runners that nothing runs would
+# create exactly the appearance-of-enforcement this repository spends its gate
+# suite eliminating. These files are therefore honest declarations of intent and
+# invariant, and the ACTUAL enforcement lives in `just check`,
+# .github/workflows/quality.yml and the canary suites — each verb below names the
+# real mechanism that enforces it, or says plainly that none does.
+
+## Verbs
+
+[[verbs]]
+name = "must"
+file = "must/Mustfile.a2ml"
+semantics = "release-blocking invariants"
+authority = "hard"
+enforced-by = "just check, .github/workflows/quality.yml"
+status = "active"
+
+[[verbs]]
+name = "trust"
+file = "trust/Trustfile.a2ml"
+semantics = "trust boundary, integrity and provenance"
+authority = "hard"
+enforced-by = "tools/check-hidden-truth.sh, gitleaks, actions.lock, certificate hash chain"
+status = "active"
+
+[[verbs]]
+name = "bust"
+file = "bust/Bustfile.a2ml"
+semantics = "declared brokenness — what is known not to work and must not be trusted"
+authority = "hard"
+enforced-by = "declaration only; each entry names its own evidence"
+status = "active"
+
+[[verbs]]
+name = "adjust"
+file = "adjust/Adjustfile.a2ml"
+semantics = "drift tolerances and corrective actions"
+authority = "advisory"
+enforced-by = "review cadence; no automated executor"
+status = "active"
+
+[[verbs]]
+name = "dust"
+file = "dust/Dustfile.a2ml"
+semantics = "rollback, recovery and deprecation"
+authority = "advisory"
+enforced-by = "declaration only"
+status = "active"
+
+[[verbs]]
+name = "intend"
+file = "intend/Intentfile.a2ml"
+semantics = "committed intents and horizon wishes"
+authority = "non-gating"
+enforced-by = "nothing — by definition"
+status = "active"

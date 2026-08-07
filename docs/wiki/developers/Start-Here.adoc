@@ -7,7 +7,7 @@
 :page-product-version: 0.1.0-phase-a / pre-alpha
 :page-authority-status: Architecture only; no legal-authority claim
 :page-owner: Technical lead
-:page-last-reviewed: 2026-07-29
+:page-last-reviewed: 2026-08-07
 :page-next-review: At G4 decision
 :page-related-issues: Architecture and vertical-slice epics
 :page-programme-gate: G3 — Architecture proven
@@ -27,7 +27,47 @@ The event ledger is authoritative. Commands are validated before events are
 accepted. Projections are disposable. Scenario reality, potential evidence,
 disclosed evidence, learner beliefs and normative state remain separate.
 
-Start with `just doctor`, then `just check`. `just docs-health` validates this
-wiki. Do not add Python, TypeScript, Node, React, C FFI, Nix or an untyped
-JavaScript implementation. Read link:../programme/Known-Limitations.adoc[Known
-Limitations] before treating an estate adapter as complete.
+Start with `just doctor`, then `just check`. `just check` runs, among other
+gates, `just hidden-truth` (`tools/check-hidden-truth.sh`) and
+`just docs-health` (`tools/check-wiki-health.sh`), which validates this wiki's
+page metadata and register. Do not add Python, TypeScript, Node, React, C FFI,
+Nix or an untyped JavaScript implementation. Read
+link:../programme/Known-Limitations.adoc[Known Limitations] before treating an
+estate adapter as complete.
+
+== Gate commands
+
+[cols="2,3",options="header"]
+|===
+|Command |What it checks
+|`just docs-health` |Runs `tools/check-wiki-health.sh`: every registered wiki
+page carries the 12 required `:page-*:` attributes, page IDs are unique, and
+`docs/wiki/_Page-Register.adoc` row IDs equal each page's own `:page-id:`.
+|`just test-docs-health` |Runs `tools/test-wiki-health.sh`: seeds a
+register/page-id drift defect and an empty-register defect into a scratch
+copy and requires `check-wiki-health.sh` to fail on both and pass on a clean
+copy.
+|`just hidden-truth` |Runs `tools/check-hidden-truth.sh`: scans bundle
+structure, shipped files, binary strings and live CLI runtime output for
+scenario-reality tokens that must never reach a learner, plus a
+reality-versus-kernel drift check (KEY-003, G4).
+|`just test-hidden-truth-gate` |Runs `tools/test-hidden-truth-scanner.sh`:
+seeds one leak per channel (9 total, including a broken-binary case) into a
+scratch tree and requires the scanner to fail on each and pass on a clean
+copy.
+|===
+
+== Canary and falsifiability standard
+
+A gate that cannot fail is not a gate. Every shell-based check in this repo
+that claims to enforce something should have a matching `test-*` script that
+seeds a concrete defect into a scratch copy of the minimal tree the checker
+needs, asserts the checker rejects it, and separately asserts the checker
+accepts an untouched copy. A checker with no such canary, or one whose canary
+never actually seeds a failing case, is a fake gate — it will read green
+regardless of the real state of the repository. `tools/check-hidden-truth.sh`
+and `tools/check-wiki-health.sh` currently meet this standard (9/9 and 3/3
+canaries respectively); `tools/check-abi-drift.sh`,
+`tools/validate-scenario.sh`, `tools/check-no-prohibited-stack.sh` and
+`tools/typecheck-affinescript.sh` do not yet have canary coverage — treat
+their passing as weaker evidence until they do.

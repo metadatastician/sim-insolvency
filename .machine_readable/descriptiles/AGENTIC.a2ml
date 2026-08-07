@@ -1,0 +1,55 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# AGENTIC.a2ml — Rules for autonomous agents working in this repository.
+# The prose counterpart is 0-AI-MANIFEST.adoc at the repository root; where the
+# two disagree, 0-AI-MANIFEST.adoc governs and this file is the drift.
+
+[metadata]
+project = "sim-insolvency"
+last-updated = "2026-08-07"
+manifest = "0-AI-MANIFEST.adoc"
+
+[hard-rules]
+rules = [
+  "Never move, copy or quote content from scenarios/*/reality/ into any learner-visible artefact, test fixture, commit message, issue or pull-request body. This is the repository's central invariant.",
+  "Never weaken a gate to make it pass. If a gate fires, the finding is the product; the gate is not the obstacle.",
+  "Never add a check that exits 0 when its tool or input is missing. That is a fake gate and this repository treats it as a defect.",
+  "Every new gate ships with a canary suite that seeds a defect and requires the gate to fail.",
+  "No Python, TypeScript, JavaScript, C/C++, React, Electron/Tauri, or Nix flake. Enforced by tools/check-no-prohibited-stack.sh.",
+  "Do not soften the product disclaimers. This is not legal advice, not a qualification, not a JIEB result, not accredited CPD.",
+  "Do not mark a programme gate closed or a status dimension green without the evidence the gate itself names. Honest amber beats false green.",
+  "Do not self-merge. Open a pull request; the owner live-tests and merges.",
+]
+
+[before-you-change-anything]
+steps = [
+  "Read 0-AI-MANIFEST.adoc and docs/KNOWN-DEBT.adoc. The second tells you what is already known to be broken, so you do not re-report it as a discovery.",
+  "Run `just doctor` to see which toolchain components are actually present. Several are expected to be absent.",
+  "Run `just check` before and after. Note that `just check` and CI do not run the same set — see STATE [technical-debt] check-and-ci-diverge.",
+]
+
+[known-traps]
+traps = [
+  { id = "dist-is-gitignored", notes = "dist/ is NOT committed. A local dist/ may be stale or absent. CI builds and packages a fresh learner bundle before scanning; do not assume the on-disk bundle reflects current source." },
+  { id = "spdx-line-one", notes = "The estate linter greps only the first line, so a header lower down reads as MISSING. MOVE an existing identifier to line 1; never blindly prepend a second one, and never impose a licence other than PMPL-2.0-or-later here. A past estate sweep duplicated 24 headers and mis-licensed 3 files this way." },
+  { id = "actions-lockfile", notes = ".github/workflows/actions.lock IS the pin. Adding inline SHA pins REMOVES actions from the lockfile and causes startup_failure. Validate with `gh actions-lock --no-fix --json` after touching any workflow." },
+  { id = "affinescript-absent", notes = "The AffineScript compiler is not on PATH and is not expected to be. tools/typecheck-affinescript.sh currently exits 0 regardless — a known vacuous gate, recorded as debt. Do not read its green as a passing typecheck." },
+  { id = "hidden-truth-allowlist", notes = "tools/hidden-truth-allowlist.txt exists because some legitimate strings contain a deny token as a substring (e.g. connected-payment-records contains connected-payment). Every entry must occur in the scanned corpus or the scanner fails, so do not add speculative entries." },
+  { id = "ipkg-comment-syntax", notes = "idris2/sim-insolvency-abi.ipkg takes `--` comments, NOT `#`. A `#` SPDX header parses as a syntax error and breaks `just prove` outright. Proven 2026-08-07 by adding one. Apply the same care to any file whose comment syntax you are assuming rather than checking." },
+]
+
+[safe-to-do-without-asking]
+actions = [
+  "Run any read-only gate or test.",
+  "Fix a documented item in docs/KNOWN-DEBT.adoc, provided the fix comes with evidence and does not weaken a gate.",
+  "Add or correct documentation that is contradicted by the tree.",
+]
+
+[ask-first]
+actions = [
+  "Anything that changes what a certificate asserts, or how assessment is scored.",
+  "Anything that changes the rule pack, the authority cut-off, or scenario reality.",
+  "Anything that would let this software be mistaken for a regulated or accredited product.",
+  "Deleting or relaxing a gate, an allowlist entry, or a canary.",
+]

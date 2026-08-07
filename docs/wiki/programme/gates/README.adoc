@@ -1,5 +1,19 @@
 // SPDX-License-Identifier: PMPL-2.0-or-later
 = Gate Decision Pages
+:page-id: WIKI-GATES-001
+:page-title: Gate Decision Pages
+:page-audience: Programme, contributors and reviewers
+:page-maturity: SPECIFIED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Not applicable
+:page-owner: Programme governance
+:page-last-reviewed: 2026-08-07
+:page-next-review: At any gate decision record
+:page-related-issues: G0 through G12 gate decision issues
+:page-programme-gate: G0 through G12
+:page-event-chains: All
+
+include::../_Status-Panel.adoc[]
 
 Gate pages are durable evidence checklists. The matching GitHub issue coordinates
 the decision but cannot replace this record. Every decision must state entry

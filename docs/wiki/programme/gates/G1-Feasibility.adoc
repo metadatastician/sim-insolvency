@@ -1,4 +1,17 @@
 // SPDX-License-Identifier: PMPL-2.0-or-later
+:page-id: WIKI-GATE1-001
+:page-title: G1 — Feasibility Demonstrated
+:page-audience: Programme, contributors and reviewers
+:page-maturity: SPECIFIED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Not applicable
+:page-owner: Programme governance
+:page-last-reviewed: 2026-08-07
+:page-next-review: At G1 decision record
+:page-related-issues: Gate G1 decision issue
+:page-programme-gate: G1
+:page-event-chains: EC-002, EC-003, EC-007, EC-011
+
 == G1 — Feasibility demonstrated
 
 Status:: Open; reconnaissance supports continuation with material gaps.

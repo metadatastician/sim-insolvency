@@ -1,54 +1,44 @@
 # SPDX-License-Identifier: PMPL-2.0-or-later
-# RSR-compliant .gitattributes
+# Repo-specific .gitattributes.
+#
+# Replaces an unmodified RSR template that configured diff drivers for
+# Rust, Elixir, Julia, ReScript, Ada, Haskell, Chapel, Scheme, Nickel and
+# Nix — none of which this repo uses — while configuring none of the
+# languages it actually contains, and declared lowercase `justfile` while
+# this repo ships `Justfile`.
+#
+# No Nix/flake entries appear below: 0-AI-MANIFEST.adoc forbids a Nix flake
+# and tools/check-no-prohibited-stack.sh fails the build on flake.nix.
 
 * text=auto eol=lf
 
-# Source
-*.rs    text eol=lf diff=rust
-*.ex    text eol=lf diff=elixir
-*.exs   text eol=lf diff=elixir
-*.jl    text eol=lf
-*.res   text eol=lf
-*.resi  text eol=lf
-*.ada   text eol=lf diff=ada
-*.adb   text eol=lf diff=ada
-*.ads   text eol=lf diff=ada
-*.hs    text eol=lf
-*.chpl  text eol=lf
-*.scm   text eol=lf
-*.ncl   text eol=lf
-*.nix   text eol=lf
+# Source — languages this repo actually uses
+*.zig     text eol=lf
+*.idr     text eol=lf
+*.ipkg    text eol=lf
+*.affine  text eol=lf
+*.a2ml    text eol=lf
 
 # Docs
-*.md    text eol=lf diff=markdown
 *.adoc  text eol=lf
+*.md    text eol=lf
 *.txt   text eol=lf
 
-# Data
-*.json  text eol=lf
-*.yaml  text eol=lf
-*.yml   text eol=lf
+# Data / config
 *.toml  text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.json  text eol=lf
 
-# Config
+# Build / repo config files
 .gitignore     text eol=lf
 .gitattributes text eol=lf
-justfile       text eol=lf
-Makefile       text eol=lf
+.editorconfig  text eol=lf
+Justfile       text eol=lf
 Containerfile  text eol=lf
 
 # Scripts
 *.sh   text eol=lf
 
 # Binary
-*.png   binary
-*.jpg   binary
-*.gif   binary
-*.pdf   binary
-*.woff2 binary
-*.zip   binary
-*.gz    binary
-
-# Lock files
-Cargo.lock  text eol=lf -diff
-flake.lock  text eol=lf -diff
+*.wasm  binary

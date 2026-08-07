@@ -1,0 +1,64 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# Adjustfile — drift tolerances and corrective actions for sim-insolvency.
+# Verb:      adjust
+# Authority: advisory
+#
+# Declaration only — see ../INDEX.a2ml on shape. Nothing executes this file;
+# the cadences below are honoured by review, not by a runner.
+
+@abstract:
+What is allowed to drift, by how much, and what to do when it does. The
+authority cut-off is the sharpest: law changes whether or not anyone reviews the
+pack, so this drift is a correctness risk rather than a tidiness one.
+@end
+
+## Tolerances
+
+### authority-cut-off-age
+- description: The rule pack pins an authority cut-off date. Beyond the tolerance, the pack should be treated as stale for any purpose beyond illustration.
+- current: "2026-07-01"
+- tolerance_days: 180
+- on_exceed: "Mark the pack stale in rule-packs/*/pack.a2ml, surface it in the learner-visible status line, and open a review item. Do not silently continue."
+- severity: advisory-now-blocking-at-g5
+- notes: While authority-pack-reviewed = false this tolerance is somewhat moot — the pack has never been reviewed at all. It becomes load-bearing the moment it is.
+
+### wiki-page-review-age
+- description: Registered wiki pages carry :page-last-reviewed: and :page-next-review:. Neither is currently enforced by the health gate.
+- tolerance_days: 90
+- on_exceed: "Re-review the page or mark it explicitly stale. Do not blanket-update the date — a refreshed date on unreviewed content is a lie the gate cannot catch."
+- severity: advisory
+
+### toolchain-gap-reconfirmation
+- description: docs/architecture/toolchain-gaps.adoc lists gaps that are expected to persist. They should be reconfirmed rather than assumed.
+- tolerance_days: 90
+- last_reconfirmed: "2026-08-07"
+- on_exceed: "Re-verify each gap against the tree and re-date the document."
+- severity: advisory
+
+### debt-register-freshness
+- description: docs/KNOWN-DEBT.adoc should be reconciled against the tree so that resolved items are marked resolved and new ones are added.
+- tolerance_days: 60
+- on_exceed: "Reconcile. A debt register that is never closed out becomes noise, and noise gets ignored."
+- severity: advisory
+
+### descriptile-state-freshness
+- description: .machine_readable/descriptiles/STATE.a2ml carries completion, claims and debt. It drifts every time the tree changes materially.
+- tolerance_days: 60
+- on_exceed: "Re-derive from the tree, not from the previous version of the file."
+- severity: advisory
+
+## Corrective actions
+
+### on-new-gate
+- trigger: A new gate is added.
+- action: "Add its canary suite in the same change, add it to both `just check` and CI, and record it in PLAYBOOK.a2ml [gates]."
+
+### on-new-scenario
+- trigger: A scenario is added under scenarios/.
+- action: "Confirm the hidden-truth deny-list derivation picks up its reality file, add its structure checks to validate-scenario.sh, and re-run the canary suite. The scanner currently hardcodes morrow-engineering-001 in places — see docs/KNOWN-DEBT.adoc."
+
+### on-workflow-edit
+- trigger: Any .github/workflows/*.yml is edited.
+- action: "Run `gh actions-lock --no-fix --json` and confirm valid. Never add an inline SHA pin — the lockfile is the pin."

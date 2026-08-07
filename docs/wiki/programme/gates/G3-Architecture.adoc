@@ -1,4 +1,17 @@
 // SPDX-License-Identifier: PMPL-2.0-or-later
+:page-id: WIKI-GATE3-001
+:page-title: G3 — Architecture Proven
+:page-audience: Programme, contributors and reviewers
+:page-maturity: SPECIFIED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Not applicable
+:page-owner: Programme governance
+:page-last-reviewed: 2026-08-07
+:page-next-review: At G3 decision record
+:page-related-issues: KEY-002; Gate G3 decision issue
+:page-programme-gate: G3
+:page-event-chains: EC-003, EC-007, EC-012
+
 == G3 — Architecture proven
 
 Status:: Open; native kernel and ports work, while typed-wasm and estate runtime

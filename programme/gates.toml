@@ -1,55 +1,78 @@
 # SPDX-License-Identifier: PMPL-2.0-or-later
-schema_version = 1
+# schema_version 2 adds `status` (open | not_entered | closed) mirroring each
+# gate page's own "Status::" line, and an optional `evidence` array of
+# repo-relative paths (or path: description entries) recording what actually
+# supports a non-"open"/non-"not_entered" status. Absence of `evidence` means
+# no artefact has been cited yet; do not infer closure from silence.
+schema_version = 2
 
 [[gate]]
 id = "G0"
 stage = "L0"
 decision = "Programme concept accepted"
+status = "open"
 [[gate]]
 id = "G1"
 stage = "L1"
 decision = "Feasibility demonstrated"
+status = "open"
 [[gate]]
 id = "G2"
 stage = "L2"
 decision = "Foundation baseline approved"
+status = "open"
 [[gate]]
 id = "G3"
 stage = "L3"
 decision = "Architecture proven"
+status = "open"
 [[gate]]
 id = "G4"
 stage = "L4"
 decision = "Vertical slice complete"
+status = "open"
+evidence = [
+  "tools/check-hidden-truth.sh",
+  "tools/test-hidden-truth-scanner.sh",
+  "zig/src/kernel.zig: golden runs never expose hidden truth in ledger or certificate",
+]
 [[gate]]
 id = "G5"
 stage = "L5"
 decision = "Professional validation threshold met"
+status = "open"
 [[gate]]
 id = "G6"
 stage = "L6"
 decision = "Alpha exit"
+status = "not_entered"
 [[gate]]
 id = "G7"
 stage = "L7"
 decision = "Pilot exit"
+status = "not_entered"
 [[gate]]
 id = "G8"
 stage = "L8"
 decision = "Release candidate approved"
+status = "not_entered"
 [[gate]]
 id = "G9"
 stage = "L9"
 decision = "Version 1 released"
+status = "not_entered"
 [[gate]]
 id = "G10"
 stage = "L10"
 decision = "Operational evaluation completed"
+status = "not_entered"
 [[gate]]
 id = "G11"
 stage = "L11"
 decision = "Expansion authorised"
+status = "not_entered"
 [[gate]]
 id = "G12"
 stage = "L12"
 decision = "Retirement or migration approved"
+status = "not_entered"

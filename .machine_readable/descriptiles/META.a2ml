@@ -1,0 +1,84 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# META.a2ml — Project meta-level information
+# Architecture decisions, design rationale, governance.
+#
+# CREATED 2026-08-07 alongside the rest of this repository's first descriptile set.
+
+[metadata]
+version = "0.1.0-phase-a"
+last-updated = "2026-08-07"
+
+[project-info]
+type = "application"       # library | binary | monorepo | service | website | game | application
+languages = ["zig", "idris2", "affinescript", "shell", "a2ml", "asciidoc"]
+license = "PMPL-2.0-or-later"
+author = "Jonathan D.A. Jewell (hyperpolymath)"
+
+# On `languages`: AffineScript is listed because it is the declared principal
+# application language and the .affine modules are real, reviewed contracts — but
+# the compiler is not on PATH and nothing AffineScript executes. Zig is what runs.
+# Idris2 carries the proof-bearing ABI. Listing AffineScript first would overstate;
+# omitting it would misrepresent the architecture. Both are recorded in STATE.
+
+[architecture-decisions]
+# Every ADR under docs/architecture/adr/. Dates are each ADR's own stated Date.
+adrs = [
+  { id = "ADR-0001", slug = "affinescript-principal" },
+  { id = "ADR-0002", slug = "typed-wasm-target" },
+  { id = "ADR-0003", slug = "event-sourced-case-model" },
+  { id = "ADR-0004", slug = "five-epistemic-layers" },
+  { id = "ADR-0005", slug = "zig-only-ffi" },
+  { id = "ADR-0006", slug = "idris2-abi" },
+  { id = "ADR-0007", slug = "gossamer-shell" },
+  { id = "ADR-0008", slug = "burble-gateway" },
+  { id = "ADR-0009", slug = "local-first-verisim" },
+  { id = "ADR-0010", slug = "assessment-outcome-separation" },
+  { id = "ADR-0011", slug = "certificate-boundary" },
+  { id = "ADR-0012", slug = "authored-scenarios-first" },
+  { id = "ADR-0013", slug = "rule-pack-versioning" },
+  { id = "ADR-0014", slug = "proven-tests-integration" },
+  { id = "ADR-0015", slug = "hexadeca-port" },
+  { id = "ADR-0016", slug = "standalone-distribution" },
+  { id = "ADR-0017", slug = "echidna-proof-port" },
+  { id = "ADR-0018", slug = "wolfi-nerdctl-stapeln" },
+  { id = "ADR-0019", slug = "hidden-truth-adversarial-validation" },
+]
+# Slugs are the on-disk filenames under docs/architecture/adr/ (ADR-<id>-<slug>.adoc),
+# recorded rather than re-titled so this list cannot drift from the files it indexes.
+
+[known-gaps]
+gaps = [
+  { id = "adr-titles-transcribed", notes = "The ADR titles above are transcribed from filenames in docs/architecture/adr/. No ADR carries a machine-readable Status line (proposed|accepted|superseded), so nothing records whether a decision still stands. Adding a Status attribute to the ADR template and backfilling all nineteen is the fix." },
+  { id = "no-adr-for-scenario-authoring", notes = "There is no ADR for how scenarios are authored or reviewed, even though scenario authoring is the main way new content enters the product and the hidden-truth deny-list is derived from scenario files. This is the highest-value missing decision record." },
+  { id = "proof-obligations-partly-aspirational", notes = "docs/architecture/proof-obligations.adoc step 7 ('fail CI on manifest/receipt drift') is only half enforced: check-abi-drift.sh runs in CI but greps strings; the Idris2 typecheck that would give the claim teeth does not run in CI at all." },
+  { id = "toolchain-gap-tracking", notes = "docs/architecture/toolchain-gaps.adoc claimed every gap was tracked as an explicit TODO adjacent to its port. There are zero TODO comments in zig/, idris2/ or affinescript/. Corrected 2026-08-07 to point at docs/KNOWN-DEBT.adoc, which is the honest mechanism." },
+]
+
+[development-practices]
+practices = [
+  "Gates must be able to fail. Every gate added since 2026-08-04 ships with a canary suite that seeds a defect and requires the gate to fail; a gate that exits 0 when its tool or input is missing is treated as a defect, not a convenience.",
+  "Hidden scenario reality never enters a learner artefact. The deny-list is derived from the scenario files themselves rather than hand-curated, so authoring cannot drift away from enforcement.",
+  "No Python, TypeScript, JavaScript, C/C++, React, Electron/Tauri or Nix — enforced by tools/check-no-prohibited-stack.sh.",
+  "Guix-first reproducibility; there is deliberately no Nix flake.",
+  "SPDX identifier on every file. Shebang and doctype lines take precedence over the header position rule; see docs/KNOWN-DEBT.adoc.",
+  "The owner live-tests and merges. Contributors and agents open pull requests and do not self-merge.",
+]
+
+[design-rationale]
+rationale = [
+  "Assessment targets defensible reasoning, not a correct answer. The rubric explicitly sets one-correct-path = false; two competent routes (CVL and Administration) reach threshold by different balances of cost, control and risk.",
+  "Competence is scored separately from consequence so that a well-reasoned case can still go badly and a lucky case still fail assessment. This is the difference between a simulator and a quiz.",
+  "Hidden reality is a first-class architectural layer rather than an implementation detail, because the product's validity depends on learners not being able to read the answer out of the artefact they are given.",
+  "The ledger is append-only and hash-chained so that a result can be replayed and re-derived rather than trusted.",
+  "Estate integrations are capability-gated ports returning not-supported rather than silent no-ops, so an absent dependency is visible instead of being mistaken for a working one.",
+]
+
+[maintenance-axes]
+axes = [
+  { axis = "authority freshness", notes = "The rule pack pins an authority cut-off (2026-07-01). Law changes; a stale pack is a correctness risk, not just a documentation one. Review is mandatory, not advisory." },
+  { axis = "assessment validity", notes = "Unvalidated until a practitioner reviews the rubric. Rated Red." },
+  { axis = "hidden-state integrity", notes = "Gate-enforced and canary-verified since 2026-08-04. The strongest axis." },
+  { axis = "toolchain drift", notes = "Eleven declared gaps, all still true as of 2026-08-07; see docs/architecture/toolchain-gaps.adoc." },
+]

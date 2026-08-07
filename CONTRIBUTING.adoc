@@ -2,8 +2,27 @@
 = Contributing
 
 Run `just doctor`, `just check`, `just test-golden` and `just build-wasm`.
+`just check` already runs `lint typecheck prove test hidden-truth
+test-hidden-truth-gate`, so the hidden-truth leak scanner and its 9-canary
+adversarial suite are covered. Also run `just docs-health` and
+`just test-docs-health` (wiki register gate and its 3-canary suite) before
+opening a pull request — neither is currently part of `just check`, and CI
+runs them as separate steps.
+
 Changes to event schemas, authority packs, rubrics, certificate claims or ABI
 ordinals require an ADR/conformance update. Legal material requires the review
 policy; do not paste proprietary training material. Retain
 PMPL-2.0-or-later SPDX headers on original code, documentation, and scenario
 content.
+
+Any new quality gate must ship with a canary suite that seeds a concrete
+defect and proves the gate fails on it, following the pattern of
+`test-hidden-truth-gate` and `test-docs-health`. A gate with no canary suite
+is not accepted as a gate.
+
+== Merge convention
+
+The owner live-tests and merges. Contributors and agents open a pull request
+and do not self-merge, regardless of CI status. Land related work as one
+reviewed pull request once the whole set is green, rather than as a drip of
+draft PRs.

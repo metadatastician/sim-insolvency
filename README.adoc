@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: PMPL-2.0-or-later
 // SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell (hyperpolymath)
-= Insolvency Tycoon
+= Sim Insolvency
 :toc: left
 :reproducible:
 
@@ -11,7 +11,7 @@ defensible decision-making.
 
 [IMPORTANT]
 ====
-Insolvency Tycoon is a fictional professional-learning simulation. It is not a law
+Sim Insolvency is a fictional professional-learning simulation. It is not a law
 firm, insolvency practice, live case-management system, legal advice, supervised
 experience, statutory authorisation, an accredited qualification, a JIEB pass,
 or accredited CPD unless a competent external body separately approves it.
@@ -47,15 +47,56 @@ record, learner beliefs and normative case state.
 == Reproducibility
 
 This repository is Guix-first and based on the inspected RSR template. It does
-not use a Nix flake. `just doctor`, `just build`, `just test`, `just prove`,
-`just test-golden`, and `just run` are the current command surface. A standalone
-release and Wolfi image are designed to run without an estate checkout or
-network access.
+not use a Nix flake. A standalone release and Wolfi image are designed to run
+without an estate checkout or network access. `just --list` prints the full
+recipe list; the ones a contributor reaches for most are:
+
+[source,sh]
+----
+just doctor                 # environment / toolchain check
+just build                  # native Zig kernel
+just build-wasm              # untyped wasm fallback
+just standalone [profile]    # package a learner/facilitator bundle
+just test                    # zig tests + ABI drift + scenario + prohibited-stack checks
+just test-golden             # golden-path replay
+just prove                   # Idris2 typecheck of the proof-bearing ABI
+just run                     # native home screen
+just container-build/-run    # nerdctl Wolfi image
+just check                   # the umbrella quality gate — see "Quality gates" below
+----
 
 Development certificate envelopes can be exported with
 `just export-certificate learner-pseudonym result.a2ml` and checked with
 `just verify-certificate result.a2ml`. The bundled HMAC key is explicitly a
 development profile, not a production issuer or professional credential.
+
+== Quality gates
+
+`just check` is the umbrella gate and runs, in order: `lint typecheck prove
+test hidden-truth test-hidden-truth-gate`. Two named gates are worth calling
+out individually because they each ship their own adversarial canary suite:
+
+* `just hidden-truth` (part of `just check`) scans the packaged learner
+  bundle — structure, shipped files, binary strings, runtime output, and
+  kernel timing drift — for leaked scenario-reality material.
+  `just test-hidden-truth-gate` (also part of `just check`) runs a 9-canary
+  adversarial suite that seeds each leak class and asserts the gate refuses
+  to pass it.
+* `just docs-health` enforces the wiki page register (page-id equality
+  between the register and each page's front matter). `just test-docs-health`
+  runs its own 3-canary suite the same way. Neither is currently part of
+  `just check`; CI runs both directly.
+
+CI additionally runs gitleaks secret scanning via the estate's shared
+reusable workflow (`.github/workflows/secret-scanner.yml`) on every push and
+pull request.
+
+The repository's falsifiability standard is: a gate that cannot fail is not a
+gate. Every new gate is required to ship with a canary suite that seeds a
+concrete defect and requires the gate to fail before that gate is trusted to
+pass at all. Known gaps against that standard — gates without canaries yet,
+and other tracked debt across licensing, documentation, code, and proofs —
+are recorded in `docs/KNOWN-DEBT.adoc`.
 
 == Licence
 
@@ -63,3 +104,7 @@ Original code, documentation, and fictional scenario materials are all
 PMPL-2.0-or-later. The exact licence text is pinned from the Palimpsest
 repository's introducing commit `6f83592`; per-file SPDX declarations are
 authoritative.
+
+PMPL-2.0-or-later is not an SPDX-registered licence identifier, so GitHub's
+licence classifier reports this repository's licence as `NOASSERTION`. That
+is an expected consequence of using a custom licence, not a defect.

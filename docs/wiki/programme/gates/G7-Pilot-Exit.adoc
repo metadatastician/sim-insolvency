@@ -1,4 +1,17 @@
 // SPDX-License-Identifier: PMPL-2.0-or-later
+:page-id: WIKI-GATE7-001
+:page-title: G7 — Pilot Exit
+:page-audience: Programme, contributors and reviewers
+:page-maturity: SPECIFIED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Not applicable
+:page-owner: Programme governance
+:page-last-reviewed: 2026-08-07
+:page-next-review: At G7 decision record
+:page-related-issues: KEY-005; Gate G7 decision issue
+:page-programme-gate: G7
+:page-event-chains: EC-008, EC-009, EC-011
+
 == G7 — Pilot exit
 
 Status:: Not entered.

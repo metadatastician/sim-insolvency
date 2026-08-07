@@ -2,13 +2,18 @@
 = Toolchain and Integration Gaps
 :toc: left
 
+NOTE: Reconfirmed 2026-08-07 — all 11 gaps below were individually
+re-verified against the current tree (source, `Justfile` recipes, and
+`docs/architecture/adr/`) and remain true. None has closed since the previous
+review.
+
 [cols="2,3,3",options="header"]
 |===
 |Gap |Phase A treatment |Return path
 
 |AffineScript compiler absent from `PATH`
-|Commit real `.affine` contracts; `just build-affine` fails with a diagnostic;
-Zig fallback executes the same neutral contract.
+|Commit real `.affine` contracts; `just build-typed-wasm` fails with a
+diagnostic; Zig fallback executes the same neutral contract.
 |Configure/pin the inspected compiler and make conformance required.
 
 |AffineScript compiler experimental/partial
@@ -58,5 +63,10 @@ optional runtime and its prover trust policy is approved.
 |Named two-person review over pinned pack digest.
 |===
 
-Every gap is tracked as an explicit TODO adjacent to its port. A fallback may
-provide function but never upgrades the integration status or legal claim.
+These gaps are tracked here, in this table, not as inline `TODO` comments
+adjacent to each port: a tree-wide search of `.zig`, `.idr`, `.sh` and
+`.affine` source finds zero `TODO` markers. This table plus
+`docs/KNOWN-DEBT.adoc` (category: Toolchain) is the honest mechanism for
+tracking these gaps — treat this document, not source comments, as the
+authoritative list. A fallback may provide function but never upgrades the
+integration status or legal claim.

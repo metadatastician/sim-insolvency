@@ -1,0 +1,51 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# ECOSYSTEM.a2ml — Ecosystem position
+#
+# CREATED 2026-08-07. The `what-this-is-not` list below is the boundary-erosion
+# guard. For this repository it is not merely housekeeping: the first four lines
+# are legal and professional boundaries that the product's own disclaimer text
+# depends on, and softening them would misrepresent regulated territory.
+
+[metadata]
+project = "sim-insolvency"
+ecosystem = "hyperpolymath"
+
+[position]
+type = "application"
+purpose = "An evidence-driven, time-aware simulator for England & Wales corporate insolvency practice, used for professional learning and assessed reasoning."
+# IS-NOT — anti-identity. Keep these SHORT: arrival packs project them into
+# CLAUDE.md joined by " · ", so they must read as phrases, not paragraphs.
+what-this-is-not = [
+  "legal advice",
+  "a professional qualification or statutory authorisation",
+  "a JIEB result or accredited CPD",
+  "a tool for use on a real insolvency case",
+  "a rules engine anyone should rely on (the rule pack is provisional and unreviewed)",
+  "rsr-template-repo (the template it was instantiated from)",
+  "a game (it is assessment software; consequence is modelled, not scored for fun)",
+  "an AffineScript-executing program today (Zig runs; AffineScript is contract-only)",
+]
+
+[depends-on]
+# Estate components this repository integrates with. Every one is behind a
+# capability-gated port that returns not-supported / not-available rather than a
+# silent no-op, so an absent dependency is visible. See STATE [not-implemented].
+components = [
+  { name = "gossamer", role = "shell projection", status = "port-backed; headless HTML fallback in shell/index.html" },
+  { name = "burble", role = "group-session transport", status = "port-backed; vote/reveal protocol absent" },
+  { name = "verisimdb", role = "persistence", status = "port-backed; no Zig client" },
+  { name = "hexadeca", role = "connector", status = "not located — upstream repository does not exist" },
+  { name = "echidna", role = "proof port", status = "port exists and is gated; no provers bundled" },
+  { name = "stapeln", role = "container layer manifest", status = "metadata only; runtime absent" },
+  { name = "a2ml", role = "data format for scenarios, rule packs and certificates", status = "in use" },
+  { name = "standards", role = "shared reusable workflows (secret scanning)", status = "in use; pinned" },
+]
+
+[depended-on-by]
+components = []
+notes = "Nothing in the estate consumes this repository. It is a leaf."
+
+[boundaries]
+notes = "Hidden scenario reality (scenarios/*/reality/) is the sharpest internal boundary in this repository: it must never reach a learner artefact, and that boundary is gate-enforced and canary-verified rather than merely documented. The second boundary is professional: everything this software emits, including its certificates, is simulation output and is labelled as such in the artefact itself, not only in the documentation."

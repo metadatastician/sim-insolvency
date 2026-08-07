@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# NEUROSYM.a2ml — Neurosymbolic and formal-methods position.
+#
+# CREATED 2026-08-07. Written deliberately conservatively: this repository has a
+# real proof layer, and the temptation with a proof layer is to describe the
+# intent rather than the theorems. What is actually proved is listed; what is
+# only specified is labelled as specified.
+
+[metadata]
+project = "sim-insolvency"
+last-updated = "2026-08-07"
+
+[position]
+is-a-neurosymbolic-project = false
+notes = "There is no learning component, no model, and no inference. This file exists because the repository carries a formal layer, not because it is an AI system. It does not sit in the estate's neurosymbolic clade."
+
+[formal-layer]
+language = "idris2"
+version = "0.7.0"
+package = "idris2/sim-insolvency-abi.ipkg"
+modules = ["Core", "Event", "Certificate", "Proof", "Conformance"]
+totality = "every module declares %default total"
+escape-hatches = "none — zero postulate, believe_me, really_believe_me, assert_total, assert_smaller or holes across the ABI modules"
+
+[proved]
+# Actual theorems with proof terms. This is a short list and is meant to be.
+theorems = [
+  { module = "Conformance", statement = "the ABI version is 1", form = "Refl" },
+  { module = "Conformance", statement = "the NotSupported status ordinal is fixed", form = "Refl" },
+  { module = "Certificate", statement = "false is not true (discharges the impossible branch)", form = "impossible" },
+  { module = "Certificate", statement = "a critical error cannot issue a certificate", form = "constructive" },
+  { module = "Event", statement = "successor is not identity", form = "constructive" },
+  { module = "Event", statement = "a ledger sequence cannot stay equal across an append", form = "constructive" },
+]
+
+[specified-not-proved]
+# Type-level predicates with no inhabitants constructed anywhere. They document
+# an intended contract; they do not establish it. Calling these proofs would be
+# the single easiest way for this repository to overstate itself.
+items = [
+  { module = "Proof", predicate = "ValidProofGoal", notes = "uninhabited — no function anywhere produces a value of this type" },
+  { module = "Proof", predicate = "ValidProvedReceipt", notes = "uninhabited — specification only" },
+]
+
+[enforcement]
+local = "`just prove` runs idris2 --typecheck at ipkg level (not per-file --check, which would be a fake gate)"
+ci = "NOT ENFORCED — .github/workflows/quality.yml has no idris2 step. ADR-0006 describes `just prove` as a release gate; that description is currently aspirational. Recorded in STATE [technical-debt] as idris2-not-in-ci."
+abi-drift = "tools/check-abi-drift.sh runs in CI but is grep-only: it matches literal strings and cannot detect semantic drift, and it has no canary suite proving it fires."
+
+[proof-ports]
+echidna = "zig/src/ports.zig exposes EchidnaProofPort and affinescript/shell/Ports.affine declares the extern seam. No provers are bundled; the port returns not-available. The test is deliberately named 'ECHIDNA port is proof-ready without claiming a proof'."

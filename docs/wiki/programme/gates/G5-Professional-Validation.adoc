@@ -1,4 +1,17 @@
 // SPDX-License-Identifier: PMPL-2.0-or-later
+:page-id: WIKI-GATE5-001
+:page-title: G5 — Professional Validation Threshold Met
+:page-audience: Programme, contributors and reviewers
+:page-maturity: SPECIFIED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Not applicable
+:page-owner: Programme governance
+:page-last-reviewed: 2026-08-07
+:page-next-review: At G5 decision record
+:page-related-issues: KEY-001; Gate G5 decision issue
+:page-programme-gate: G5
+:page-event-chains: EC-001, EC-002, EC-006, EC-008
+
 == G5 — Professional validation threshold met
 
 Status:: Open; no practitioner or independent assessment validation completed.

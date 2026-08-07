@@ -1,3 +1,4 @@
+-- SPDX-License-Identifier: PMPL-2.0-or-later
 package sim-insolvency-abi
 
 version = 0.1.0

@@ -1,0 +1,45 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# ANCHOR.a2ml — The stable identity of this repository.
+#
+# An anchor is what should still be true after a refactor, a rename, or a change
+# of implementation language. If a change makes one of these false, it is not a
+# refactor — it is a different project.
+
+[metadata]
+project = "sim-insolvency"
+last-updated = "2026-08-07"
+
+[anchor]
+one-sentence = "Sim Insolvency simulates England & Wales corporate insolvency practice so that professional reasoning under uncertainty and time pressure can be exercised and assessed."
+type = "application"
+domain = "England and Wales corporate insolvency"
+audience = ["learners in or entering insolvency practice", "facilitators running sessions", "assessors reviewing reasoning"]
+
+[invariants]
+# Load-bearing. Each is enforced somewhere, not merely asserted.
+items = [
+  { id = "hidden-reality-never-ships", statement = "Scenario reality is never present in, nor derivable from, any learner artefact.", enforced-by = "tools/check-hidden-truth.sh + tools/test-hidden-truth-scanner.sh + kernel leak tests" },
+  { id = "no-single-correct-path", statement = "Assessment rewards defensible reasoning, not one prescribed answer.", enforced-by = "rubric-map.a2ml one-correct-path = false; two competent routes reach threshold" },
+  { id = "competence-not-consequence", statement = "Competence is scored separately from how the case turned out.", enforced-by = "kernel test 'competence is separate from consequence'" },
+  { id = "ledger-is-replayable", statement = "Any result can be re-derived from the event ledger rather than trusted.", enforced-by = "hash-chained append-only ledger; replay determinism tests" },
+  { id = "not-a-credential", statement = "Nothing this software emits is a qualification, authorisation, JIEB result or accredited CPD, and every artefact says so in itself.", enforced-by = "disclaimer embedded in the certificate envelope and verified on import" },
+]
+
+[would-break-identity]
+changes = [
+  "Shipping scenario reality to learners, or making the answer derivable from a learner artefact.",
+  "Scoring a single correct procedure.",
+  "Presenting output as a credential, or removing the simulation disclaimer from artefacts.",
+  "Relying on the provisional rule pack as if it were reviewed authority.",
+  "Replacing the ledger with mutable state, so results are asserted rather than replayable.",
+]
+
+[stable-under]
+changes = [
+  "Replacing Zig with AffineScript as the executing language (that is the declared direction of travel).",
+  "Replacing the headless HTML shell with Gossamer or any other projection.",
+  "Adding scenarios, procedures or jurisdictions.",
+  "Any change of persistence, transport or container tooling.",
+]

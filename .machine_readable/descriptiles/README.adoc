@@ -1,0 +1,65 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Descriptiles
+:toc: macro
+
+Descriptiles are the *reading*: what is actually true of this repository. They
+are the descriptive half of the estate's contractile/descriptile pattern, and
+their counterpart is `.machine_readable/contractiles/`, which declares the
+*set-point* — what should be true.
+
+Created 2026-08-07. Before that this repository had a single bespoke
+`.machine_readable/STATE.a2ml` carrying a `[project]`/`[claims]` pair and
+nothing else. Those claims are preserved verbatim in `STATE.a2ml` under
+`[claims]`; the old file has been removed in favour of the canonical location.
+
+toc::[]
+
+== Files
+
+[cols="1,4",options="header"]
+|===
+|File |Carries
+
+|`STATE.a2ml`
+|Phase, maturity, what is implemented and what is not, acceptance evidence,
+blockers, *technical debt*, test status, next actions, and the preserved
+`[claims]` block.
+
+|`META.a2ml`
+|Architecture decisions (the ADR index), design rationale, development
+practices, maintenance axes, and `[known-gaps]` — gaps in the decision record
+rather than in the code.
+
+|`ECOSYSTEM.a2ml`
+|Position in the estate, what this depends on, and `what-this-is-not` — the
+anti-identity guard. For this repository those lines are professional and legal
+boundaries, not housekeeping.
+
+|`AGENTIC.a2ml`
+|Rules for autonomous agents, known traps, and what requires asking first. The
+prose counterpart is `0-AI-MANIFEST.adoc`, which governs on any disagreement.
+
+|`NEUROSYM.a2ml`
+|The formal layer: what is actually *proved* in Idris2, and — separately — what
+is only *specified*. The distinction is load-bearing.
+
+|`PLAYBOOK.a2ml`
+|Entry points, toolchain, the gate sets (`just check` and CI differ), common
+recipes and gotchas.
+
+|`CLADE.a2ml`
+|Estate clade identity and a reproducible UUIDv5 derived from the canonical
+repository URL.
+
+|`anchors/ANCHOR.a2ml`
+|What must remain true after any refactor: the invariants that define this as
+the same project, and the changes that would not.
+|===
+
+== Reading them honestly
+
+`STATE.a2ml` carries both `[claims]` and `[technical-debt]`, and they are meant
+to be read together. A claim such as `echidna-proof-port = true` means the port
+exists and is correctly gated — not that anything is proved. Where a claim could
+be read as stronger than the evidence supports, the debt entry beside it says
+so. The consolidated human-readable register is `docs/KNOWN-DEBT.adoc`.

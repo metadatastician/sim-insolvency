@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# PLAYBOOK.a2ml — How to work in this repository: entry points, gates, recipes.
+
+[metadata]
+project = "sim-insolvency"
+last-updated = "2026-08-07"
+
+[entry-points]
+docs = "README.adoc for orientation; docs/wiki/Home.adoc for the governed wiki; 0-AI-MANIFEST.adoc if you are an agent; docs/KNOWN-DEBT.adoc before reporting anything as broken."
+code = "zig/src/kernel.zig is the executing core (session, ledger, assessment, certificate). zig/src/main.zig is the CLI. affinescript/ holds the non-executing principal-language contracts."
+data = "scenarios/morrow-engineering-001/ is the only scenario; rule-packs/england-wales-corporate-provisional/ is the only rule pack."
+
+[toolchain]
+required = ["zig 0.16.0", "just"]
+optional = ["idris2 0.7.0 (proof layer)", "guix (reproducibility)", "nerdctl (container)", "shellcheck"]
+absent-by-design = ["affinescript compiler — not on PATH; the .affine modules are contracts, not builds"]
+check = "just doctor"
+
+[gates]
+# `just check` and CI DO NOT run the same set. This is recorded as debt
+# (STATE [technical-debt] check-and-ci-diverge) and is a trap for the unwary.
+just-check = ["lint", "typecheck", "prove", "test", "hidden-truth", "test-hidden-truth-gate"]
+ci-only = ["docs-health", "test-docs-health", "zig build wasm", "gitleaks secret scanning"]
+check-only = ["typecheck", "prove"]
+canary-verified = ["check-hidden-truth.sh (9/9)", "check-wiki-health.sh (3/3)"]
+not-canary-verified = ["check-abi-drift.sh", "validate-scenario.sh", "check-no-prohibited-stack.sh", "typecheck-affinescript.sh"]
+
+[common-recipes]
+recipes = [
+  { cmd = "just doctor", does = "report which toolchain components are present" },
+  { cmd = "just check", does = "the local umbrella gate: lint, typecheck, prove, test, hidden-truth, canaries" },
+  { cmd = "just test", does = "zig build test plus the ABI-drift, scenario and prohibited-stack gates" },
+  { cmd = "just prove", does = "idris2 --typecheck at ipkg level" },
+  { cmd = "just hidden-truth", does = "scan shipped artefacts, binary and runtime output for hidden scenario reality; auto-packages a bundle if dist/ is absent" },
+  { cmd = "just test-hidden-truth-gate", does = "seed one leak per channel and require the scanner to fail (9 canaries)" },
+  { cmd = "just docs-health", does = "validate the wiki register, page-id equality and required page metadata" },
+  { cmd = "just test-docs-health", does = "3 canaries proving the wiki gate fires" },
+  { cmd = "just golden", does = "run all eight golden runs and print their digests" },
+  { cmd = "just standalone", does = "build the learner bundle into dist/" },
+]
+
+[gotchas]
+items = [
+  "dist/ is gitignored and never committed. `just hidden-truth` packages one if it is missing; CI always builds a fresh one.",
+  "tools/package-standalone.sh REFUSES if the destination already exists. That is deliberate. Move the old bundle aside rather than forcing.",
+  "The certificate signing key is a published development key unless SIM_INSOLVENCY_CERT_KEY is set. Certificates are labelled accordingly and are not credentials.",
+  "A green `just check` does not imply green CI, and vice versa — the gate sets differ.",
+]
+
+[when-something-fails]
+guidance = "A firing gate is a finding, not an obstacle. Record it, fix the cause, and only touch the gate itself if the gate is provably wrong — in which case update its canary suite in the same change so the correction is itself falsifiable."

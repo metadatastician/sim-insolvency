@@ -17,3 +17,16 @@
   and programme/stage-gate issue templates.
 * Added a canary-verified hidden-truth leak gate over bundle structure,
   shipped files, binary strings, runtime output and kernel timing drift.
+* Closed a fake-gate defect in the hidden-truth runtime channel and enforced
+  wiki register/page-id equality in the docs-health gate; extended the
+  hidden-truth adversarial canary suite from 7/7 to 9/9 (#5).
+* Added gitleaks secret scanning in CI via the estate's shared reusable
+  workflow; this repository previously had no leak scanning at all (#6).
+* Repaired the Actions lockfile: the reusable-caller entry added in #6 sat
+  under `dependencies:` rather than `workflows:`, leaving the file unparseable
+  and every workflow in `startup_failure` since 2026-08-05. CI on `main` had
+  been dead for two days.
+* Added the estate descriptile and contractile sets under `.machine_readable/`,
+  retiring the bespoke `STATE.a2ml` (its claims are preserved verbatim).
+* Added `docs/KNOWN-DEBT.adoc`, a consolidated debt register across licence,
+  documentation, code, proofs, CI/CD, template and toolchain.

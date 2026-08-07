@@ -1,28 +1,42 @@
 # SPDX-License-Identifier: PMPL-2.0-or-later
-schema_version = 1
+# schema_version 2 adds `status` (open | mitigated | closed) and an optional
+# `evidence` array of repo-relative paths (or path: description entries)
+# recording what actually supports a non-"open" status. Absence of `evidence`
+# means no artefact has been cited yet; do not infer closure from silence.
+schema_version = 2
 
 [[issue]]
 id = "KEY-001"
 title = "Practitioner and assessment validation are absent"
 exposure = "critical"
 gate = "G5"
+status = "open"
 [[issue]]
 id = "KEY-002"
 title = "Estate toolchain integrations remain partly port-backed"
 exposure = "high"
 gate = "G3"
+status = "open"
 [[issue]]
 id = "KEY-003"
 title = "Hidden truth isolation needs adversarial validation"
 exposure = "critical"
 gate = "G4"
+status = "mitigated"
+evidence = [
+  "tools/check-hidden-truth.sh",
+  "tools/test-hidden-truth-scanner.sh",
+  "zig/src/kernel.zig: golden runs never expose hidden truth in ledger or certificate",
+]
 [[issue]]
 id = "KEY-004"
 title = "Programme capacity is concentrated in a solo maintainer"
 exposure = "high"
 gate = "G6"
+status = "open"
 [[issue]]
 id = "KEY-005"
 title = "Operational and client evidence does not yet exist"
 exposure = "high"
 gate = "G7"
+status = "open"

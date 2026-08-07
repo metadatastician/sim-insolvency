@@ -1,0 +1,66 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# Trustfile — trust boundary, integrity and provenance for sim-insolvency.
+# Verb:      trust
+# Authority: hard
+#
+# Declaration only — see ../INDEX.a2ml on shape.
+
+@abstract:
+What this repository trusts, what it refuses to trust, and how each boundary is
+checked. The defining asymmetry: a learner is an adversary with respect to
+hidden scenario reality, and a facilitator is not.
+@end
+
+## Trust boundaries
+
+### hidden-reality-is-trusted-host-only
+- boundary: scenarios/*/reality/ is readable by the trusted host and the facilitator profile only.
+- untrusted: the learner, the learner bundle, the shipped binary's observable output, and any exported artefact.
+- verified_by: "./tools/check-hidden-truth.sh"
+- notes: The learner-bundle structure check requires that reality/, assessment/ and requestable-evidence.a2ml are ABSENT from the learner profile and PRESENT in the facilitator profile, so the two profiles are provably different rather than assumed to be.
+
+### group-participants-are-untrusted
+- boundary: all Burble group-session input is untrusted.
+- controls: size, version and type checks; rate limiting; pseudonyms; no remote direct state mutation; dissent preserved rather than resolved away.
+- verified_by: "zig build test (ports and kernel tests)"
+- notes: The vote/reveal protocol is NOT implemented; this boundary is declared for the port, not yet exercised end-to-end.
+
+### scenarios-are-data-not-code
+- boundary: scenario and rule-pack content is data only.
+- controls: no executable scenario code, bounded sizes, strict parsing, capability-limited action vocabulary, digest-bound manifests.
+- verified_by: "./tools/validate-scenario.sh"
+
+### authority-pack-identity-is-pinned
+- boundary: the rule pack is identified by id, version and effective date, with no permissive fallback.
+- verified_by: "./tools/check-abi-drift.sh + kernel constants"
+- notes: The pinned pack is PROVISIONAL and UNREVIEWED. Pinning guarantees identity, not correctness. Do not mistake a stable pin for reviewed authority.
+
+## Integrity
+
+### ledger-hash-chain
+- claim: results are re-derivable from an append-only, hash-chained ledger rather than trusted.
+- verified_by: "zig build test — replay determinism and tamper-evidence"
+
+### certificate-signature
+- claim: certificates bind the result digest to ledger, scenario, pack, rubric and application version under an HMAC.
+- verified_by: "just export-certificate + just verify-certificate round trip"
+- notes: Signed with a PUBLISHED development key unless SIM_INSOLVENCY_CERT_KEY is set, and labelled key-id accordingly. A certificate is evidence of a simulation run, never a credential.
+
+## Provenance
+
+### action-pins-are-lockfile-managed
+- claim: GitHub Actions are pinned via .github/workflows/actions.lock, not by inline SHAs.
+- verified_by: "gh actions-lock --no-fix --json"
+- notes: Adding an inline SHA pin REMOVES the action from the lockfile and causes startup_failure. This is an estate-proven failure mode.
+
+### secrets-are-scanned
+- claim: no live credential is committed.
+- verified_by: "gitleaks via the estate secret-scanner reusable workflow, on every push and pull request"
+- notes: There is no .gitleaks.toml tuning file yet and this repository contains credential-shaped but non-secret material, so false positives are expected. A scanner allowlisted into silence would be a fake gate; tune narrowly and path-anchored.
+
+### dependencies-are-recorded
+- claim: external dependencies and their pinned revisions are recorded.
+- verified_by: "DEPENDENCIES.adoc"
+- notes: The estate standards reusable workflow used for secret scanning is a real external dependency; confirm it is listed.

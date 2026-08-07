@@ -15,7 +15,8 @@ just container-run
 
 The runtime is a command-line assessment kernel, so it does not publish a port
 or claim an HTTP health check. `home`, `demo cvl`, `demo administration`,
-`group-demo`, and `golden` are valid commands.
+`group-demo`, `golden`, `certificate`, `verify-certificate`, and
+`verify-digest` are valid commands.
 
 `stapeln.toml` records the intended independently verifiable layer graph. It is
 metadata-only until the inspected Stapeln revision can execute the complete
@@ -24,9 +25,10 @@ Selur, and Cerro Torre components are future trust boundaries, not present
 runtime dependencies.
 
 The base currently uses the mutable `wolfi-base:latest` reference so that the
-first image can be resolved. A release is not reproducible until
-`tools/pin-wolfi.sh` (planned) records the registry digest and both `FROM`
-instructions use it. CI must reject a release tag while that gap remains.
+first image can be resolved. A release is not reproducible until a digest-pin
+tool records the registry digest and both `FROM` instructions use it; no such
+tool exists yet (tracked as debt in `docs/KNOWN-DEBT.adoc`, not present at
+any `tools/` path). CI must reject a release tag while that gap remains.
 
 == Hidden-data boundary
 

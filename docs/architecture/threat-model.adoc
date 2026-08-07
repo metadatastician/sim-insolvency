@@ -12,9 +12,28 @@ availability.
 
 Hidden truth leakage::
 Reality excluded from learner bundles; opaque identifiers; no debug projection;
-sealed/facilitator-controlled reveal; canary-verified scanner with a deny-list
-derived from scenario reality, covering bundle structure, shipped files,
-binary strings and runtime output, plus kernel timing drift.
+sealed/facilitator-controlled reveal; canary-verified scanner (9/9,
+`tools/test-hidden-truth-scanner.sh`) with a deny-list derived from scenario
+reality, covering bundle structure, shipped files, binary strings and runtime
+output, plus kernel timing drift. Since PR #5, the runtime channel does not
+merely check for the absence of forbidden tokens: it asserts each learner CLI
+invocation actually runs (nonzero exit fails the gate) and produces a
+recognised positive marker in its output, so a broken or silent binary cannot
+pass the gate vacuously.
+
+Committed secrets / credential exposure::
+Gitleaks secret scanning in CI via the estate's shared reusable workflow
+(`.github/workflows/secret-scanner.yml` calling
+`hyperpolymath/standards/.github/workflows/secret-scanner-reusable.yml`),
+alongside `rust-secrets` and `shell-secrets` checks; rotation-on-detection
+policy — a finding is treated as exposed for as long as it has been
+committed, and the response is to rotate the credential, not merely delete
+the line. There is no `.gitleaks.toml` tuning file yet
+(see `docs/KNOWN-DEBT.adoc` DEBT-DOC-003), and this repository is unusually
+rich in credential-shaped material — HMAC key IDs, `scenarios/*/reality/`,
+the hidden-truth allowlist — so false positives are expected on first real
+run and must be resolved with a narrow, path-anchored allowlist rather than
+by weakening the scanner.
 
 Ledger/replay tampering::
 Contiguous sequence, causal-parent checks, idempotency uniqueness and SHA-256
@@ -39,8 +58,8 @@ Pinned pack identity/digest, scenario compatibility and effective-date checks;
 revocation and mandatory review state; no permissive fallback.
 
 Dependency compromise::
-Guix pinning, recorded revisions, SBOM, minimal optional dependencies, security
-scans and reproducible build instructions.
+Guix pinning, recorded revisions, SBOM, minimal optional dependencies,
+gitleaks secret scanning and reproducible build instructions.
 
 WASM/FFI memory errors::
 Explicit pointer/length ownership, caller allocations, maximum sizes, total

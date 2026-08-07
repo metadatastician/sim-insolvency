@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# CLADE.a2ml — Estate clade identity.
+
+[metadata]
+project = "sim-insolvency"
+last-updated = "2026-08-07"
+
+[identity]
+# UUIDv5, URL namespace, derived from the canonical repository URL so the value
+# is reproducible rather than allocated:
+#   uuidgen --sha1 --namespace @url --name "github.com/metadatastician/sim-insolvency"
+uuid = "c2424922-5962-5a5e-9b9f-5e30fe467a64"
+canonical-url = "github.com/metadatastician/sim-insolvency"
+owner = "metadatastician"
+
+[clade]
+primary = "sim"            # simulation / training software
+secondary = "assess"       # assessment instrumentation
+notes = "This repository is training and assessment software for a regulated profession, without being a regulated product itself. That combination is the clade-defining feature: the domain is professional practice, the artefact is a simulator, and the boundary between them is enforced in code."
+
+[registry]
+registered-in-gv-clade-index = false
+notes = "Registration is outward-facing and is the owner's action. The repository is private and publication is not decided, so registration is deliberately deferred rather than overlooked."

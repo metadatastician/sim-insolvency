@@ -7,7 +7,7 @@
 :page-product-version: 0.1.0-phase-a / pre-alpha
 :page-authority-status: Mixed; see individual pages
 :page-owner: Documentation workstream
-:page-last-reviewed: 2026-07-29
+:page-last-reviewed: 2026-08-07
 :page-next-review: Every release gate
 :page-related-issues: Documentation epic
 :page-programme-gate: G2 through G9
@@ -32,17 +32,31 @@ link:../../programme/wiki-page-register.toml[`programme/wiki-page-register.toml`
 |WIKI-DEC-001 |link:programme/Decisions.adoc[Decisions] |All |RESEARCHED
 |WIKI-GOV-001 |link:programme/Governance.adoc[Governance] |All |SPECIFIED
 |WIKI-LIM-001 |link:programme/Known-Limitations.adoc[Known Limitations] |All |RESEARCHED
-|WIKI-USERS-001 |link:users/Start-Here.adoc[Learner Start Here] |Learner |DESIGNED
-|WIKI-FACILITATORS-001 |link:facilitators/Start-Here.adoc[Facilitator Start Here] |Facilitator |INDICATIVE
-|WIKI-DEVELOPERS-001 |link:developers/Start-Here.adoc[Developer Start Here] |Developer |RESEARCHED
-|WIKI-CLIENTS-001 |link:clients/Start-Here.adoc[Client Start Here] |Client |INDICATIVE
+|WIKI-USERS-001 |link:users/Start-Here.adoc[Learner Start Here] |Learner |DRAFT
+|WIKI-FACILITATORS-001 |link:facilitators/Start-Here.adoc[Facilitator Start Here] |Facilitator |DRAFT
+|WIKI-DEVELOPERS-001 |link:developers/Start-Here.adoc[Developer Start Here] |Developer |SPECIFIED
+|WIKI-CLIENTS-001 |link:clients/Start-Here.adoc[Client Start Here] |Client |DRAFT
 |WIKI-PRODUCT-001 |link:product/What-Sim-Insolvency-Is.adoc[What Sim Insolvency Is] |All |SPECIFIED
-|WIKI-PRODUCT-002 |link:product/What-Sim-Insolvency-Is-Not.adoc[What It Is Not] |All |SPECIFIED
-|WIKI-ASSESSMENT-001 |link:assessment/How-Assessment-Works.adoc[How Assessment Works] |All |DESIGNED
-|WIKI-ASSESSMENT-002 |link:assessment/Certificate-Meaning.adoc[Certificate Meaning] |All |IMPLEMENTED
-|WIKI-AUTHORITY-001 |link:authority/Authority-Freshness.adoc[Authority Freshness] |All |DESIGNED
+|WIKI-PRODUCT-002 |link:product/What-Sim-Insolvency-Is-Not.adoc[What It Is Not] |All |APPROVED
+|WIKI-ASSESSMENT-001 |link:assessment/How-Assessment-Works.adoc[How Assessment Works] |All |DRAFT
+|WIKI-ASSESSMENT-002 |link:assessment/Certificate-Meaning.adoc[Certificate Meaning] |All |SPECIFIED
+|WIKI-AUTHORITY-001 |link:authority/Authority-Freshness.adoc[Authority Freshness] |All |SPECIFIED
 |WIKI-SCENARIO-001 |link:scenarios/Morrow-Engineering-Overview.adoc[Morrow Engineering] |All |IMPLEMENTED
-|WIKI-TRUST-001 |link:product/Security-Privacy-Accessibility.adoc[Security, Privacy and Accessibility] |All |RESEARCHED
-|WIKI-EVALUATION-001 |link:evaluation/Framework.adoc[Evaluation Framework] |All |SPECIFIED
-|WIKI-SHARED-001 |link:shared/Glossary.adoc[Glossary] |All |SPECIFIED
+|WIKI-TRUST-001 |link:product/Security-Privacy-Accessibility.adoc[Security, Privacy and Accessibility] |All |DRAFT
+|WIKI-EVALUATION-001 |link:evaluation/Framework.adoc[Evaluation Framework] |All |DRAFT
+|WIKI-SHARED-001 |link:shared/Glossary.adoc[Glossary] |All |DRAFT
+|WIKI-GATES-001 |link:programme/gates/README.adoc[Gate Decision Pages] |Programme |SPECIFIED
+|WIKI-GATE0-001 |link:programme/gates/G0-Concept.adoc[G0 Concept] |Programme |SPECIFIED
+|WIKI-GATE1-001 |link:programme/gates/G1-Feasibility.adoc[G1 Feasibility] |Programme |SPECIFIED
+|WIKI-GATE2-001 |link:programme/gates/G2-Foundation.adoc[G2 Foundation] |Programme |SPECIFIED
+|WIKI-GATE3-001 |link:programme/gates/G3-Architecture.adoc[G3 Architecture] |Programme |SPECIFIED
+|WIKI-GATE4-001 |link:programme/gates/G4-Vertical-Slice.adoc[G4 Vertical Slice] |Programme |SPECIFIED
+|WIKI-GATE5-001 |link:programme/gates/G5-Professional-Validation.adoc[G5 Professional Validation] |Programme |SPECIFIED
+|WIKI-GATE6-001 |link:programme/gates/G6-Alpha-Exit.adoc[G6 Alpha Exit] |Programme |SPECIFIED
+|WIKI-GATE7-001 |link:programme/gates/G7-Pilot-Exit.adoc[G7 Pilot Exit] |Programme |SPECIFIED
+|WIKI-GATE8-001 |link:programme/gates/G8-Release-Candidate.adoc[G8 Release Candidate] |Programme |SPECIFIED
+|WIKI-GATE9-001 |link:programme/gates/G9-Version-1.adoc[G9 Version 1] |Programme |SPECIFIED
+|WIKI-GATE10-001 |link:programme/gates/G10-Operational-Evaluation.adoc[G10 Operational Evaluation] |Programme |SPECIFIED
+|WIKI-GATE11-001 |link:programme/gates/G11-Expansion.adoc[G11 Expansion] |Programme |SPECIFIED
+|WIKI-GATE12-001 |link:programme/gates/G12-Retirement.adoc[G12 Retirement] |Programme |SPECIFIED
 |===

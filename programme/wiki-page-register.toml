@@ -73,3 +73,45 @@ path = "docs/wiki/evaluation/Framework.adoc"
 [[page]]
 id = "WIKI-SHARED-001"
 path = "docs/wiki/shared/Glossary.adoc"
+[[page]]
+id = "WIKI-GATES-001"
+path = "docs/wiki/programme/gates/README.adoc"
+[[page]]
+id = "WIKI-GATE0-001"
+path = "docs/wiki/programme/gates/G0-Concept.adoc"
+[[page]]
+id = "WIKI-GATE1-001"
+path = "docs/wiki/programme/gates/G1-Feasibility.adoc"
+[[page]]
+id = "WIKI-GATE2-001"
+path = "docs/wiki/programme/gates/G2-Foundation.adoc"
+[[page]]
+id = "WIKI-GATE3-001"
+path = "docs/wiki/programme/gates/G3-Architecture.adoc"
+[[page]]
+id = "WIKI-GATE4-001"
+path = "docs/wiki/programme/gates/G4-Vertical-Slice.adoc"
+[[page]]
+id = "WIKI-GATE5-001"
+path = "docs/wiki/programme/gates/G5-Professional-Validation.adoc"
+[[page]]
+id = "WIKI-GATE6-001"
+path = "docs/wiki/programme/gates/G6-Alpha-Exit.adoc"
+[[page]]
+id = "WIKI-GATE7-001"
+path = "docs/wiki/programme/gates/G7-Pilot-Exit.adoc"
+[[page]]
+id = "WIKI-GATE8-001"
+path = "docs/wiki/programme/gates/G8-Release-Candidate.adoc"
+[[page]]
+id = "WIKI-GATE9-001"
+path = "docs/wiki/programme/gates/G9-Version-1.adoc"
+[[page]]
+id = "WIKI-GATE10-001"
+path = "docs/wiki/programme/gates/G10-Operational-Evaluation.adoc"
+[[page]]
+id = "WIKI-GATE11-001"
+path = "docs/wiki/programme/gates/G11-Expansion.adoc"
+[[page]]
+id = "WIKI-GATE12-001"
+path = "docs/wiki/programme/gates/G12-Retirement.adoc"

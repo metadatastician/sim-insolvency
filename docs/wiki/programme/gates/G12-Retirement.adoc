@@ -1,4 +1,17 @@
 // SPDX-License-Identifier: PMPL-2.0-or-later
+:page-id: WIKI-GATE12-001
+:page-title: G12 — Retirement or Migration Approved
+:page-audience: Programme, contributors and reviewers
+:page-maturity: SPECIFIED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Not applicable
+:page-owner: Programme governance
+:page-last-reviewed: 2026-08-07
+:page-next-review: At G12 decision record
+:page-related-issues: Gate G12 decision issue
+:page-programme-gate: G12
+:page-event-chains: EC-001, EC-011, EC-012
+
 == G12 — Retirement or migration approved
 
 Status:: Not entered.

@@ -6,3 +6,22 @@ Legal-rule activation additionally requires the two-person review defined in
 `docs/rules/review-policy.adoc`. Credential/accreditation claims require a
 separate external agreement and governance decision. ADRs are append-only;
 supersession records a new ADR rather than rewriting history.
+
+== Solo-maintainer reality
+
+Programme capacity is currently concentrated in a single maintainer. This is
+a registered programme risk, `KEY-004` in `programme/key-issues.toml`, gated
+at `G6`. There is no quorum: no decision recorded here or in an ADR requires
+more than one maintainer's sign-off unless a policy (such as the legal-rule
+two-person review above) says otherwise. Contributors and agents open pull
+requests; per `CONTRIBUTING.adoc`, only the owner merges.
+
+== Decision records
+
+Architectural decisions are recorded as ADRs under `docs/architecture/adr/`
+(append-only, superseded rather than rewritten). Programme-level decisions,
+risk exposure and gate status are tracked in the programme registers under
+`programme/` (`key-issues.toml`, `gates.toml`, `lifecycle.toml`,
+`event-register.toml`, `wiki-page-register.toml`). Both are the source of
+record; narrative documentation elsewhere should point back to them rather
+than restate their content.

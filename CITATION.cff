@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Sim Insolvency"
+version: "0.1.0-phase-a"
+authors:
+  - family-names: "Jewell"
+    given-names: "Jonathan D.A."
+repository-code: "https://github.com/metadatastician/sim-insolvency"
+license-url: "https://github.com/metadatastician/sim-insolvency/blob/main/LICENSE"

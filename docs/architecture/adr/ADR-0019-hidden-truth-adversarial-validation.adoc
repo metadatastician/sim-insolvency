@@ -1,0 +1,61 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= ADR-0019: Hidden-Truth Gate as Adversarial, Canary-Verified Validation
+:status: accepted
+
+Context:: KEY-003 (programme/key-issues.toml) held that hidden-truth
+isolation — keeping scenario reality out of the learner-facing bundle,
+binary and runtime — needed adversarial validation, not just a scanner that
+happened to pass. Gate G4 (programme/gates.toml, "Vertical slice complete")
+required this as a decision test before the slice could be called complete.
+A scanner that only checks for the absence of a fixed, hand-maintained list
+of forbidden strings can drift out of sync with the scenario it protects,
+and can pass vacuously if it never actually runs the thing it claims to
+scan.
+Decision:: `tools/check-hidden-truth.sh` derives its deny-list from
+`scenarios/*/reality/reality.a2ml` at scan time rather than from a
+hand-curated list, so scenario authoring cannot silently drift out of sync
+with what the scanner forbids; a derivation that yields zero tokens aborts
+the gate rather than passing vacuously. The gate then scans four channels —
+bundle structure (learner bundle must not contain the reality/assessment
+directories the facilitator bundle has), shipped files (source-side and
+packaged files read as text), binary strings (`strings` over the packaged
+learner binary and wasm artefact), and runtime CLI output (every learner CLI
+subcommand actually invoked, not just linted) — plus a fifth check: kernel
+timing-constant drift between `reality.a2ml`'s
+`[deterministic-consequences]` section and the compiled constants in
+`zig/src/consequences.zig`. The runtime channel additionally asserts a
+positive marker in each command's output (e.g. `digest=`,
+`certificate-digest =`) and fails if the command's exit status is nonzero,
+so a broken or silent binary fails the gate instead of passing it by
+default. `tools/test-hidden-truth-scanner.sh` seeds one leak per channel and
+asserts the scanner rejects each; every gate this repository ships is
+required to carry an equivalent canary suite proving it can fail, not only
+that it can pass.
+Alternatives:: A hand-curated deny-list is cheaper to write but silently
+stale the moment a scenario author adds new hidden facts without also
+editing the scanner. Checking only for absence of forbidden tokens (no
+positive-marker assertion) is the exact fake-gate pattern this repository
+otherwise works to eliminate: a scanner that never actually runs the binary,
+or runs it and gets nothing back, would pass a broken build. Neither
+alternative was acceptable at G4.
+Consequences:: CI must build and package a fresh learner (and, where
+present, facilitator) bundle before this gate runs, because `dist/` is
+gitignored and the scanner refuses to run without both a non-empty reality
+file and an existing learner bundle (exit 2, not a silent skip). Allowlist
+entries in `tools/hidden-truth-allowlist.txt` must correspond to phrases
+that genuinely occur in the scanned corpus — the gate fails on any unused
+allowlist entry (hygiene check), preventing the allowlist from silently
+growing broader than what it is excusing. The scanner hard-fails on missing
+inputs (reality file, learner bundle, executable binary) and on a vacuous
+deny-list rather than degrading to a partial or no-op scan. PR #4 shipped
+the original gate (structure and files channels); PR #5 closed a runtime
+fake-gate defect in it by adding the exit-status and positive-marker
+assertions to the runtime channel, taking the canary suite from what had
+been a partial count to the current 9/9. Known limitation, not fixed by this
+gate: the deny-list is exact-phrase and case-sensitive by construction, and
+only the shipped bundle/binary/runtime surfaces are covered — see
+`docs/KNOWN-DEBT.adoc`.
+Reversal:: Replace only with a scanner that is at least as adversarially
+canary-verified (able to demonstrably fail on a seeded leak in every channel
+it claims to cover) and whose deny-list remains derived from scenario
+reality rather than hand-maintained.

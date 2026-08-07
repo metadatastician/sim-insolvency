@@ -7,7 +7,7 @@
 :page-product-version: 0.1.0-phase-a / pre-alpha
 :page-authority-status: Engineering assurance; independent review pending
 :page-owner: Trust lead
-:page-last-reviewed: 2026-07-29
+:page-last-reviewed: 2026-08-07
 :page-next-review: At G6
 :page-related-issues: Security privacy and accessibility epic
 :page-programme-gate: G6 — Pilot-ready
@@ -24,7 +24,19 @@ Trust controls include strict parsing, versioned ports, append-only
 hash-chained events, rule-pack identity, digest-bound certificates,
 capability-limited scenario actions and validated command gateways for untrusted
 collaboration messages. Assessment-mode hidden reality must not be present in
-learner-accessible bundles.
+learner-accessible bundles — this requirement is now gate-enforced, not only
+a stated intention: `tools/check-hidden-truth.sh` scans bundle structure,
+shipped files, binary strings and live CLI runtime output for hidden-reality
+tokens, plus a reality-versus-kernel drift check, and
+`tools/test-hidden-truth-scanner.sh` proves the gate fires with a seeded
+defect on each of 9 channels. This closes the tooling side of KEY-003
+(`mitigated` in `programme/key-issues.toml`); independent security review of
+the scanner and of production packaging has not yet occurred. Source
+repositories are also scanned for committed secrets by a gitleaks-based
+workflow (`.github/workflows/secret-scanner.yml`); as of the most recent
+recorded run its CI execution fails with `startup_failure` (see
+link:../programme/Known-Limitations.adoc[Known Limitations]), so the control
+exists but is not yet verified as operating in CI.
 
 Accessibility is a product requirement, but the current shell has not completed
 WCAG conformance testing, assistive-technology testing or an independent

@@ -1,0 +1,89 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# Mustfile — release-blocking invariants for sim-insolvency.
+# Verb:      must
+# Authority: hard (a violated must blocks release)
+#
+# Declaration only — see ../INDEX.a2ml on shape. The `run` line of each check is
+# the REAL command that enforces it today, so these are verifiable by hand even
+# though no contractile runner executes this file.
+
+@abstract:
+What must hold for sim-insolvency to be releasable. The first group is the
+product's reason to exist: if hidden scenario reality can reach a learner, the
+assessment is void, and nothing else here matters.
+@end
+
+## Hidden truth
+
+### hidden-reality-absent-from-artefacts
+- description: No hidden scenario reality appears in the shipped bundle, the binary, or any runtime output.
+- run: "./tools/check-hidden-truth.sh"
+- severity: blocker
+- notes: Deny-list is derived from scenarios/*/reality/reality.a2ml, so scenario authoring cannot drift out of sync. A vacuous derivation aborts rather than passing.
+
+### hidden-truth-gate-can-fail
+- description: The hidden-truth scanner is proved able to fail, once per channel.
+- run: "./tools/test-hidden-truth-scanner.sh"
+- severity: blocker
+- notes: 9 canaries. A gate that cannot fail is not a gate; this check is what makes the one above meaningful.
+
+### kernel-emits-no-hidden-truth
+- description: Across all eight golden runs, no ledger event payload, actor or certificate contains a reality phrase.
+- run: "zig build test"
+- severity: blocker
+
+## Ledger and result integrity
+
+### ledger-replay-deterministic
+- description: Golden runs replay to byte-identical digests, and a tampered ledger fails verification.
+- run: "zig build test"
+- severity: blocker
+
+### abi-manifest-consistent
+- description: AffineScript, Idris2, Zig and the neutral ABI manifest agree on version, status ordinals, ownership and proof shape.
+- run: "./tools/check-abi-drift.sh"
+- severity: blocker
+- notes: WEAK — this check is grep-only and has no canary suite. It cannot detect semantic drift. Recorded in docs/KNOWN-DEBT.adoc.
+
+### scenario-structure-valid
+- description: The scenario carries its required files, neutral evidence and route fixtures, and the learner bundle passes its leak checks.
+- run: "./tools/validate-scenario.sh"
+- severity: blocker
+- notes: No canary suite. See docs/KNOWN-DEBT.adoc.
+
+## Stack and licence
+
+### prohibited-stack-absent
+- description: No Python, TypeScript, JavaScript, C/C++, React, Electron/Tauri scaffold or Nix flake.
+- run: "./tools/check-no-prohibited-stack.sh"
+- severity: blocker
+
+### spdx-present
+- description: Every source and data file carries an SPDX-License-Identifier of PMPL-2.0-or-later.
+- run: "grep -rL 'SPDX-License-Identifier' --include='*.zig' --include='*.idr' --include='*.a2ml' --include='*.adoc' ."
+- severity: blocker
+- notes: Shebang and doctype lines take precedence over line-1 placement; see docs/KNOWN-DEBT.adoc for the ruling and the exceptions.
+
+## Documentation
+
+### wiki-register-consistent
+- description: Every registered wiki page exists, carries its required metadata, has a unique page-id, and the page-register rows agree with the pages' own ids.
+- run: "./tools/check-wiki-health.sh"
+- severity: blocker
+- notes: Runs in CI but is NOT a dependency of `just check`. See docs/KNOWN-DEBT.adoc (check-and-ci-diverge).
+
+### wiki-gate-can-fail
+- description: The wiki health gate is proved able to fail.
+- run: "./tools/test-wiki-health.sh"
+- severity: blocker
+- notes: 3 canaries.
+
+## Product boundary
+
+### disclaimers-intact
+- description: Every emitted artefact states that it is simulation output and not legal advice, a qualification, a JIEB result or accredited CPD.
+- run: "./zig-out/bin/sim-insolvency certificate learner-pseudonym | grep -q 'disclaimer'"
+- severity: blocker
+- notes: The disclaimer is embedded in the certificate envelope and re-verified on import, not merely printed in documentation.

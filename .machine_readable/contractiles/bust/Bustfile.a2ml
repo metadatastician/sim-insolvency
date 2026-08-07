@@ -1,0 +1,79 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# Bustfile — declared brokenness for sim-insolvency.
+# Verb:      bust
+# Authority: hard
+#
+# Where Mustfile says "this must hold", Bustfile says "this is broken, expired,
+# or must not be trusted". Declaring brokenness explicitly means a consumer sees
+# it here rather than discovering it at runtime.
+#
+# Declaration only — see ../INDEX.a2ml on shape.
+# The human-readable register is docs/KNOWN-DEBT.adoc; this file carries the
+# subset that is actively broken rather than merely incomplete.
+
+@abstract:
+Things in this repository that do not work and must not be relied upon. The
+first entry is the most consequential, because it is a gate that always passes.
+@end
+
+## Broken
+
+### typecheck-affinescript-is-vacuous
+- class: fake_gate
+- description: tools/typecheck-affinescript.sh prints "BLOCKED: affinescript unavailable" and exits 0. The compiler is never on PATH, so this slot inside `just check` is permanently green regardless of the state of the .affine sources.
+- evidence: "tools/typecheck-affinescript.sh — no exit 1 on the BLOCKED path"
+- must_not: Treat a green `just typecheck` as evidence that any AffineScript typechecks. Nothing has been typechecked.
+- status: broken
+- remedy: Give it a strict mode that fails when the toolchain is expected to be present, or stop counting it as a gate in `just check`.
+
+### build-typed-wasm-cannot-succeed
+- class: unimplemented_by_design
+- description: tools/build-typed-wasm.sh exits 1 unconditionally. The typed-wasm carrier is producer-gated upstream.
+- evidence: "tools/build-typed-wasm.sh"
+- must_not: Rely on `just build-typed-wasm`, or read STATE's typed-wasm claims as anything but false.
+- status: broken-honestly
+- notes: This one is honest — it fails loudly rather than passing vacuously. It is listed so consumers do not schedule it.
+
+### hexadeca-port-has-no-upstream
+- class: missing_dependency
+- description: The Hexadeca connector port returns not-supported because the upstream repository does not exist.
+- evidence: "zig/src/ports.zig; DEPENDENCIES.adoc — 'Not located'"
+- must_not: Plan work that depends on Hexadeca.
+- status: broken-permanently
+- remedy: None available from inside this repository.
+
+### proof-goal-predicates-are-uninhabited
+- class: specification_not_proof
+- description: Proof.idr's ValidProofGoal and ValidProvedReceipt are type-level predicates with no inhabitants constructed anywhere in the tree.
+- evidence: "idris2/SimInsolvency/ABI/Proof.idr — no function produces a value of either type"
+- must_not: Describe these as proofs, or cite them as evidence that a proof obligation is discharged.
+- status: broken-as-claimed
+- remedy: Either construct inhabitants, or relabel them explicitly as specifications.
+
+### idris2-gate-does-not-gate
+- class: unenforced_claim
+- description: ADR-0006 describes `just prove` as a release gate, but .github/workflows/quality.yml has no idris2 step, so the proof layer is never checked by CI.
+- evidence: ".github/workflows/quality.yml"
+- must_not: Treat a green CI run as evidence that the Idris2 ABI still typechecks.
+- status: broken
+- remedy: Add an idris2 step to quality.yml.
+
+### check-and-ci-run-different-gates
+- class: divergent_enforcement
+- description: docs-health and test-docs-health run in CI but are not dependencies of `just check`; typecheck and prove are in `just check` but absent from CI.
+- evidence: "Justfile check recipe vs .github/workflows/quality.yml"
+- must_not: Treat a green local `just check` as predicting CI, or vice versa.
+- status: broken
+- remedy: Converge the two sets, or document the split deliberately.
+
+## Expired / superseded
+
+### dist-bundle-may-be-stale
+- class: stale_artefact
+- description: dist/ is gitignored and never committed. A local bundle can predate the source it was built from.
+- evidence: ".gitignore; CI packages a fresh bundle before scanning"
+- must_not: Audit shipped behaviour from an on-disk dist/ without rebuilding it first.
+- status: mitigated
+- notes: `just hidden-truth` now packages a bundle if none exists, and CI always builds one.

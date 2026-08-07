@@ -7,7 +7,7 @@
 :page-product-version: 0.1.0-phase-a / pre-alpha
 :page-authority-status: Provisional; no practitioner-approved release pack
 :page-owner: Programme lead
-:page-last-reviewed: 2026-07-29
+:page-last-reviewed: 2026-08-07
 :page-next-review: Monthly and at every gate decision
 :page-related-issues: Active programme objective, gate and key-issue set
 :page-programme-gate: Primary G3; partial G4 evidence
@@ -41,7 +41,7 @@ evidence are reviewed together.
 |Rule-pack completeness |Red |Only a small provisional subset exists; no comprehensive reviewed pack.
 |Professional validation |Red |No practitioner validation evidence has been recorded.
 |Assessment validity |Unknown |A rubric and competency observations exist, but no content-validity or reliability study.
-|Security |Amber |Threat model and tamper checks exist; hidden-state packaging and production signing need independent review.
+|Security |Amber |Threat model, tamper checks and a machine-verified hidden-truth gate (`tools/check-hidden-truth.sh`, 9/9 canaries in `tools/test-hidden-truth-scanner.sh`, KEY-003 mitigated) now exist and run locally via `just check`; a gitleaks-based secret scanner is configured (`.github/workflows/secret-scanner.yml`). Both it and the `quality` workflow returned `startup_failure` from 2026-08-05 until 2026-08-07, when a malformed Actions lockfile entry was identified and repaired; CI execution is expected to resume on merge but has not yet been observed green since the repair — see link:Known-Limitations.adoc[Known Limitations]. Production signing and independent security review are still needed.
 |Accessibility |Unknown |No completed accessibility evaluation or tested accommodation model.
 |Documentation |Amber |Technical docs are substantial; audience and programme guidance begins with this wiki.
 |Client readiness |Red |Commercial and implementation material is indicative; no offering, price, SLA or DPA is approved.
@@ -89,7 +89,8 @@ Blocked or externally dependent:
 
 == Top programme risks
 
-* hidden assessment truth leakage;
+* hidden assessment truth leakage — machine-verified detection now exists
+  (KEY-003 mitigated) but independent security review has not occurred;
 * stale authority appearing current;
 * insufficient professional-review capacity;
 * AffineScript/typed-wasm gaps increasing boundary and test complexity;
@@ -113,7 +114,10 @@ accessibility evidence.
 
 == Documentation health
 
-Canonical wiki metadata and register validation are introduced in this change.
-Substantive link, review-date, issue-backlink and release-claim validation remain
-progressive checks; the health command reports unsupported checks rather than
-silently claiming full coverage.
+Canonical wiki metadata and register validation (`tools/check-wiki-health.sh`,
+proved by `tools/test-wiki-health.sh`) now cover all 38 registered pages,
+including the G0–G12 gate pages and their README, which previously carried no
+`:page-*:` metadata and were unregistered. Substantive link, review-date,
+issue-backlink and release-claim validation remain progressive checks; the
+health command reports unsupported checks rather than silently claiming full
+coverage.

@@ -1,11 +1,47 @@
 // SPDX-License-Identifier: PMPL-2.0-or-later
+:page-id: WIKI-GATE4-001
+:page-title: G4 — Vertical Slice Complete
+:page-audience: Programme, contributors, reviewers and security lead
+:page-maturity: SPECIFIED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Not applicable
+:page-owner: Programme governance
+:page-last-reviewed: 2026-08-07
+:page-next-review: At G4 decision record
+:page-related-issues: KEY-003; Gate G4 decision issue
+:page-programme-gate: G4
+:page-event-chains: EC-004, EC-005, EC-008
+
 == G4 — Vertical slice complete
 
-Status:: Open; executable Phase A evidence is partial.
+Status:: Open. The hidden-truth half of the decision test is now
+machine-verified with cited evidence (KEY-003); the gate as a whole is not
+closed because replay/re-import, assessment/user-path review and reviewer
+sign-off are still outstanding.
 Entry evidence:: Both deep routes, evidence/notebook, deadlines, workstreams,
 assessment, debrief, replay, result envelope and standalone shell.
 Decision test:: Golden runs complete without learner-visible hidden truth and
 re-import reproduces events, projections, assessment and certificate digest.
+Machine-verified evidence:: `tools/check-hidden-truth.sh` scans four
+independent channels derived from the scenario's hidden `reality.a2ml`
+sections — bundle structure, shipped files, binary strings and live CLI
+runtime output — plus a fifth reality-versus-kernel drift check that fails if
+`zig/src/consequences.zig` diverges from the reality file's deterministic
+constants. `tools/test-hidden-truth-scanner.sh` seeds one defect per channel
+into a scratch tree and proves the gate actually fires: 9/9 canaries pass,
+including a broken-binary canary that shows the runtime channel cannot pass
+vacuously. The kernel unit test
+`"golden runs never expose hidden truth in ledger or certificate"` in
+`zig/src/kernel.zig` asserts the same non-leakage property at build time,
+alongside the adjacent `"hidden-truth detector positive control"` test that
+proves the detector itself can catch a leak. Together these close the
+hidden-truth exposure recorded as KEY-003 (see
+link:../../../programme/key-issues.toml[`programme/key-issues.toml`]) to
+`mitigated`.
+Still missing:: Independent replay/re-import evidence beyond the kernel's own
+unit test; assessment-content and learner user-path review; named reviewer
+sign-off from product, scenario, assessment and security leads. None of these
+are satisfied by the hidden-truth gate, so G4 remains Open.
 Required reviewers:: Product, scenario, assessment and security leads.
 Blocking exposure:: Dead end, truth leak or unverifiable result.
 Event chains:: EC-004, EC-005, EC-008.

@@ -1,0 +1,80 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Contractiles
+:toc: macro
+
+Contractiles are the *set-point*: what should be true of this repository. They
+are the normative half of the estate's contractile/descriptile pattern, and
+their counterpart is `.machine_readable/descriptiles/`, which records the
+*reading* — what is actually true.
+
+toc::[]
+
+== Shape: declarations only, and why
+
+The estate's canonical contractile shape is a "trident": a declaration
+(`<Verb>file.a2ml`), a Nickel runner (`<verb>.ncl`), K9 automation
+(`<verb>.k9.ncl`), and a coherence manifest.
+
+*This repository ships the declarations only.* That is a deliberate choice, not
+an omission.
+
+The estate's contractile runner is unverified — declaration files exist widely,
+but whether any executor consumes them has not been demonstrated here, and
+manifests elsewhere still pin `sha256 = "pending-first-verify"`. Shipping runner
+files that nothing runs would manufacture the appearance of enforcement without
+the fact of it. This repository spends a whole gate suite eliminating exactly
+that pattern — a check that cannot fail is treated here as a defect — so
+importing it through the back door would be incoherent.
+
+Accordingly, every check in `must/Mustfile.a2ml` carries a `run:` line naming
+the *real* command that enforces it today, and each verb in `INDEX.a2ml` names
+its actual enforcement mechanism or states plainly that none exists. The real
+enforcement is `just check`, `.github/workflows/quality.yml`, and the canary
+suites.
+
+If and when the estate runner is verified, these declarations are ready to be
+consumed; nothing here needs rewriting to make that work.
+
+== The verbs
+
+[cols="1,1,3",options="header"]
+|===
+|Verb |Authority |Carries
+
+|`must`
+|hard
+|Release-blocking invariants, each with the real command that enforces it.
+Hidden-truth absence comes first, because if it fails the assessment is void.
+
+|`trust`
+|hard
+|Trust boundaries — chiefly that a learner is an adversary with respect to
+hidden reality and a facilitator is not — plus integrity and provenance.
+
+|`bust`
+|hard
+|Declared brokenness. What does not work and must not be relied upon, including
+the vacuous AffineScript gate and the uninhabited proof predicates.
+
+|`adjust`
+|advisory
+|Drift tolerances — authority cut-off age, wiki review age, debt-register
+freshness — and the corrective action for each.
+
+|`dust`
+|advisory
+|Rollback and recovery procedures, what is irreplaceable, and what has been
+retired.
+
+|`intend`
+|non-gating
+|Committed intents, each with a probe, kept separate from horizon wishes. An
+unprobed commitment is a wish wearing a commitment's clothes.
+|===
+
+== Reading these against the descriptiles
+
+`must` and `trust` say what should hold; `.machine_readable/descriptiles/STATE.a2ml`
+says what does. Where the two differ, `bust` names the gap explicitly and
+`docs/KNOWN-DEBT.adoc` carries the human-readable register. Nothing here should
+assert a property that the descriptiles do not evidence.

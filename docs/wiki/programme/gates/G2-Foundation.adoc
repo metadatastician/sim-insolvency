@@ -1,4 +1,17 @@
 // SPDX-License-Identifier: PMPL-2.0-or-later
+:page-id: WIKI-GATE2-001
+:page-title: G2 — Foundation Baseline Approved
+:page-audience: Programme, contributors and reviewers
+:page-maturity: SPECIFIED
+:page-product-version: 0.1.0-phase-a / pre-alpha
+:page-authority-status: Not applicable
+:page-owner: Programme governance
+:page-last-reviewed: 2026-08-07
+:page-next-review: At G2 decision record
+:page-related-issues: Gate G2 decision issue
+:page-programme-gate: G2
+:page-event-chains: EC-001, EC-004, EC-006
+
 == G2 — Foundation baseline approved
 
 Status:: Open; extensive specifications exist but have not had formal review.

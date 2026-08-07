@@ -1,0 +1,73 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# Intentfile — committed intents and horizon wishes for sim-insolvency.
+# Verb:      intend
+# Authority: non-gating
+#
+# Declaration only — see ../INDEX.a2ml on shape.
+#
+# [[intents]] are commitments with a probe: something that can be checked to see
+# whether the intent has been honoured. [[wishes]] are horizon, deliberately
+# unprobed. Keeping them in separate lists is the point of the file — an
+# unprobed commitment is a wish wearing a commitment's clothes.
+
+@abstract:
+What this repository is committed to doing next, and what it merely hopes for.
+The committed list is short on purpose, because capacity is one person.
+@end
+
+## Intents
+
+### close-the-vacuous-affinescript-gate
+- description: tools/typecheck-affinescript.sh must either fail when the toolchain is expected, or stop being counted as a gate in `just check`.
+- probe: "grep -q 'exit 1' tools/typecheck-affinescript.sh || ! grep -q 'typecheck' <(just --show check)"
+- status: open
+- notes: The single most corrosive item in the repository — a permanently-green gate standing beside genuinely honest ones.
+
+### put-the-proof-layer-in-ci
+- description: Add an idris2 --typecheck step to .github/workflows/quality.yml so ADR-0006's stated release gate actually gates.
+- probe: "grep -q idris2 .github/workflows/quality.yml"
+- status: open
+
+### converge-check-and-ci
+- description: `just check` and CI should run the same gate set, or the split should be documented as deliberate with a reason.
+- probe: "compare the check recipe's dependency list against quality.yml's run steps"
+- status: open
+
+### canary-the-remaining-gates
+- description: check-abi-drift.sh, validate-scenario.sh and check-no-prohibited-stack.sh should each gain a suite proving they can fail, as check-hidden-truth and check-wiki-health have.
+- probe: "test -f tools/test-abi-drift.sh && test -f tools/test-validate-scenario.sh && test -f tools/test-no-prohibited-stack.sh"
+- status: open
+
+### resolve-the-uninhabited-predicates
+- description: Proof.idr's ValidProofGoal and ValidProvedReceipt should either gain inhabitants or be relabelled explicitly as specifications.
+- probe: "manual review of idris2/SimInsolvency/ABI/Proof.idr"
+- status: open
+
+### keep-the-debt-register-honest
+- description: docs/KNOWN-DEBT.adoc is reconciled against the tree at least every 60 days, with resolved items marked resolved rather than deleted.
+- probe: "check the register's date against `git log -1 --format=%cd`"
+- status: open
+
+## Wishes
+
+### practitioner-validated-rule-pack
+- description: An insolvency practitioner reviews the rule pack and rubric, so that assessment validity rests on professional judgement rather than on the author's reading.
+- notes: This is KEY-001 and the binding constraint on the whole programme. It is a wish rather than an intent because it depends on reviewer capacity that does not currently exist. No amount of engineering closes it.
+
+### a-second-scenario
+- description: A second authored scenario, to show that the architecture generalises and that the rubric is not overfitted to Morrow Engineering.
+
+### cva-and-compulsory-lifecycles
+- description: Full CVA and compulsory-liquidation lifecycles, rather than the current reasoning-only and consequence-only treatments.
+
+### affinescript-actually-executes
+- description: The declared principal language becomes the executing one, retiring the Zig fallback to the FFI boundary it was designed for.
+- notes: Depends entirely on the AffineScript compiler maturing upstream.
+
+### accessibility-validated
+- description: The learner shell is tested against real accessibility requirements rather than rated Unknown.
+
+### a-pilot-with-real-learners
+- description: KEY-005 — operational and client evidence from a controlled pilot, which is the only thing that can move the programme past G7.

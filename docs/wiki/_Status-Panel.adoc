@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
 [cols="1,3",options="header"]
 |===
 |Field |Value

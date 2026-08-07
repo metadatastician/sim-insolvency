@@ -7,7 +7,7 @@
 :page-product-version: 0.1.0-phase-a / pre-alpha
 :page-authority-status: Provisional and unreviewed
 :page-owner: Programme lead
-:page-last-reviewed: 2026-07-29
+:page-last-reviewed: 2026-08-07
 :page-next-review: Every release
 :page-related-issues: Key-issue and defect registers
 :page-programme-gate: G3 through G9
@@ -34,7 +34,11 @@ include::../_Status-Panel.adoc[]
 * A certificate is internal evidence of completion and assessed performance,
   not a qualification, licence, JIEB result, statutory authorisation or
   accredited CPD.
-* Hidden-state and production certificate controls require independent review.
+* Hidden-state leak detection now exists (`tools/check-hidden-truth.sh`, four
+  scan channels plus a reality-versus-kernel drift check, proved by 9/9
+  canaries in `tools/test-hidden-truth-scanner.sh`; KEY-003 status
+  `mitigated`) but production certificate controls and the detector itself
+  still require independent security review.
 
 == Technology
 
@@ -44,8 +48,18 @@ include::../_Status-Panel.adoc[]
   Hexadeca, Echidna and Stapeln integration are incomplete or capability-gated.
 * The local deterministic adapters preserve architecture but are not evidence
   that external services work.
-* The GitHub-hosted quality workflow is currently vulnerable to the account’s
-  Actions budget condition; an owned-compute Bag integration is planned.
+* Between 2026-08-05 and 2026-08-07 this repository's GitHub Actions runs
+  (`quality`, `Secret Scanner`) all failed with `startup_failure` — a
+  pre-execution failure returning zero jobs in zero seconds. *Root cause
+  confirmed and fixed 2026-08-07*: the reusable-caller entry for
+  `secret-scanner.yml` had been added under `dependencies:` rather than
+  `workflows:` in `.github/workflows/actions.lock`, leaving the lockfile
+  unparseable (`cannot unmarshal !!seq into lockfile.Action`). The earlier
+  Actions-budget hypothesis recorded here was wrong. Two consequences worth
+  keeping: no CI result from that window carries any evidential weight, and
+  `gh pr checks` cannot report this class of failure at all — use
+  `gh run list`. An owned-compute Bag integration remains planned as a
+  longer-term mitigation, independently of this fix.
 
 == Programme and delivery
 

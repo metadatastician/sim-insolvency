@@ -1,0 +1,397 @@
+// SPDX-License-Identifier: PMPL-2.0-or-later
+= Known Debt
+:toc: left
+
+This is the honest counterpart to the claims in
+`.machine_readable/descriptiles/STATE.a2ml`. That file states what the
+project claims to be true; this register states what is still wrong, still
+missing, or knowingly accepted. Every item below is in exactly one of three
+states: `open` (not addressed), `accepted` (addressed by a decision not to
+fix, with the reason given), or `resolved-<PR>` (closed, with the PR that
+closed it). Nothing here is legal advice, a professional qualification, or
+accredited CPD — see README and the authority-pack disclaimers for the scope
+of that limitation.
+
+Debt is organised by category. Within a category, IDs are stable once
+assigned; do not renumber a resolved item, extend its status instead.
+
+== Licence
+
+[cols="1,4,3,2",options="header"]
+|===
+|ID |Statement |Evidence |Status
+
+|DEBT-LIC-001
+|`PMPL-2.0-or-later` is not an SPDX-registered identifier, so GitHub's
+licence classifier reports this repository as NOASSERTION regardless of the
+`LICENSES/` layout or file headers.
+|GitHub repository licence badge; `LICENSES/PMPL-2.0-or-later.txt`
+|accepted — not fixable from inside the repo; registering a custom licence
+with SPDX is outside this project's control. Document the consequence rather
+than imply it resolves.
+
+|DEBT-LIC-002
+|`.github/workflows/secret-scanner.yml` line 1 declares `MPL-2.0`, the only
+non-PMPL SPDX header anywhere in the tree, contradicting the repo's own
+licence.
+|`.github/workflows/secret-scanner.yml:1` (`# SPDX-License-Identifier:
+MPL-2.0`)
+|open
+
+|DEBT-LIC-003
+|9 tracked files carry no SPDX identifier at all.
+|`.editorconfig`; `.github/ISSUE_TEMPLATE/config.yml`,
+`event.yml`, `programme-work.yml`, `stage-gate.yml`;
+`.github/dependabot.yml`; `.github/workflows/actions.lock`;
+`docs/wiki/_Status-Panel.adoc`; `idris2/sim-insolvency-abi.ipkg`
+|open
+
+|DEBT-LIC-004
+|12 files carry the SPDX identifier on line 2, not line 1, because line 1 is
+a required shebang (`#!/usr/bin/env bash`) or an HTML doctype. Ruling: this
+is a sane, deliberate carve-out, not a violation — a shebang or doctype must
+occupy line 1 for the file to function, so SPDX on line 2 is the correct
+place and should be read as compliant, not as 12 standing violations. Any
+future automated SPDX linter must special-case shebang/doctype files rather
+than assume the identifier is always line 1 (see the estate rule: past
+sweeps that blindly imposed a line-1 identifier mis-licensed files).
+|11 shell scripts under `tools/` (e.g. `tools/check-hidden-truth.sh:2`) plus
+`shell/index.html:2`
+|accepted — shebang/doctype-first is the ruling; not a defect
+
+|DEBT-LIC-005
+|No REUSE-compliant `.reuse/dep5` (or `REUSE.toml`) despite using a
+`LICENSES/` directory layout that implies REUSE compliance.
+|absence of `.reuse/dep5` and `REUSE.toml`; presence of `LICENSES/`
+|open
+
+|DEBT-LIC-006
+|`SPDX-FileCopyrightText` attribution appears on only 5 files; the rest of
+the tree has a licence identifier but no named copyright holder.
+|`README.adoc`, `DEPENDENCIES.adoc`, `container/README.adoc`,
+`idris2/SimInsolvency/ABI/Proof.idr`,
+`docs/architecture/estate-reconnaissance.adoc`
+|open
+|===
+
+== Docs
+
+[cols="1,4,3,2",options="header"]
+|===
+|ID |Statement |Evidence |Status
+
+|DEBT-DOC-001
+|No ADR recorded the hidden-truth gate decision, despite CONTRIBUTING
+requiring one for schema/claim changes of this weight.
+|absence of an ADR referencing KEY-003/G4 prior to this update
+|resolved-docs/estate-alignment — `docs/architecture/adr/ADR-0019-hidden-truth-adversarial-validation.adoc`
+added in this change
+
+|DEBT-DOC-002
+|`docs/wiki/_Page-Register.adoc`'s maturity column drifts from the
+`:page-maturity:` attribute on the page itself; the wiki-health gate only
+checks ID equality, not maturity equality, so this can drift silently.
+|`docs/wiki/_Page-Register.adoc:45` records `WIKI-TRUST-001` as RESEARCHED;
+`docs/wiki/product/Security-Privacy-Accessibility.adoc:6` reads
+`:page-maturity: DRAFT`
+|open
+
+|DEBT-DOC-003
+|No `.gitleaks.toml` tuning file exists. PR #6's own body documents the
+estate pattern for handling false positives (a narrow, path-anchored
+`.gitleaks.toml`, verified by planting a real key) but this repo has not yet
+needed or added one. This repo is unusually rich in credential-shaped
+material — HMAC key IDs, `scenarios/*/reality/`, the hidden-truth allowlist
+— so false positives from gitleaks are expected on first real run.
+|absence of `.gitleaks.toml`; PR #6 body; `tools/hidden-truth-allowlist.txt`;
+`scenarios/morrow-engineering-001/reality/reality.a2ml`
+|open
+|===
+
+== Code
+
+[cols="1,4,3,2",options="header"]
+|===
+|ID |Statement |Evidence |Status
+
+|DEBT-CODE-001
+|CVA (Company Voluntary Arrangement) is an enum variant considered via
+`session.consider(.cva, ...)` only; there is no CVA lifecycle in the kernel.
+|`zig/src/kernel.zig:24` (enum variant), `:625` and `:723`
+(`session.consider(.cva, ...)`) — no state-machine transitions for `.cva`
+elsewhere in the file
+|open
+
+|DEBT-CODE-002
+|Compulsory liquidation is consequence-only: the kernel selects the
+procedure and emits one event, but there is no further lifecycle beyond
+that.
+|`zig/src/kernel.zig:434` (`self.procedure = .compulsory_liquidation`),
+`:437` (single `procedure_selected` emit), `:472` (only a critical-error
+check references the variant afterward)
+|open
+
+|DEBT-CODE-003
+|`tools/build-typed-wasm.sh` unconditionally exits 1 — it is not a
+conditional gate but a permanent, honest refusal — so the typed-wasm
+producer has zero automated coverage of any kind.
+|`tools/build-typed-wasm.sh` (checks for `affinescript` on PATH, then always
+prints a BLOCKED diagnostic and exits 1 even when the compiler is present,
+because the producer command is not yet pinned)
+|open — by design; tracked separately from DEBT-TOOL entries because this is
+source code behaviour, not a toolchain gap
+
+|DEBT-CODE-004
+|`HexadecaPort` is a permanent stub because the upstream Hexadeca repository
+does not exist / has not been located; it can only ever return
+`not-supported`.
+|`zig/src/ports.zig:20-21` (`HexadecaPort` struct and `dispatch` always
+returning a fixed status); `DEPENDENCIES.adoc:71`;
+`docs/architecture/adr/ADR-0015-hexadeca-port.adoc`
+|accepted — cannot be resolved until an upstream Hexadeca repository exists;
+the stub is the correct honest behaviour in the meantime
+
+|DEBT-CODE-005
+|`.gitattributes` is an unmodified RSR template: it configures Rust, Elixir,
+Julia, ReScript, Ada, Haskell, Chapel, Scheme, Nickel, and **Nix** — a
+language this repo's own gate bans — while configuring none of `.zig`,
+`.idr`, `.affine`, or `.a2ml`, the languages this repo actually uses. It
+also references a lowercase `justfile` while the repo ships a capitalised
+`Justfile`.
+|`.gitattributes` (full file: `*.nix text eol=lf` present; no `*.zig`,
+`*.idr`, `*.affine`, `*.a2ml` entries; `justfile text eol=lf` vs tracked
+file `Justfile`); `tools/check-no-prohibited-stack.sh` fails on `flake.nix`
+|open
+
+|DEBT-CODE-006
+|`benches/`, `fixtures/`, `certificates/` are directories that exist in the
+tree (with one empty subdirectory each: `fixtures/replay`,
+`certificates/examples`) but contain no tracked files — the same
+looks-populated-but-is-empty defect class as the `tests/` scaffold already
+removed from this repo.
+|`git ls-files benches fixtures certificates` returns nothing; `find`
+confirms only empty subdirectories exist on disk
+|open
+|===
+
+== Proofs
+
+[cols="1,4,3,2",options="header"]
+|===
+|ID |Statement |Evidence |Status
+
+|DEBT-PROOF-001 (strength, not debt — recorded for completeness)
+|The Idris2 layer is genuinely clean of escape hatches: zero
+`postulate`/`believe_me`/`assert_total`/holes across all five ABI modules,
+and every module declares `%default total`. This is a real property, not a
+claim.
+|`grep -rn` over `idris2/**/*.idr` for `postulate\|believe_me\|assert_total`
+returns nothing; `%default total` present in all 5 modules
+(`Event.idr:6`, `Certificate.idr:6`, `Proof.idr:7`, `Conformance.idr:6`,
+`Core.idr:6`)
+|n/a — strength
+
+|DEBT-PROOF-002
+|Despite DEBT-PROOF-001, the proved surface is narrow: roughly 4 real
+theorems over 234 total lines across the 5 modules.
+|`find idris2 -name '*.idr' \| xargs wc -l` = 234 lines total
+(49+53+59+32+41)
+|open
+
+|DEBT-PROOF-003
+|`Proof.idr`'s `ValidProofGoal` and `ValidProvedReceipt` are type-level
+predicates (tuples/case expressions of propositions) with no inhabitant
+constructed anywhere in the tree — they are **specifications, not proofs**.
+Nothing in the codebase demonstrates a `ProofGoal` or `ProofReceipt`
+actually satisfying them.
+|`idris2/SimInsolvency/ABI/Proof.idr` — `ValidProofGoal` and
+`ValidProvedReceipt` are declared as `Type`-valued functions; no proof term
+of either type appears in this file or elsewhere in `idris2/`
+|open
+
+|DEBT-PROOF-004
+|`tools/check-abi-drift.sh` greps for fixed strings in the manifest, the Zig
+source, the Idris2 source and the AffineScript shell — it does not
+typecheck or semantically compare anything, so it cannot detect drift that
+preserves the grepped strings but changes meaning.
+|`tools/check-abi-drift.sh` — nine `grep -q` calls against
+`schemas/generated/abi-v1.manifest`, `zig/src/ports.zig`,
+`idris2/SimInsolvency/ABI/Conformance.idr`, `idris2/SimInsolvency/ABI/Proof.idr`,
+`affinescript/shell/Ports.affine`
+|open
+
+|DEBT-PROOF-005
+|ECHIDNA is a correctly-gated `not-available` stub: `EchidnaProofPort` is
+total and honest about its absence. This is the same class of debt as
+DEBT-CODE-004 (Hexadeca) — accepted, not a defect — but flagged here because
+`echidna-proof-port = true` in STATE.a2ml reads as more than a stub unless
+read against this entry.
+|`docs/architecture/adr/ADR-0017-echidna-proof-port.adoc`;
+`.machine_readable/descriptiles/STATE.a2ml` `[technical-debt]`
+`proofs-are-narrow` entry
+|accepted — correct behaviour for an unavailable optional dependency
+|===
+
+== CI/CD and test
+
+[cols="1,4,3,2",options="header"]
+|===
+|ID |Statement |Evidence |Status
+
+|DEBT-CI-001 (single worst item in this register — flagged prominently)
+|`tools/typecheck-affinescript.sh` prints
+`BLOCKED: affinescript unavailable` and then falls through with no `exit 1`
+— it exits 0 whenever the AffineScript compiler is absent from `PATH`,
+which is always true today. This slot inside `just check` is therefore
+**permanently, vacuously green**: it can never fail, so it proves nothing.
+This is the exact fake-gate pattern PR #5 existed to eliminate elsewhere in
+this repo, reproduced inside `just check` itself. It is also not invoked by
+CI at all (`.github/workflows/quality.yml` never calls it), so today it is
+doubly absent from any enforced signal.
+|`tools/typecheck-affinescript.sh` (no `exit 1` on the BLOCKED branch);
+`Justfile:47-48` (`typecheck:` recipe calls it, and `check:` depends on
+`typecheck`); `.github/workflows/quality.yml` (no `typecheck` or
+`affinescript` step)
+|open
+
+|DEBT-CI-002
+|`just prove` (the Idris2 typecheck) never runs in CI, though
+`docs/architecture/adr/ADR-0006-idris2-abi.adoc` calls `just prove` and
+manifest drift "release gates."
+|`.github/workflows/quality.yml` job `zig` has no `idris2`/`prove` step;
+`docs/architecture/adr/ADR-0006-idris2-abi.adoc:10`
+(`Consequences:: \`just prove\` and manifest drift are release gates.`)
+|open
+
+|DEBT-CI-003
+|Only 2 of the 6 shell gates invoked by `just check`/CI are canary-verified
+(proven able to fail, not just to pass): `check-hidden-truth.sh` (9/9,
+`tools/test-hidden-truth-scanner.sh`) and `check-wiki-health.sh` (3/3,
+`tools/test-wiki-health.sh`). `check-abi-drift.sh`, `validate-scenario.sh`,
+`check-no-prohibited-stack.sh`, and `typecheck-affinescript.sh` have no
+canary suite at all.
+|`tools/test-hidden-truth-scanner.sh:11` (`total=9`);
+`tools/test-wiki-health.sh:11` (`total=3`); absence of any
+`test-abi-drift*`, `test-validate-scenario*`,
+`test-no-prohibited-stack*`, `test-typecheck-affinescript*` script
+|open
+
+|DEBT-CI-004
+|`check-wiki-health.sh`'s registered-page floor is `-lt 21`
+(i.e. requires at least 21) while 24 pages are currently registered in
+`programme/wiki-page-register.toml`. Up to 3 pages could be deregistered
+before the floor would ever fire.
+|`tools/check-wiki-health.sh:42` (`if [[ "${registered}" -lt 21 ]]`);
+`grep -c '^path = ' programme/wiki-page-register.toml` = 24
+|open
+
+|DEBT-CI-005
+|`check-no-prohibited-stack.sh` does not prune `.zig-cache/`, `zig-out/`, or
+`dist/` from its search. It will not currently false-positive (none of the
+prohibited extensions appear in those trees today) but any future generated
+artefact carrying a prohibited extension inside them will trip the gate
+spuriously, and the gate's `find` only excludes `.git`.
+|`tools/check-no-prohibited-stack.sh` — `find "${root}" -path
+"${root}/.git" -prune -o ... -print`; no `-path .../.zig-cache -prune` etc.
+|open
+
+|DEBT-CI-006
+|`benches/`, `fixtures/`, `certificates/` (see DEBT-CODE-006) exist only to
+look populated and have no CI role.
+|see DEBT-CODE-006
+|open
+
+|DEBT-CI-008
+|`shellcheck` reports SC2034 (unused variable `checker`) in
+`tools/test-wiki-health.sh`. Pre-existing, introduced with the file in #5.
+Cosmetic, but it means `shellcheck tools/*.sh` cannot be used as a clean
+tripwire until it is fixed, and `shellcheck` is not run in CI at all.
+|`shellcheck tools/test-wiki-health.sh` — SC2034 at line 9
+|open
+
+|DEBT-CI-007
+|*All CI on `main` was dead for two days.* PR #6 hand-added the reusable-caller
+entry `'.github/workflows/secret-scanner.yml': []` under `dependencies:`
+instead of under `workflows:`. The lockfile then failed to unmarshal, and
+*every* workflow — including `quality`, green the previous day — returned
+`startup_failure` in 0s from 2026-08-05 until this change. The estate
+lockfile-remediation recipe places caller entries under `workflows:`; this was
+a one-line misplacement with a repo-wide blast radius, and it is invisible to
+`gh pr checks`, which is why it survived a merge.
+|`gh run list` — every run `startup_failure`, 0s, from 2026-08-05T12:53Z;
+`gh actions-lock --no-fix` — `line 21: cannot unmarshal !!seq into
+lockfile.Action`
+|resolved-2026-08-07
+|===
+
+[NOTE]
+====
+DEBT-CI-007 is the reason this register exists. The defect was introduced by a
+merged pull request whose own checks could not report it, sat undetected for two
+days, and was found only by validating the lockfile by hand during a
+documentation pass. A gate that cannot report its own failure is worse than no
+gate, because it is trusted.
+====
+
+== Template
+
+[cols="1,4,3,2",options="header"]
+|===
+|ID |Statement |Evidence |Status
+
+|DEBT-TMPL-001
+|`.gitattributes` is an unmodified RSR template — see DEBT-CODE-005 for the
+full detail (recorded once there; cross-referenced here because it is a
+template-residue defect, not a hand-authored one).
+|see DEBT-CODE-005
+|open
+
+|DEBT-TMPL-002
+|`.github/dependabot.yml` has `package-ecosystem: ""` — an empty string is
+not a valid ecosystem value, so the whole `updates` entry is rejected and
+the file is a silent no-op: it looks like Dependabot coverage exists but
+none does.
+|`.github/dependabot.yml` (`- package-ecosystem: "" # See documentation for
+possible values`)
+|open
+
+|DEBT-TMPL-003
+|`.superpowers/sdd/.gitignore` contains a bare `*` — dead scaffold left over
+from template instantiation, ignoring an entire directory that otherwise
+serves no purpose in this repo.
+|`.superpowers/sdd/.gitignore` (single line: `*`)
+|open
+|===
+
+== Toolchain
+
+[cols="1,4,3,2",options="header"]
+|===
+|ID |Statement |Evidence |Status
+
+|DEBT-TOOL-001
+|All 11 gaps listed in `docs/architecture/toolchain-gaps.adoc` remain true
+as of this reconfirmation.
+|`docs/architecture/toolchain-gaps.adoc` (11-row table); reconfirmed
+2026-08-07, see that file's changelog note
+|open — individually itemised in `docs/architecture/toolchain-gaps.adoc`,
+not duplicated row-by-row here
+
+|DEBT-TOOL-002
+|`docs/architecture/toolchain-gaps.adoc`'s former closing claim — "Every gap
+is tracked as an explicit TODO adjacent to its port" — was false: a
+tree-wide search for `TODO` across `.zig`, `.idr`, `.sh`, and `.affine`
+source returns zero matches. The claim has been corrected in that file to
+point here instead.
+|`grep -rn TODO` over `*.zig *.idr *.sh *.affine` returns nothing; corrected
+in `docs/architecture/toolchain-gaps.adoc` in this same change
+|resolved-docs/estate-alignment — claim corrected in place
+
+|DEBT-TOOL-003
+|`docs/architecture/toolchain-gaps.adoc` referenced a `just build-affine`
+recipe that does not exist; the real recipe is `build-typed-wasm`.
+|`Justfile` recipe list has no `build-affine`; `build-typed-wasm:` at
+`Justfile:26`; corrected in `docs/architecture/toolchain-gaps.adoc` in this
+same change
+|resolved-docs/estate-alignment — reference corrected in place
+|===

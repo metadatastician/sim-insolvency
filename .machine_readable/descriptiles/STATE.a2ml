@@ -1,0 +1,149 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# STATE.a2ml — Project state checkpoint
+#
+# CREATED 2026-08-07. This repository previously had no descriptiles at all: a
+# single bespoke `.machine_readable/STATE.a2ml` carried a `[project]`/`[claims]`
+# pair and nothing else — no phase, no route, no blockers, no debt. Its claims
+# are preserved verbatim under [claims] below so nothing is lost; everything
+# else here is new and is written from the tree, not from a status document.
+
+[metadata]
+project = "sim-insolvency"
+version = "0.1.0-phase-a"
+last-updated = "2026-08-07"
+status = "active"          # active | paused | archived
+
+[project-context]
+name = "Sim Insolvency"
+purpose = "An evidence-driven, time-aware simulator for England & Wales corporate insolvency practice: learners request evidence, form and revise beliefs under time pressure, compare procedures, and are assessed on defensible reasoning rather than on reaching one correct answer."
+current-scope = "One authored scenario (morrow-engineering-001) with two deep procedure routes (CVL and Administration), an append-only event ledger with hash chaining, eight golden runs, a rubric-mapped assessment, a tamper-evident certificate envelope, and a standalone learner bundle."
+completion-percentage = 15
+
+# On that number: the Phase A vertical slice genuinely runs end-to-end, which
+# makes the technical story look further along than the product is. Measured
+# against `docs/wiki/programme/Definition-of-v1.adoc` — reviewed authority pack,
+# practitioner-validated rubric, multiple scenarios, evidenced pilot — 15 is
+# generous. The gating constraint is professional validation (KEY-001), which no
+# amount of engineering closes. Read [blockers-and-issues], not the percentage.
+
+[position]
+phase = "implementation"   # design | implementation | testing | maintenance | archived
+maturity = "experimental"  # experimental | alpha | beta | production | lts
+visibility = "private; publication not decided"
+estate = "metadatastician"
+jurisdiction = "England and Wales — corporate insolvency"
+
+[implemented]
+components = [
+  "append-only event ledger with contiguous sequence, causal-parent checks and a SHA-256 hash chain",
+  "five epistemic layers (scenario reality / potential evidence / disclosed record / learner beliefs / normative case state)",
+  "CVL and Administration deep routes with evidence-linked procedure comparison",
+  "eight deterministic golden runs incl. threshold-borderline, critical-error, deadline-failure and a group session with preserved dissent",
+  "time-pressure consequences on a logical-minute clock (reality-derived, see zig/src/consequences.zig)",
+  "rubric-mapped competency assessment separated from case consequence",
+  "tamper-evident certificate envelope, HMAC-signed, with an operator-supplied key override and development-key labelling",
+  "standalone learner bundle with hidden-material separation (tools/package-standalone.sh)",
+  "hidden-truth leak gate over four channels plus reality-to-kernel drift (tools/check-hidden-truth.sh)",
+  "wiki register/page-id equality gate (tools/check-wiki-health.sh)",
+  "gitleaks secret scanning in CI",
+]
+
+[acceptance-evidence]
+hidden-truth = "tools/test-hidden-truth-scanner.sh seeds one leak per channel and requires the scanner to fail: 9/9. The deny-list is DERIVED from scenarios/*/reality/reality.a2ml, so scenario authoring cannot drift out of sync with the scanner, and a vacuous derivation aborts."
+wiki-health = "tools/test-wiki-health.sh: 3/3 canaries (clean pass, page-id drift, empty register)."
+ledger = "zig/src/kernel.zig — replay determinism and tamper-evidence tests; all eight golden runs produce stable, distinct digests."
+kernel-leak = "zig/src/kernel.zig test 'golden runs never expose hidden truth in ledger or certificate' walks every event payload, every actor and the certificate across all eight runs."
+idris2 = "Five ABI modules typecheck under idris2 0.7.0, all %default total, with zero postulate/believe_me/assert_total/holes. NOTE: this runs locally via `just prove` only — it is NOT in CI. See [technical-debt]."
+
+[not-implemented]
+components = [
+  "CVA lifecycle (the procedure is reasoned about and compared, but has no lifecycle)",
+  "compulsory liquidation lifecycle (consequence-only)",
+  "any scenario other than morrow-engineering-001",
+  "reviewed or practitioner-validated authority content — the rule pack is PROVISIONAL and UNREVIEWED",
+  "AffineScript execution (the .affine modules are non-executing contracts; the compiler is not on PATH)",
+  "typed-wasm carriers (tools/build-typed-wasm.sh exits 1 by design)",
+  "Gossamer native shell, Burble vote/reveal protocol, VeriSimDB client, Hexadeca connector, ECHIDNA provers",
+  "accessibility validation",
+  "any hosted or multi-learner service",
+]
+
+[blockers-and-issues]
+# Programme-level, not code-level. Registered in programme/key-issues.toml.
+issues = [
+  { id = "KEY-001", severity = "critical", notes = "Practitioner and assessment validation are ABSENT. The rule pack is provisional and unreviewed, the rubric is unvalidated, and no insolvency practitioner has reviewed the scenario. Nothing engineering can do closes this — it needs reviewer capacity. Gates G5." },
+  { id = "KEY-002", severity = "high", notes = "Estate toolchain integrations remain port-backed: Gossamer, Burble, VeriSimDB, Hexadeca and ECHIDNA are capability-gated stubs returning not-supported/not-available. Honest, but it means the estate-integration story is declared rather than demonstrated. Gates G3." },
+  { id = "KEY-003", severity = "mitigated", notes = "Hidden-truth isolation now HAS adversarial validation (9 canaries, 4 channels + drift, plus kernel-level assertions over all golden runs). Residual: the scanner is exact-phrase and case-sensitive by construction, and only the shipped bundle/binary/runtime surfaces are covered. Was critical; shipped 2026-08-04 in PRs #4 and #5." },
+  { id = "KEY-004", severity = "high", notes = "Programme capacity is concentrated in a solo maintainer. No second reviewer, no quorum, no succession. Gates G6." },
+  { id = "KEY-005", severity = "high", notes = "Operational and client evidence does not exist. No pilot has run; no facilitator or learner has used this outside development. Gates G7." },
+]
+
+[technical-debt]
+# The consolidated, human-readable register is docs/KNOWN-DEBT.adoc. This section
+# carries the items that bear on whether the CLAIMS in this file can be trusted.
+items = [
+  { id = "vacuous-affinescript-gate", severity = "high", notes = "tools/typecheck-affinescript.sh prints 'BLOCKED: affinescript unavailable' and exits 0. The compiler is never on PATH, so this slot inside `just check` is permanently, vacuously green — the exact fake-gate pattern this repo otherwise works hard to eliminate. It is also absent from CI. Either give it a strict mode that fails when the toolchain is expected, or stop counting it as a gate." },
+  { id = "idris2-not-in-ci", severity = "medium", notes = "ADR-0006 calls `just prove` a release gate; .github/workflows/quality.yml has no idris2 step. Two of the six `just check` components (typecheck, prove) never run in CI." },
+  { id = "uncanaried-gates", severity = "medium", notes = "Only 2 of 6 shell gates are canary-verified (check-hidden-truth 9/9, check-wiki-health 3/3). check-abi-drift, validate-scenario, check-no-prohibited-stack and typecheck-affinescript have no suite proving they can fail. check-abi-drift is grep-only and cannot detect semantic drift." },
+  { id = "proofs-are-narrow", severity = "medium", notes = "The Idris2 layer is clean of escape hatches, but it is roughly four real theorems over 234 lines, and Proof.idr's ValidProofGoal/ValidProvedReceipt are UNINHABITED predicates — specifications, not proofs. `echidna-proof-port = true` below means the port exists and is correctly gated, NOT that anything is proved." },
+  { id = "check-and-ci-diverge", severity = "medium", notes = "`just check` and CI do not run the same gate set. docs-health / test-docs-health run in .github/workflows/quality.yml but are NOT dependencies of the `check` recipe, while typecheck and prove are in `check` but absent from CI. A green local `just check` therefore does not predict CI, in either direction." },
+  { id = "prohibited-stack-scan-scope", severity = "low", notes = "tools/check-no-prohibited-stack.sh does not prune .zig-cache/, zig-out/ or dist/, so generated artefacts can trip it spuriously." },
+  { id = "template-residue", severity = "low", notes = "Corrected 2026-08-07: .gitattributes was an unmodified RSR template configuring ten unused languages including Nix, which this repo bans. .github/dependabot.yml had an invalid empty package-ecosystem, making the whole config a silent no-op." },
+  { id = "licence-not-spdx-registered", severity = "accepted", notes = "PMPL-2.0-or-later is not an SPDX-registered identifier, so GitHub reports the repository licence as NOASSERTION. This is expected and not fixable from inside the repo." },
+  { id = "actions-lockfile-was-corrupt", severity = "resolved", notes = "RESOLVED 2026-08-07. PR #6 placed the reusable-caller entry for secret-scanner.yml under `dependencies:` instead of `workflows:`, making .github/workflows/actions.lock unparseable. Every workflow — including the previously-green quality job — returned startup_failure in 0s from 2026-08-05 until the fix. Consequence for anything read from this repository between those dates: CI was NOT running, so no green check in that window means anything. See docs/KNOWN-DEBT.adoc DEBT-CI-007." },
+]
+
+[test-status]
+# From `just check` on 2026-08-07.
+zig-build-test = "green"
+hidden-truth-canaries = "9/9"
+wiki-health-canaries = "3/3"
+shell-gates-total = 6
+shell-gates-canary-verified = 2
+idris2 = "typechecks locally; NOT run in CI"
+notes = "There is no unit-test directory: Zig tests are inline in zig/src/kernel.zig and zig/src/ports.zig and run via `zig build test`. An empty tests/ scaffold was removed rather than left implying a suite that did not exist."
+
+[critical-next-actions]
+actions = [
+  "Owner: secure an insolvency practitioner to review the rule pack and rubric. KEY-001 is the binding constraint on everything past G4 and cannot be engineered away.",
+  "Fix or retire tools/typecheck-affinescript.sh — a permanently-green gate inside `just check` undermines every honest gate beside it.",
+  "Add `just prove` (Idris2) to .github/workflows/quality.yml so ADR-0006's stated release gate actually gates.",
+  "Give check-abi-drift, validate-scenario and check-no-prohibited-stack canary suites, or stop describing them as gates.",
+  "Decide whether Proof.idr's uninhabited predicates get inhabitants or get relabelled as specifications.",
+  "Author a second scenario, or record explicitly that one scenario is the Phase A boundary.",
+]
+
+[claims]
+# Preserved verbatim from the pre-descriptile .machine_readable/STATE.a2ml so no
+# claim is silently dropped, plus the three that PRs #4-#6 made true. Read these
+# against [technical-debt] above: `echidna-proof-port = true` means the PORT
+# exists and is gated, not that a proof exists.
+affinescript-principal = true
+zig-fallback-executable = true
+idris2-abi-checked = true
+typed-wasm-complete = false
+gossamer-native-complete = false
+burble-external-complete = false
+verisimdb-http-complete = false
+hexadeca-complete = false
+authority-pack-reviewed = false
+professional-certification = false
+standalone-learner-bundle = true
+echidna-proof-port = true
+wolfi-containerfile = true
+nerdctl-image-build-verified = false
+stapeln-runtime-complete = false
+hidden-truth-leak-gate = true
+hidden-truth-gate-canary-verified = true
+wiki-register-gate = true
+secret-scanning = true          # workflow present and lockfile-valid since 2026-08-07;
+                                # it had never successfully executed before that date
+                                # because the lockfile was unparseable — see [technical-debt].
+license = "PMPL-2.0-or-later"
+
+[maintenance-status]
+maintainer = "Jonathan D.A. Jewell (hyperpolymath) — sole; see KEY-004"
+review-cadence = "monthly and after any material authority or toolchain event"
+merge-convention = "the owner live-tests and merges; contributors and agents open a pull request and do not self-merge"

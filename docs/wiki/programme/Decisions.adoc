@@ -7,7 +7,7 @@
 :page-product-version: Programme framework v0.1
 :page-authority-status: Mixed
 :page-owner: Programme governance
-:page-last-reviewed: 2026-07-29
+:page-last-reviewed: 2026-08-07
 :page-next-review: Every architecture or gate decision
 :page-related-issues: Architecture decision and gate issues
 :page-programme-gate: All
@@ -35,6 +35,7 @@ review discipline.
 |ADR-0016 |Must releases be standalone? |Accepted |Deployment evidence shows contrary need
 |ADR-0017 |How may Echidna consume proof work? |Accepted provisionally |Stable orchestration contract
 |ADR-0018 |How are containers built? |Accepted provisionally |Stapeln verification becomes production-ready
+|ADR-0019 |How is the hidden-truth gate enforced? |Accepted |Scanner or canary methodology materially changes
 |PRG-0001 |What is the bounded v1? |Proposed |G2 decision or material event
 |PRG-0002 |What evidence closes G3? |Proposed |Architecture review
 |PRG-0003 |Who approves professional content? |Open |Reviewer model agreed

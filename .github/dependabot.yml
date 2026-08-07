@@ -1,11 +1,26 @@
+# SPDX-License-Identifier: PMPL-2.0-or-later
 # To get started with Dependabot version updates, you'll need to specify which
 # package ecosystems to update and where the package manifests are located.
 # Please see the documentation for all configuration options:
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+#
+# This repo's only dependency surface is GitHub Actions — there is no
+# npm/cargo/pip manifest; the Zig/Idris2/AffineScript toolchains are pinned
+# by version elsewhere, not via any Dependabot-supported ecosystem. Do NOT
+# add a `nix` ecosystem entry here: "nix" is not a valid package-ecosystem
+# enum value, and one invalid entry silently no-ops the WHOLE file (this
+# repo also bans Nix outright — see 0-AI-MANIFEST.adoc and
+# tools/check-no-prohibited-stack.sh).
+#
+# NOTE: Actions in this repo are also pinned via the machine-generated
+# .github/workflows/actions.lock (`gh actions-lock`). A Dependabot PR that
+# bumps a workflow's `uses:` ref does not update that lockfile — re-run
+# `gh actions-lock` after merging a Dependabot PR here, or the lockfile will
+# read as stale against the workflow it is meant to pin.
 
 version: 2
 updates:
-  - package-ecosystem: "" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
-      interval: "weekly" 
+      interval: "weekly"

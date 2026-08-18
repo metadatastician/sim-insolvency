@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: PMPL-2.0-or-later
 // SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell (hyperpolymath)
-= Sim Insolvency
+= Insolvency Tycoon
 :toc: left
 :reproducible:
 
@@ -11,7 +11,7 @@ defensible decision-making.
 
 [IMPORTANT]
 ====
-Sim Insolvency is a fictional professional-learning simulation. It is not a law
+Insolvency Tycoon is a fictional professional-learning simulation. It is not a law
 firm, insolvency practice, live case-management system, legal advice, supervised
 experience, statutory authorisation, an accredited qualification, a JIEB pass,
 or accredited CPD unless a competent external body separately approves it.
